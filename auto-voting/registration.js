@@ -1,5 +1,6 @@
+// registration.js
 // register
- function register(v) {
+exports.register = function(v) {
     var inputs = document.querySelectorAll('input');
     if(inputs.length >= 4){
         [inputs[0], inputs[2], inputs[3]].forEach((input, index) => {
@@ -9,7 +10,7 @@
         });
     }
     $(".ivu-col-span-8 img").click();
-     var checkInterval = setInterval(function() {
+    var checkInterval = setInterval(function() {
         var pictureCodeInput = inputs[1];
         if (pictureCodeInput && pictureCodeInput.value) {
             var button = document.querySelector('.ivu-form-item-content button');
@@ -19,7 +20,7 @@
     }, 1000);
 }
 // sign in
-function sign_in(v) {
+exports.sign_in = function(v) {
     var usernameInput = document.querySelector('input[name="username"]');
     var passwordInput = document.querySelector('input[name="password"]');
 
@@ -41,6 +42,6 @@ function sign_in(v) {
         }
     }, 1000);
 }
-$("#home-goto-vote img").click();
-a(18873451454);
-$(".ivu-login-submit button").click();
+// $("#home-goto-vote img").click();
+// a(18873451454);
+// $(".ivu-login-submit button").click();

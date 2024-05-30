@@ -1,0 +1,69 @@
+#main_body {
+    /* margin: 0 10%; */
+    background-color: black;
+    height: 1100px;
+    /* width: 80%; */
+}
+#header {
+    height: 200px;
+    background-color: black;
+    color: gold;
+    font-size: 5vw;
+}
+#carousel {
+/*    background-image: url("./src/film_tv/志愿军.jpeg");*/
+    background-position: center;
+    background-size: auto 100%;
+    animation: carousel_img 15s steps(1,end) infinite;   
+}
+#television {
+    background-color: red;
+    height: 25%;
+}
+#film {
+    background-color: blue;
+    height: 25%;
+}
+
+/* #large_pic {
+    background-color: aqua;
+    width: 80%;
+    height:100%;
+} */
+#ep_area {
+    background-image: linear-gradient(to top, transparent, rgba(255, 255, 255, 0.5));
+    width: 20%;
+    height:100%;
+    float: right;
+    overflow: hidden;
+}
+#ep_titles {
+/*    position: relative;*/
+/*    z-index: 90;*/
+    animation: carousel_ep_names 15s linear infinite;
+}
+#ep_name_area {
+    float: right;
+    width: 20%;
+    margin-right: -20%;
+    animation: gradient_ep_names 15s linear infinite;;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.ep_name {
+    width: 100%;
+    font-family: cursive;
+    font-size: 2vw;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    padding: 10px 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ma-shan-zheng-regular {
+  font-family: "Ma Shan Zheng", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
