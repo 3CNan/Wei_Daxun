@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'ZHBaiGeTianXing';
+  src: url('./src/font/字魂白鸽天行体(商用需授权).ttf') format('truetype');
+}
+
 #main_body {
     /* margin: 0 10%; */
     background-color: black;
@@ -5,10 +10,12 @@
     /* width: 80%; */
 }
 #header {
-    height: 200px;
+    height: 100px;
     background-color: black;
     color: gold;
+    text-align: center;
     font-size: 5vw;
+    font-family: 'ZHBaiGeTianXing', sans-serif;
 }
 #carousel {
 /*    background-image: url("./src/film_tv/志愿军.jpeg");*/
