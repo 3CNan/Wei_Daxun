@@ -1,21 +1,28 @@
 @font-face {
-  font-family: 'ZHBaiGeTianXing';
-  src: url('./src/font/字魂白鸽天行体(商用需授权).ttf') format('truetype');
+  font-family: 'SYSongTiSC-M';
+  src: url('./src/font/思源宋体SC-Medium.otf') format('opentype');
 }
-
+@font-face {
+  font-family: 'XYGPinBo';
+  src: url('./src/font/新愚公拼搏体.ttf') format('truetype');
+}
+* {
+    font-family: 'SYSongTiSC-M';
+}
 #main_body {
     /* margin: 0 10%; */
     background-color: black;
-    height: 1100px;
+/*    height: 1300px;*/
     /* width: 80%; */
 }
 #header {
-    height: 100px;
+    height: 7vw;
     background-color: black;
     color: gold;
     text-align: center;
     font-size: 5vw;
-    font-family: 'ZHBaiGeTianXing', sans-serif;
+    padding-top: 1vw;
+    font-family: 'XYGPinBo';
 }
 #carousel {
 /*    background-image: url("./src/film_tv/志愿军.jpeg");*/
@@ -23,13 +30,13 @@
     background-size: auto 100%;
     animation: carousel_img 15s steps(1,end) infinite;   
 }
-#television {
+#tv {
     background-color: red;
-    height: 25%;
+    height: 300px;
 }
 #film {
     background-color: blue;
-    height: 25%;
+    height: 300px;
 }
 
 /* #large_pic {
@@ -39,7 +46,7 @@
 } */
 #ep_area {
     background-image: linear-gradient(to top, transparent, rgba(255, 255, 255, 0.5));
-    width: 20%;
+/*    width: 30%;*/
     height:100%;
     float: right;
     overflow: hidden;
@@ -51,14 +58,14 @@
 }
 #ep_name_area {
     float: right;
-    width: 20%;
-    margin-right: -20%;
+/*    width: 30%;
+    margin-right: -30%;*/
     animation: gradient_ep_names 15s linear infinite;;
     background-color: rgba(0, 0, 0, 0.2);
 }
 .ep_name {
     width: 100%;
-    font-family: cursive;
+/*    font-family: cursive;*/
     font-size: 2vw;
     color: white;
     background-color: rgba(0, 0, 0, 0.2);
@@ -67,10 +74,4 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-}
-
-.ma-shan-zheng-regular {
-  font-family: "Ma Shan Zheng", cursive;
-  font-weight: 400;
-  font-style: normal;
 }

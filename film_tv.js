@@ -67,23 +67,35 @@ var carousel_height;
 var ep_tot_unaired = 4;
 
 
-window.onload = function() {
-    if(window.screen.width < 700) {
+function window_init() {
+    if(document.body.scrollWidth < 767) {
         carousel_height = 300;
+        ep_area.style.width = "30%";
+        ep_name_area.style.width = "30%";
+        ep_name_area.style.marginRight = "-30%";
     } else {
         carousel_height = 550;
+        ep_area.style.width = "20%";
+        ep_name_area.style.width = "20%";
+        ep_name_area.style.marginRight = "-20%";
     }
     carousel.style.height = carousel_height + "px";
     ep_name_area.style.height = "calc(" + carousel_height + "px / 6";
+}
+
+function carousel_init() {
     for(var i = 0; i < 12; i++) {
         // ep_name_objs[i].innerHTML = all_film_tv[ep_tot_unaired + i % 6][0]; // carousel the recent 6 works
         ep_name_objs[i].innerHTML = masterpiece[i % 6][0]; // carousel the recent best 6 (I think) works
         ep_name_objs[i].style.height = "calc(" + carousel_height + "px / 6";
         ep_name_objs[i].style.fontSize = (carousel_height / 20) + "px";
     }
+}
+
+function animation_init() {
     var style = document.createElement('style');
     style.innerHTML = '\
-    @keyframes carousel_ep_names{\
+    @keyframes carousel_ep_names{               /* animation for ep_name_area to scroll up */ \
         0%    {margin-top: 0px;}\
         11.1% {margin-top: 0px;}\
         16.7% {margin-top: calc(-' + carousel_height + 'px / 6 * 1);}\
@@ -98,7 +110,7 @@ window.onload = function() {
         94.4% {margin-top: calc(-' + carousel_height + 'px / 6 * 5);}\
         100%  {margin-top: calc(-' + carousel_height + 'px / 6 * 6);}\
     }\
-    @keyframes gradient_ep_names{\
+    @keyframes gradient_ep_names{               /* animation for selected effect to scroll up */ \
         0%     {margin-top: 0;}\
         11.1%  {margin-top: 0;}\
         16.69% {margin-top: calc(-' + carousel_height + 'px / 6 * 1);}\
@@ -119,7 +131,7 @@ window.onload = function() {
         99.99% {margin-top: calc(-' + carousel_height + 'px / 6 * 1);}\
         100%   {margin-top: 0;}\
     }\
-    @keyframes carousel_img{\
+    @keyframes carousel_img{                    /* animation for imgs to change while scrolling */ \
         0%    {background-image: url("./src/film_tv/' + masterpiece[0][0] + '.jpg");}\
         11.1% {background-image: url("./src/film_tv/' + masterpiece[0][0] + '.jpg");}\
         16.7% {background-image: url("./src/film_tv/' + masterpiece[1][0] + '.jpg");}\
@@ -134,39 +146,12 @@ window.onload = function() {
         94.4% {background-image: url("./src/film_tv/' + masterpiece[5][0] + '.jpg");}\
         100%  {background-image: url("./src/film_tv/' + masterpiece[0][0] + '.jpg");}\
     }'; // add animations
-
     document.head.appendChild(style);
 }
 
-// ep_titles.addEventListener("click", function() {console.log("hello");});
-// function turn_page() {
-//     carousel_img_rowObj.style.marginLeft = ep_on + "00%" ;
-// }
 
-// function scroll_carousel_to_right() {
-//     ep_on++;
-//     carousel_img_rowObj.style.transition = "all linear 1.5s";
-//     if (ep_on >= 0) {
-//         ep_on = 0;
-//         turn_page();
-//         setTimeout(back_to_right, 1500);
-//     } else {
-//         turn_page();
-//     }
-// }
-// function scroll_carousel_to_top() {
-//     ep_on++;
-//     carousel_img_rowObj.style.transition = "all linear 1.5s";
-//     if (ep_on >= 0) {
-//         ep_on = 0;
-//         turn_page();
-//         setTimeout(back_to_right, 1500);
-//     } else {
-//         turn_page();
-//     }
-// }
-// function back_to_right() {
-//     ep_on = -6;
-//     carousel_img_rowObj.style.transition = "none";
-//     turn_page();
-// }
+window.onload = function() {
+    window_init();
+    carousel_init();
+    animation_init();
+}
