@@ -42,6 +42,6 @@ function section_init(selected_bar, is_phone, all_works, work_unaired, page_on) 
     }
     for (var i = 0; i < 6; i++) {
         section_text_objs[i].innerHTML = all_works[work_unaired + i][0];
-        section_img_objs[i].style.backgroundImage = 'url("./src/' + page_on + '/' + all_works[work_unaired + i][0] + '.jpg")';
+        section_img_objs[i].style.backgroundImage = 'url("./src/' + page_on + '/' + all_works[work_unaired + i][0] + '.webp")';
     }
 }
