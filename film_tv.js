@@ -57,6 +57,7 @@ var masterpiece = [["志愿军：雄兵出击", "2023-9-28"], ["特工任务", "
                    ["我的人间烟火", "2023-7-5"], ["关于唐医生的一切", "2022-6-25"], 
                    ["超时空大玩家", "2022-4-30"], ["爱的理想生活", "2021-3-1"]];
 
+// carousel variables
 var carousel = document.getElementById("carousel");
 var ep_titles = document.getElementById("ep_titles");
 var ep_area = document.getElementById("ep_area");
@@ -65,10 +66,20 @@ var ep_name_area = document.getElementById("ep_name_area");
 var ep_on = 0;
 var carousel_height;
 var ep_tot_unaired = 4;
+var film_unaired = 1;
+var tv_unaired = 3;
 
+// film and tv section variables
+var section_box_objs = document.getElementsByClassName("section_box");
+var section_img_objs = document.getElementsByClassName("section_img");
+var size_adapt_break_objs = document.getElementsByClassName("size_adapt_break");
+var is_phone = (document.body.scrollWidth < 767);
+var tv = document.getElementById("tv");
+var film = document.getElementById("film");
 
+// window initialization
 function window_init() {
-    if(document.body.scrollWidth < 767) {
+    if(is_phone) { // if it's opened by phone
         carousel_height = 300;
         ep_area.style.width = "30%";
         ep_name_area.style.width = "30%";
@@ -83,6 +94,7 @@ function window_init() {
     ep_name_area.style.height = "calc(" + carousel_height + "px / 6";
 }
 
+// carousel initialization
 function carousel_init() {
     for(var i = 0; i < 12; i++) {
         // ep_name_objs[i].innerHTML = all_film_tv[ep_tot_unaired + i % 6][0]; // carousel the recent 6 works
@@ -91,7 +103,6 @@ function carousel_init() {
         ep_name_objs[i].style.fontSize = (carousel_height / 20) + "px";
     }
 }
-
 function animation_init() {
     var style = document.createElement('style');
     style.innerHTML = '\
@@ -150,8 +161,55 @@ function animation_init() {
 }
 
 
+// film and tv section initialization
+function film_tv_init() {
+    // initialize the amount of content bar needed
+    if(is_phone) {
+        tv.innerHTML += '<div class="section_content"></div><div class="section_content"></div>';
+        film.innerHTML += '<div class="section_content"></div><div class="section_content"></div>';
+    } else {
+        tv.innerHTML += '<div class="section_content"></div>';
+        film.innerHTML += '<div class="section_content"></div>';
+    }
+    // initialize the amount of box in each content bar
+    var section_content_objs = document.getElementsByClassName("section_content"); 
+    var box_in_bar;
+    if(is_phone) {
+        for (var i = 0; i < 4; i++) {
+            for (var j = 0; j < 3; j++) {
+                section_content_objs[i].innerHTML += '<div class="section_box"><div class="section_img"></div><div class="section_text"></div></div>';
+                section_content_objs[i].style.height = "30vw";
+            }
+        }
+        box_in_bar = 3;
+    } else {
+        for (var i = 0; i < 2; i++) {
+            for (var j = 0; j < 6; j++) {
+                section_content_objs[i].innerHTML += '<div class="section_box"><div class="section_img"></div><div class="section_text"></div></div>';
+                section_content_objs[i].style.height = "15vw";
+            }
+        }
+        box_in_bar = 6;
+    }
+    // initialize the specific img
+    var section_box_objs = document.getElementsByClassName("section_box"); 
+    var section_text_objs = document.getElementsByClassName("section_text"); 
+    for (var i = 0; i < section_box_objs.length; i++) {
+        section_box_objs[i].style.width = "calc(100% / " + box_in_bar + " - 3vw)";
+    }
+    for (var i = 0; i < 6; i++) {
+        section_text_objs[i].innerHTML = all_film[film_unaired + i][0];
+        section_img_objs[i].style.backgroundImage = 'url("./src/film_tv/' + all_film[film_unaired + i][0] + '.jpg")';
+    }
+    for (var i = 0; i < 6; i++) {
+        section_text_objs[i + 6].innerHTML = all_tv[tv_unaired + i][0];
+        section_img_objs[i + 6].style.backgroundImage = 'url("./src/film_tv/' + all_tv[tv_unaired + i][0] + '.jpg")';
+    }
+}
+
 window.onload = function() {
     window_init();
     carousel_init();
     animation_init();
+    film_tv_init();
 }
