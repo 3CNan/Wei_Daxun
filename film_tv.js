@@ -63,6 +63,11 @@ var ep_tot_unaired = 4;
 var film_unaired = 1;
 var tv_unaired = 3;
 var is_phone = (document.body.scrollWidth < 767);
+var preloadImage = [];
+for (var i = 0; i < all_tv.length; i++) {
+
+}
+
 
 
 // carousel initialization
