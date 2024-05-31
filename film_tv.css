@@ -1,6 +1,6 @@
 /* style for main structure */
 * {
-    font-family: 'SYSongTiSC-M';
+    font-family: 'SYSongTiSC-M', sans-serif;
 }
 #main_body {
     /* margin: 0 10%; */
@@ -15,7 +15,7 @@
     text-align: center;
     font-size: 5vw;
     padding-top: 1vw;
-    font-family: 'XYGPinBo';
+    font-family: 'XYGPinBo', serif;
 }
 
 
@@ -75,5 +75,5 @@
 }
 .section_text {
 /*    font-size: 3vw;*/
-    font-family: 'LXGWWenKai-M';
+    font-family: 'LXGWWenKai-M', sans-serif;
 }
