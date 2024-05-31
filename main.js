@@ -17,7 +17,6 @@ function section_init(selected_bar, is_phone, all_works, work_unaired, page_on) 
         section_title[0].style.fontSize = "2.5vw";
         selected_bar.innerHTML += '<div class="section_content"></div>';
     }
-    console.log(document);
 
     // initialize the amount of box in each content bar
     if(is_phone) {
