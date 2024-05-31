@@ -72,7 +72,6 @@ var tv_unaired = 3;
 // film and tv section variables
 var section_box_objs = document.getElementsByClassName("section_box");
 var section_img_objs = document.getElementsByClassName("section_img");
-var size_adapt_break_objs = document.getElementsByClassName("size_adapt_break");
 var is_phone = (document.body.scrollWidth < 767);
 var tv = document.getElementById("tv");
 var film = document.getElementById("film");
@@ -196,6 +195,7 @@ function film_tv_init() {
     var section_text_objs = document.getElementsByClassName("section_text"); 
     for (var i = 0; i < section_box_objs.length; i++) {
         section_box_objs[i].style.width = "calc(100% / " + box_in_bar + " - 3vw)";
+        section_text_objs[i].style.fontSize = (9 / box_in_bar) + "vw";
     }
     for (var i = 0; i < 6; i++) {
         section_text_objs[i].innerHTML = all_film[film_unaired + i][0];
