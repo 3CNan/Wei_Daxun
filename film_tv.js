@@ -63,14 +63,7 @@ var ep_tot_unaired = 4;
 var film_unaired = 1;
 var tv_unaired = 3;
 var is_phone = (document.body.scrollWidth < 767);
-var masterpiece_image = [];
-for (var i = 0; i < masterpiece.length; i++) {
-    masterpiece_image.push('./src/film_tv/' + masterpiece[i][0] + '.webp');
-}
-masterpiece_image.forEach(src => {
-    const image = new Image();
-    image.src = src;
-});
+
 
 
 
