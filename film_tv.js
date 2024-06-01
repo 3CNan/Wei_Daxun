@@ -136,19 +136,19 @@ function animation_init() {
         100%   {margin-top: 0;}\
     }\
     @keyframes carousel_img{                    /* animation for imgs to change while scrolling */ \
-        0%    {background-image: url("./src/film_tv/' + masterpiece[0][0] + '.webp");}\
-        11.1% {background-image: url("./src/film_tv/' + masterpiece[0][0] + '.webp");}\
-        16.7% {background-image: url("./src/film_tv/' + masterpiece[1][0] + '.webp");}\
-        27.8% {background-image: url("./src/film_tv/' + masterpiece[1][0] + '.webp");}\
-        33.3% {background-image: url("./src/film_tv/' + masterpiece[2][0] + '.webp");}\
-        44.4% {background-image: url("./src/film_tv/' + masterpiece[2][0] + '.webp");}\
-        50%   {background-image: url("./src/film_tv/' + masterpiece[3][0] + '.webp");}\
-        61.1% {background-image: url("./src/film_tv/' + masterpiece[3][0] + '.webp");}\
-        66.7% {background-image: url("./src/film_tv/' + masterpiece[4][0] + '.webp");}\
-        77.8% {background-image: url("./src/film_tv/' + masterpiece[4][0] + '.webp");}\
-        83.3% {background-image: url("./src/film_tv/' + masterpiece[5][0] + '.webp");}\
-        94.4% {background-image: url("./src/film_tv/' + masterpiece[5][0] + '.webp");}\
-        100%  {background-image: url("./src/film_tv/' + masterpiece[0][0] + '.webp");}\
+        0%    {background-image: url("./src/film_tv/' + masterpiece[0][0] + '.jpg");}\
+        11.1% {background-image: url("./src/film_tv/' + masterpiece[0][0] + '.jpg");}\
+        16.7% {background-image: url("./src/film_tv/' + masterpiece[1][0] + '.jpg");}\
+        27.8% {background-image: url("./src/film_tv/' + masterpiece[1][0] + '.jpg");}\
+        33.3% {background-image: url("./src/film_tv/' + masterpiece[2][0] + '.jpg");}\
+        44.4% {background-image: url("./src/film_tv/' + masterpiece[2][0] + '.jpg");}\
+        50%   {background-image: url("./src/film_tv/' + masterpiece[3][0] + '.jpg");}\
+        61.1% {background-image: url("./src/film_tv/' + masterpiece[3][0] + '.jpg");}\
+        66.7% {background-image: url("./src/film_tv/' + masterpiece[4][0] + '.jpg");}\
+        77.8% {background-image: url("./src/film_tv/' + masterpiece[4][0] + '.jpg");}\
+        83.3% {background-image: url("./src/film_tv/' + masterpiece[5][0] + '.jpg");}\
+        94.4% {background-image: url("./src/film_tv/' + masterpiece[5][0] + '.jpg");}\
+        100%  {background-image: url("./src/film_tv/' + masterpiece[0][0] + '.jpg");}\
     }'; // add animations
     document.head.appendChild(style);
 }

@@ -39,9 +39,7 @@ function section_init(selected_bar, is_phone, all_works, work_unaired, page_on) 
     for (var i = 0; i < section_box_objs.length; i++) {
         section_box_objs[i].style.width = "calc(100% / " + box_in_bar + " - 3vw)";
         section_text_objs[i].style.fontSize = (9 / box_in_bar) + "vw";
-    }
-    for (var i = 0; i < 6; i++) {
         section_text_objs[i].innerHTML = all_works[work_unaired + i][0];
-        section_img_objs[i].style.backgroundImage = 'url("./src/' + page_on + '/' + all_works[work_unaired + i][0] + '.webp")';
+        section_img_objs[i].style.backgroundImage = 'url("./src/' + page_on + '/' + all_works[work_unaired + i][0] + '.jpg?w=' + section_box_objs[i].style.width + '&h=800")';
     }
 }

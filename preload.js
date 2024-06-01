@@ -58,19 +58,17 @@ var masterpiece = [["志愿军：雄兵出击", "2023-9-28"], ["特工任务", "
                    ["超时空大玩家", "2022-4-30"], ["爱的理想生活", "2021-3-1"]];
 var masterpiece_image = [];
 for (var i = 0; i < masterpiece.length; i++) {
-    masterpiece_image.push('./src/film_tv/' + masterpiece[i][0] + '.webp');
+    masterpiece_image.push('./src/film_tv/' + masterpiece[i][0] + '.jpg');
 }
 var all_tv_image = [];
 for (var i = 0; i < all_tv.length; i++) {
-    all_tv_image.push('./src/film_tv/' + all_tv[i][0] + '.webp');
+    all_tv_image.push('./src/film_tv/' + all_tv[i][0] + '.jpg');
 }
 var all_film_image = [];
 for (var i = 0; i < all_film.length; i++) {
-    all_film_image.push('./src/film_tv/' + all_film[i][0] + '.webp');
+    all_film_image.push('./src/film_tv/' + all_film[i][0] + '.jpg');
 }
-console.log(masterpiece_image);
-console.log(all_tv_image);
-console.log(all_film_image);
+
 masterpiece_image.forEach(src => {
     const image = new Image();
     image.src = src;
@@ -84,6 +82,9 @@ all_film_image.forEach(src => {
     const image = new Image();
     image.src = src;
 });
+console.log(masterpiece_image);
+console.log(all_tv_image);
+console.log(all_film_image);
 
 
 // function checkSrcExists(src, callback) {
