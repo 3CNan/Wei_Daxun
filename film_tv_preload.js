@@ -57,34 +57,44 @@ var masterpiece = [["志愿军：雄兵出击", "2023-9-28"], ["特工任务", "
                    ["我的人间烟火", "2023-7-5"], ["关于唐医生的一切", "2022-6-25"], 
                    ["超时空大玩家", "2022-4-30"], ["爱的理想生活", "2021-3-1"]];
 var masterpiece_image = [];
-for (var i = 0; i < masterpiece.length; i++) {
-    masterpiece_image.push('./src/film_tv/' + masterpiece[i][0] + '.jpg');
-}
 var all_tv_image = [];
-for (var i = 0; i < all_tv.length; i++) {
-    all_tv_image.push('./src/film_tv/' + all_tv[i][0] + '.jpg');
-}
 var all_film_image = [];
-for (var i = 0; i < all_film.length; i++) {
-    all_film_image.push('./src/film_tv/' + all_film[i][0] + '.jpg');
+
+
+// global variables
+var ep_tot_unaired = 4;
+var film_unaired = 1;
+var tv_unaired = 3;
+// var is_phone = (document.body.scrollWidth < 767);
+
+
+// initialize image
+for (var i = 0; i < masterpiece.length; i++) {
+    masterpiece_image.push('src/film_tv/' + masterpiece[i][0] + '.jpg');
+}
+for (var i = 0; i < 6; i++) {
+    all_tv_image.push('src/film_tv/' + all_tv[tv_unaired + i][0] + '.jpg');
+    all_film_image.push('src/film_tv/' + all_film[film_unaired + i][0] + '.jpg');
 }
 
 masterpiece_image.forEach(src => {
     const image = new Image();
     image.src = src;
+    src = image;
 });
 all_tv_image.forEach(src => {
     const image = new Image();
-    image.onerror = null;
     image.src = src;
+    src = image;
 });
 all_film_image.forEach(src => {
     const image = new Image();
     image.src = src;
+    src = image;
 });
-console.log(masterpiece_image);
-console.log(all_tv_image);
-console.log(all_film_image);
+// console.log(masterpiece_image);
+// console.log(all_tv_image);
+// console.log(all_film_image);
 
 
 // function checkSrcExists(src, callback) {
