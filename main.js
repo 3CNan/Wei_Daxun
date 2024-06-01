@@ -51,6 +51,9 @@ async function section_init(selected_bar, all_works, all_works_image, work_unair
     }
 }
 
+// function draw_image() {
+
+// }
 
 // carousel area initialization
 function carousel_init(all_works) {
