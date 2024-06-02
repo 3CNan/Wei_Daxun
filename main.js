@@ -1,7 +1,7 @@
 var is_phone = (document.body.scrollWidth < 767);
 
 // Single Section Bar Initialization
-function section_init(selected_bar, works, works_image, works_unaired, page_on) {
+function section_init(selected_bar, works, works_unaired, page_on) {
 	// get elements from html
     var section_box_objs = selected_bar.getElementsByClassName("section_box");
     var section_img_objs = selected_bar.getElementsByClassName("section_img");
@@ -43,15 +43,10 @@ function section_init(selected_bar, works, works_image, works_unaired, page_on) 
         section_box_objs[i].style.width = "calc(100% / " + box_in_bar + " - 3vw)";
         section_text_objs[i].style.fontSize = (9 / box_in_bar) + "vw";
         section_text_objs[i].innerHTML = works[works_unaired + i][0];
-        // section_img_objs[i].style.backgroundImage = 'url("./src/' + page_on + '/' + works[works_unaired + i][0] + '.jpg?w=' + section_img_objs[i].offsetWidth + '&h=' + section_img_objs[i].offsetHeight + '")';
-        // section_img_objs[i].style.backgroundImage = 'url("./src/' + page_on + '/' + works[works_unaired + i][0] + '.jpg")';
-        // section_img_objs[i].style.backgroundImage = 'url("' + masterpiece_image[i].src + '")';
-        // img_section_img_objs[i].src = works_image[i];
-        // img_section_img_objs[i].alt = works_image[i];
     }
 }
 
-function load_image(all_works, works_unaired, page_on) {
+function section_load_image(all_works, works_unaired, page_on) {
     var section_bar_objs = document.getElementsByClassName("section_bar");
     for (var i = 0; i < section_bar_objs.length; i++) {
         var section_img_objs = section_bar_objs[i].getElementsByClassName("section_img");
