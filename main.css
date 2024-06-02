@@ -7,6 +7,9 @@
   src: url('./src/font/庞门正道标题体.woff') format('woff');
 }
 
+* {
+    font-family: serif;
+}
 #header {
     height: 7vw;
     background-color: black;
