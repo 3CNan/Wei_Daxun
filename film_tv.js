@@ -10,6 +10,7 @@ function film_tv_init() {
     for (var i = 0; i < section_bar_objs.length; i++) {
         section_init(section_bar_objs[i], works[i], works_image[i], works_unaired[i], "film_tv");
     }
+    load_image(works, works_unaired, "film_tv");
 }
 
 window.onload = function() {

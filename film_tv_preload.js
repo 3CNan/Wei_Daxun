@@ -68,30 +68,30 @@ var tv_unaired = 3;
 // var is_phone = (document.body.scrollWidth < 767);
 
 
-// initialize image
-for (var i = 0; i < masterpiece.length; i++) {
-    masterpiece_image.push('src/film_tv/' + masterpiece[i][0] + '.jpg');
-}
-for (var i = 0; i < 6; i++) {
-    all_tv_image.push('src/film_tv/' + all_tv[tv_unaired + i][0] + '.jpg');
-    all_film_image.push('src/film_tv/' + all_film[film_unaired + i][0] + '.jpg');
-}
+// // initialize image
+// for (var i = 0; i < masterpiece.length; i++) {
+//     masterpiece_image.push('src/film_tv/' + masterpiece[i][0] + '.jpg');
+// }
+// for (var i = 0; i < 6; i++) {
+//     all_tv_image.push('src/film_tv/' + all_tv[tv_unaired + i][0] + '.jpg');
+//     all_film_image.push('src/film_tv/' + all_film[film_unaired + i][0] + '.jpg');
+// }
 
-masterpiece_image.forEach(src => {
-    const image = new Image();
-    image.src = src;
-    src = image;
-});
-all_tv_image.forEach(src => {
-    const image = new Image();
-    image.src = src;
-    src = image;
-});
-all_film_image.forEach(src => {
-    const image = new Image();
-    image.src = src;
-    src = image;
-});
+// masterpiece_image.forEach(src => {
+//     const image = new Image();
+//     image.src = src;
+//     src = image;
+// });
+// all_tv_image.forEach(src => {
+//     const image = new Image();
+//     image.src = src;
+//     src = image;
+// });
+// all_film_image.forEach(src => {
+//     const image = new Image();
+//     image.src = src;
+//     src = image;
+// });
 // console.log(masterpiece_image);
 // console.log(all_tv_image);
 // console.log(all_film_image);

@@ -1,7 +1,7 @@
 var is_phone = (document.body.scrollWidth < 767);
 
 // Single Section Bar Initialization
-async function section_init(selected_bar, all_works, all_works_image, work_unaired, page_on) {
+function section_init(selected_bar, works, works_image, works_unaired, page_on) {
 	// get elements from html
     var section_box_objs = selected_bar.getElementsByClassName("section_box");
     var section_img_objs = selected_bar.getElementsByClassName("section_img");
@@ -9,7 +9,7 @@ async function section_init(selected_bar, all_works, all_works_image, work_unair
     var section_box_objs = selected_bar.getElementsByClassName("section_box"); 
     var section_text_objs = selected_bar.getElementsByClassName("section_text"); 
     var section_content_objs = selected_bar.getElementsByClassName("section_content"); 
-    var img_section_img_objs = selected_bar.getElementsByTagName("img");
+    // var img_section_img_objs = selected_bar.getElementsByTagName("img");
     var box_in_bar;
 
 	// initialize the amount of content bar needed
@@ -32,7 +32,7 @@ async function section_init(selected_bar, all_works, all_works_image, work_unair
         box_in_bar = 3;
     } else {
         for (var j = 0; j < 6; j++) {
-            section_content_objs[0].innerHTML += '<div class="section_box"><div class="section_img"><img></div><div class="section_text"></div></div>';
+            section_content_objs[0].innerHTML += '<div class="section_box"><div class="section_img"></div><div class="section_text"></div></div>';
             section_content_objs[0].style.height = "15vw";
         }
         box_in_bar = 6;
@@ -42,21 +42,27 @@ async function section_init(selected_bar, all_works, all_works_image, work_unair
     for (var i = 0; i < section_box_objs.length; i++) {
         section_box_objs[i].style.width = "calc(100% / " + box_in_bar + " - 3vw)";
         section_text_objs[i].style.fontSize = (9 / box_in_bar) + "vw";
-        section_text_objs[i].innerHTML = all_works[work_unaired + i][0];
-        // section_img_objs[i].style.backgroundImage = 'url("./src/' + page_on + '/' + all_works[work_unaired + i][0] + '.jpg?w=' + section_img_objs[i].offsetWidth + '&h=' + section_img_objs[i].offsetHeight + '")';
-        // section_img_objs[i].style.backgroundImage = 'url("./src/' + page_on + '/' + all_works[work_unaired + i][0] + '.jpg")';
+        section_text_objs[i].innerHTML = works[works_unaired + i][0];
+        // section_img_objs[i].style.backgroundImage = 'url("./src/' + page_on + '/' + works[works_unaired + i][0] + '.jpg?w=' + section_img_objs[i].offsetWidth + '&h=' + section_img_objs[i].offsetHeight + '")';
+        // section_img_objs[i].style.backgroundImage = 'url("./src/' + page_on + '/' + works[works_unaired + i][0] + '.jpg")';
         // section_img_objs[i].style.backgroundImage = 'url("' + masterpiece_image[i].src + '")';
-        img_section_img_objs[i].src = all_works_image[i];
-        img_section_img_objs[i].alt = all_works_image[i];
+        // img_section_img_objs[i].src = works_image[i];
+        // img_section_img_objs[i].alt = works_image[i];
     }
 }
 
-// function draw_image() {
-
-// }
+function load_image(all_works, works_unaired, page_on) {
+    var section_bar_objs = document.getElementsByClassName("section_bar");
+    for (var i = 0; i < section_bar_objs.length; i++) {
+        var section_img_objs = section_bar_objs[i].getElementsByClassName("section_img");
+        for (var j = 0; j < section_img_objs.length; j++) {
+            section_img_objs[j].style.backgroundImage = 'url("./src/' + page_on + '/' + all_works[i][works_unaired[i] + j][0] + '.jpg")';
+        }
+    }
+}
 
 // carousel area initialization
-function carousel_init(all_works) {
+function carousel_init(works) {
     var carousel_height;
 
     // get elements from html
@@ -82,7 +88,7 @@ function carousel_init(all_works) {
     ep_name_area.style.height = "calc(" + carousel_height + "px / 6";
     for(var i = 0; i < 12; i++) {
         // ep_name_objs[i].innerHTML = all_film_tv[ep_tot_unaired + i % 6][0];      // carousel the recent 6 works
-        ep_name_objs[i].innerHTML = all_works[i % 6][0];                          // carousel the recent best 6 (I think) works
+        ep_name_objs[i].innerHTML = works[i % 6][0];                          // carousel the recent best 6 (I think) works
         ep_name_objs[i].style.height = "calc(" + carousel_height + "px / 6";
         ep_name_objs[i].style.fontSize = (carousel_height / 20) + "px";
     }
@@ -127,19 +133,19 @@ function carousel_init(all_works) {
         100%   {margin-top: 0;}\
     }\
     @keyframes carousel_img{                    /* animation for imgs to change while scrolling */ \
-        0%    {background-image: url("./src/film_tv/' + all_works[0][0] + '.jpg");}\
-        11.1% {background-image: url("./src/film_tv/' + all_works[0][0] + '.jpg");}\
-        16.7% {background-image: url("./src/film_tv/' + all_works[1][0] + '.jpg");}\
-        27.8% {background-image: url("./src/film_tv/' + all_works[1][0] + '.jpg");}\
-        33.3% {background-image: url("./src/film_tv/' + all_works[2][0] + '.jpg");}\
-        44.4% {background-image: url("./src/film_tv/' + all_works[2][0] + '.jpg");}\
-        50%   {background-image: url("./src/film_tv/' + all_works[3][0] + '.jpg");}\
-        61.1% {background-image: url("./src/film_tv/' + all_works[3][0] + '.jpg");}\
-        66.7% {background-image: url("./src/film_tv/' + all_works[4][0] + '.jpg");}\
-        77.8% {background-image: url("./src/film_tv/' + all_works[4][0] + '.jpg");}\
-        83.3% {background-image: url("./src/film_tv/' + all_works[5][0] + '.jpg");}\
-        94.4% {background-image: url("./src/film_tv/' + all_works[5][0] + '.jpg");}\
-        100%  {background-image: url("./src/film_tv/' + all_works[0][0] + '.jpg");}\
+        0%    {background-image: url("./src/film_tv/' + works[0][0] + '.jpg");}\
+        11.1% {background-image: url("./src/film_tv/' + works[0][0] + '.jpg");}\
+        16.7% {background-image: url("./src/film_tv/' + works[1][0] + '.jpg");}\
+        27.8% {background-image: url("./src/film_tv/' + works[1][0] + '.jpg");}\
+        33.3% {background-image: url("./src/film_tv/' + works[2][0] + '.jpg");}\
+        44.4% {background-image: url("./src/film_tv/' + works[2][0] + '.jpg");}\
+        50%   {background-image: url("./src/film_tv/' + works[3][0] + '.jpg");}\
+        61.1% {background-image: url("./src/film_tv/' + works[3][0] + '.jpg");}\
+        66.7% {background-image: url("./src/film_tv/' + works[4][0] + '.jpg");}\
+        77.8% {background-image: url("./src/film_tv/' + works[4][0] + '.jpg");}\
+        83.3% {background-image: url("./src/film_tv/' + works[5][0] + '.jpg");}\
+        94.4% {background-image: url("./src/film_tv/' + works[5][0] + '.jpg");}\
+        100%  {background-image: url("./src/film_tv/' + works[0][0] + '.jpg");}\
     }'; // add animations
     document.head.appendChild(style);
 }
