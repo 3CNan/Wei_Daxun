@@ -41,7 +41,7 @@
     animation: carousel_img 15s steps(1,end) infinite;   
 }
 #ep_area {
-    background-image: linear-gradient(to top, transparent, rgba(255, 255, 255, 0.4));
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0.6));
     height:100%;
     float: right;
     overflow: hidden;
@@ -58,9 +58,9 @@
     width: 100%;
     font-size: 2vw;
     color: white;
-    text-shadow: 0 0 3px black;
+    text-shadow: 0 0 5px black;
     box-sizing: border-box;
-    padding: 1.5vw 1vw;
+    padding: 1.6vw 1vw;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

@@ -43,6 +43,7 @@ function section_init(selected_bar, works, works_unaired, page_on) {
         section_box_objs[i].style.width = "calc(100% / " + box_in_bar + " - 3vw)";
         section_text_objs[i].style.fontSize = (9 / box_in_bar) + "vw";
         section_text_objs[i].innerHTML = works[works_unaired + i][0] + "<div class='section_text_sub'>" + works[works_unaired + i][1] + "</div>";
+        // section_text_objs[i].innerHTML = works[works_unaired + i][0];        // for font compress sample text
     }
 }
 
