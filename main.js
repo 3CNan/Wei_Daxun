@@ -42,7 +42,7 @@ function section_init(selected_bar, works, works_unaired, page_on) {
     for (var i = 0; i < section_box_objs.length; i++) {
         section_box_objs[i].style.width = "calc(100% / " + box_in_bar + " - 3vw)";
         section_text_objs[i].style.fontSize = (9 / box_in_bar) + "vw";
-        section_text_objs[i].innerHTML = works[works_unaired + i][0];
+        section_text_objs[i].innerHTML = works[works_unaired + i][0] + "<div class='section_text_sub'>" + works[works_unaired + i][1] + "</div>";
     }
 }
 
@@ -51,13 +51,13 @@ function section_load_image(all_works, works_unaired, page_on) {
     for (var i = 0; i < section_bar_objs.length; i++) {
         var section_img_objs = section_bar_objs[i].getElementsByClassName("section_img");
         for (var j = 0; j < section_img_objs.length; j++) {
-            section_img_objs[j].style.backgroundImage = 'url("./src/' + page_on + '/' + all_works[i][works_unaired[i] + j][0] + '.jpg")';
+            section_img_objs[j].style.backgroundImage = 'url("./src/' + page_on + '/image/' + all_works[i][works_unaired[i] + j][0] + '.jpg")';
         }
     }
 }
 
 // carousel area initialization
-function carousel_init(works) {
+function carousel_init(works, page_on) {
     var carousel_height;
 
     // get elements from html
@@ -128,19 +128,19 @@ function carousel_init(works) {
         100%   {margin-top: 0;}\
     }\
     @keyframes carousel_img{                    /* animation for imgs to change while scrolling */ \
-        0%    {background-image: url("./src/film_tv/' + works[0][0] + '.jpg");}\
-        11.1% {background-image: url("./src/film_tv/' + works[0][0] + '.jpg");}\
-        16.7% {background-image: url("./src/film_tv/' + works[1][0] + '.jpg");}\
-        27.8% {background-image: url("./src/film_tv/' + works[1][0] + '.jpg");}\
-        33.3% {background-image: url("./src/film_tv/' + works[2][0] + '.jpg");}\
-        44.4% {background-image: url("./src/film_tv/' + works[2][0] + '.jpg");}\
-        50%   {background-image: url("./src/film_tv/' + works[3][0] + '.jpg");}\
-        61.1% {background-image: url("./src/film_tv/' + works[3][0] + '.jpg");}\
-        66.7% {background-image: url("./src/film_tv/' + works[4][0] + '.jpg");}\
-        77.8% {background-image: url("./src/film_tv/' + works[4][0] + '.jpg");}\
-        83.3% {background-image: url("./src/film_tv/' + works[5][0] + '.jpg");}\
-        94.4% {background-image: url("./src/film_tv/' + works[5][0] + '.jpg");}\
-        100%  {background-image: url("./src/film_tv/' + works[0][0] + '.jpg");}\
+        0%    {background-image: url("./src/' + page_on + '/image/' + works[0][0] + '.jpg");}\
+        11.1% {background-image: url("./src/' + page_on + '/image/' + works[0][0] + '.jpg");}\
+        16.7% {background-image: url("./src/' + page_on + '/image/' + works[1][0] + '.jpg");}\
+        27.8% {background-image: url("./src/' + page_on + '/image/' + works[1][0] + '.jpg");}\
+        33.3% {background-image: url("./src/' + page_on + '/image/' + works[2][0] + '.jpg");}\
+        44.4% {background-image: url("./src/' + page_on + '/image/' + works[2][0] + '.jpg");}\
+        50%   {background-image: url("./src/' + page_on + '/image/' + works[3][0] + '.jpg");}\
+        61.1% {background-image: url("./src/' + page_on + '/image/' + works[3][0] + '.jpg");}\
+        66.7% {background-image: url("./src/' + page_on + '/image/' + works[4][0] + '.jpg");}\
+        77.8% {background-image: url("./src/' + page_on + '/image/' + works[4][0] + '.jpg");}\
+        83.3% {background-image: url("./src/' + page_on + '/image/' + works[5][0] + '.jpg");}\
+        94.4% {background-image: url("./src/' + page_on + '/image/' + works[5][0] + '.jpg");}\
+        100%  {background-image: url("./src/' + page_on + '/image/' + works[0][0] + '.jpg");}\
     }'; // add animations
     document.head.appendChild(style);
 }

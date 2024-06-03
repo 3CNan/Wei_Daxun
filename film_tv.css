@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'LXGWWenKai-M';
+  src: url('./src/film_tv/font/霞鹜文楷（LXGWWenKai-Medium）.woff') format('woff');
+}
+@font-face {
+  font-family: 'PMZDBiaoTi';
+  src: url('./src/film_tv/font/庞门正道标题体.woff') format('woff');
+}
+
 /* carousel section */
 #carousel {
     background-position: center;

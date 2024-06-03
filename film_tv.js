@@ -77,6 +77,6 @@ function film_tv_init() {
 }
 
 window.onload = function() {
-    carousel_init(masterpiece);
+    carousel_init(masterpiece, "film_tv");
     film_tv_init();
 }
