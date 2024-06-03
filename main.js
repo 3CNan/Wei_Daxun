@@ -25,14 +25,14 @@ function section_init(selected_bar, works, works_unaired, page_on) {
     if(is_phone) {
         for (var i = 0; i < 2; i++) {
             for (var j = 0; j < 3; j++) {
-                section_content_objs[i].innerHTML += '<div class="section_box"><div class="section_img"></div><div class="section_text"></div></div>';
+                section_content_objs[i].innerHTML += '<div class="section_box"><a class="section_link" target="_blank"><div class="section_img"></div><div class="section_text"></div></a></div>';
                 section_content_objs[i].style.height = "30vw";
             }
         }
         box_in_bar = 3;
     } else {
         for (var j = 0; j < 6; j++) {
-            section_content_objs[0].innerHTML += '<div class="section_box"><div class="section_img"></div><div class="section_text"></div></div>';
+            section_content_objs[0].innerHTML += '<div class="section_box"><a class="section_link" target="_blank"><div class="section_img"></div><div class="section_text"></div></a></div>';
             section_content_objs[0].style.height = "15vw";
         }
         box_in_bar = 6;
@@ -44,10 +44,10 @@ function section_init(selected_bar, works, works_unaired, page_on) {
         section_box_objs[i].style.width = "calc(100% / " + box_in_bar + " - 3vw)";
         section_text_objs[i].style.fontSize = (9 / box_in_bar) + "vw";
         section_text_objs[i].innerHTML = works[works_unaired + i][0];
-        for (var j = 1; j < works[works_unaired + i].length; j++) {
-            section_text_objs[i].innerHTML += "<div class='section_text_sub'>" + works[works_unaired + i][j] + "</div>";
+        section_text_objs[i].innerHTML += "<div class='section_text_sub'>" + works[works_unaired + i][1] + "</div>";
+        if (works[works_unaired + i][2] != "") {
+            section_text_objs[i].innerHTML += "<div class='section_text_sub'>" + works[works_unaired + i][2] + "</div>";
         }
-        // section_text_objs[i].innerHTML = works[works_unaired + i][0];        // for font compress sample text
     }
 }
 
@@ -152,4 +152,32 @@ function carousel_init(works, page_on) {
 
 function get_url(page_on, works, work_on) {
     return './src/' + page_on + '/' + works[work_on][0] + "_" + works[work_on][1] + '.jpg';
+}
+
+function get_video_source(keyword, platform) {
+    switch(platform) {
+    case "youku":
+        return "https://so.youku.com/search_video/q_" + keyword;
+    case "mgtv":
+        return "https://so.mgtv.com/so?k=" + keyword;
+    case "iqiyi":
+        return "https://www.iqiyi.com/search/" + keyword + ".html";
+    case "tencent":
+        return "https://v.qq.com/x/search/?q=" + keyword;
+    default:
+        return "no valid source";
+    }
+}
+
+function section_write_video_source(all_works, works_unaired) {
+    var section_bar_objs = document.getElementsByClassName("section_bar");
+    for (var i = 0; i < section_bar_objs.length; i++) {
+        var section_link_objs = section_bar_objs[i].getElementsByClassName("section_link");
+        for (var j = 0; j < section_link_objs.length; j++) {
+            var link_ref = get_video_source(all_works[i][j][0], all_works[i][j][3]);
+            if (link_ref != "no valid source") {
+                section_link_objs[j].href = link_ref;
+            }
+        }
+    }
 }
