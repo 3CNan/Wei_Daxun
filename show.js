@@ -216,20 +216,19 @@ var all_guest = [["2024-1-20","你好，星期六","----"],
 
 
 // film and tv section initialization
-function film_tv_init() {
+function shows_init() {
     // get elements from html
     var section_bar_objs = document.getElementsByClassName("section_bar");
-    var works = [all_film, all_tv];
-    var works_unaired = [film_unaired, tv_unaired];
+    var works = [all_resident, all_flying, all_guest];
 
     // initialize the amount of content bar needed
     for (var i = 0; i < section_bar_objs.length; i++) {
-        section_init(section_bar_objs[i], works[i], works_unaired[i], "film_tv");
+        section_init(section_bar_objs[i], works[i], 0, "film_tv");
     }
-    section_load_image(works, works_unaired, "film_tv");
+    section_load_image(works, 0, "film_tv");
 }
 
 window.onload = function() {
-    carousel_init(masterpiece);
-    film_tv_init();
+    carousel_init(all_show.slice(0, 6));
+    shows_init();
 }
