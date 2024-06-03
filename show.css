@@ -1,0 +1,67 @@
+/* carousel section */
+#carousel {
+/*    background-image: url("./src/film_tv/志愿军.jpeg");*/
+    background-position: center;
+    background-size: auto 100%;
+    overflow: hidden;
+    animation: carousel_img 15s steps(1,end) infinite;   
+}
+#ep_area {
+    background-image: linear-gradient(to top, transparent, rgba(255, 255, 255, 0.4));
+    height:100%;
+    float: right;
+    overflow: hidden;
+}
+#ep_titles {
+    animation: carousel_ep_names 15s linear infinite;
+}
+#ep_name_area {
+    float: right;
+    animation: gradient_ep_names 15s linear infinite;;
+    background-image: linear-gradient(to left, transparent, #e16c1d);
+}
+.ep_name {
+    width: 100%;
+    font-size: 2vw;
+    color: white;
+    text-shadow: 0 0 3px black;
+    box-sizing: border-box;
+    padding: 1.5vw 1vw;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* film and tv section */
+.section_title {
+    box-sizing: border-box;
+    padding-top: 2vw;
+    padding-left: 3vw;
+/*    font-size: 2.5vw;*/
+}
+.section_box {
+    float: left;
+    height: calc(100% - 3vw);
+    margin: 1.5vw;
+    overflow: hidden;
+}
+.section_img {
+    width: 100%;
+    height: 80%;
+    border-radius: 5px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+.section_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.section_text {
+    font-family: 'LXGWWenKai-M', sans-serif;
+}

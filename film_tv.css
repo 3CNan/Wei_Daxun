@@ -1,45 +1,5 @@
-/* import font */
-/*@font-face {
-  font-family: 'SYSongTiSC-M';
-  src: url('./src/font/思源宋体SC-Medium.otf') format('opentype');
-}
-@font-face {
-  font-family: 'XYGPinBo';
-  src: url('./src/font/新愚公拼搏体.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'FDSong-B';
-  src: url('./src/font/FandolSong-Bold') format('opentype');
-}
-@font-face {
-  font-family: 'LXGWWenKai-M';
-  src: url('./src/font/霞鹜文楷（LXGWWenKai-Medium）.ttf') format('truetype');
-}*/
-
-/* style for main structure */
-* {
-    font-family: 'SYSongTiSC-M', sans-serif;
-}
-#main_body {
-    /* margin: 0 10%; */
-/*    background-color: black;*/
-/*    height: 1300px;*/
-    /* width: 80%; */
-}
-#header {
-    height: 7vw;
-    background-color: black;
-    color: gold;
-    text-align: center;
-    font-size: 5vw;
-    padding-top: 1vw;
-    font-family: 'XYGPinBo', serif;
-}
-
-
 /* carousel section */
 #carousel {
-/*    background-image: url("./src/film_tv/志愿军.jpeg");*/
     background-position: center;
     background-size: auto 100%;
     overflow: hidden;
@@ -76,7 +36,6 @@
     box-sizing: border-box;
     padding-top: 2vw;
     padding-left: 3vw;
-/*    font-size: 2.5vw;*/
 }
 .section_box {
     float: left;
@@ -90,8 +49,17 @@
     border-radius: 5px;
     background-size: cover;
     background-position: center;
+    overflow: hidden;
+}
+.section_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .section_text {
-/*    font-size: 3vw;*/
     font-family: 'LXGWWenKai-M', sans-serif;
 }
