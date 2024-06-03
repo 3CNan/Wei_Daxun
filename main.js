@@ -1,4 +1,4 @@
-var is_phone = (document.body.scrollWidth < 767);
+var is_phone = (document.body.scrollWidth < 769);
 
 // Single Section Bar Initialization
 function section_init(selected_bar, works, works_unaired, page_on) {
@@ -40,7 +40,7 @@ function section_init(selected_bar, works, works_unaired, page_on) {
 
     // initialize the specific img
     for (var i = 0; i < section_box_objs.length; i++) {
-        section_img_objs[i].style.height = Math.floor(works[0].length / 3) * -10 + 70 + "%";
+        section_img_objs[i].style.height = Math.floor(works[0].length / 3) * -10 + 75 + "%";
         section_box_objs[i].style.width = "calc(100% / " + box_in_bar + " - 3vw)";
         section_text_objs[i].style.fontSize = (9 / box_in_bar) + "vw";
         section_text_objs[i].innerHTML = works[works_unaired + i][0];
