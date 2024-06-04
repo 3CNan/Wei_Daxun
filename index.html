@@ -7,11 +7,13 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <style>
-        body {
-            background-image: url("src/cover.jpg");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+        #cover_bg {
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, 0);
+            z-index: -1;
         }
         #placeholder {
             height: 70vh;
@@ -67,6 +69,7 @@
 </head>
 <body style="margin: 0 auto;">
     <div id="placeholder"></div>
+    <img src="src/cover.jpg" id="cover_bg">
     <div id="main_header">【三夕楠原创】魏大勋-个人作品合集<hr style="margin: 0;"></div>
     <div id="main_body">
         <div class="main_title"><a href="film_tv.html"><div class="main_title_shade">影视</div></a></div>
@@ -87,6 +90,13 @@
 </body>
 <script src='main.js'></script>
 <script type="text/javascript">
+    var cover_bg = document.getElementById("cover_bg");
+    if(is_phone) {
+        cover_bg.style.maxHeight = "100%";
+    } else {
+        cover_bg.style.maxWidth = "100%";
+    }
+
     var main_title_objs = document.getElementsByClassName("main_title");
     var main_title_shade_objs = document.getElementsByClassName("main_title_shade");
     main_body.style.height = (is_phone) ? ("calc((70vw + 10vw) * 5)") : ("calc((29.3vw + 10vw) * 2)");
