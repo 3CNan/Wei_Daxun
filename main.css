@@ -7,6 +7,7 @@
   src: url('./src/font/庞门正道标题体.woff') format('woff');
 }
 
+
 * {
     font-family: serif;
 }
@@ -126,8 +127,8 @@
     display: none;
 }
 .alert_win {
-    aspect-ratio: 1.2/1;
-    width: 60%;
+    width: 60vw;
+    height: 60vh;
     position: fixed;
     top: 50%;
     left: 50%;
