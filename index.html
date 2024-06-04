@@ -6,25 +6,74 @@
     <title>首页【三夕楠|魏大勋】</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
     <style>
         body {
-            background-image: url("");
+            background-image: url("src/cover.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        #placeholder {
+            height: 70vh;
+        }
+        #main_body {
+            background: white;
         }
         #main_header {
+            background: white;
+            padding: 2vw;
+            position: sticky;
+            top: 0;
             font-size: 3vw;
             text-align: center;
-            font-family: "LXGWWenKai-M", serif;
+            font-family: "BTXiaoBai", sans-serif;
+        }
+        .main_title {
+            aspect-ratio: 1/1;
+            box-shadow: 0px 0px 10px gray;
+            border-radius: 5px;
+            box-sizing: border-box;
+            float: left;
+            background-size: cover;
+            background-position: center;
+            font-size: 5vw;
+
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .main_title a {
+            background: rgba(255, 255, 255, 0.3);
+            color: black;
+            text-decoration: none;
+            text-align: center;
+        }
+        .main_title_shade {
+            width: 100%;
+            height: 50%;
+            margin: 25% 0;
+            line-height: inherit;
+            box-sizing: border-box;
+            background: rgba(225, 109, 29, 0.5);
+            color: white;
+            font-family: "BTXiaoBai", serif;
+        }
+        .main_title:nth-child(1) {
+            background-image: url("src/film_tv/1921_2021-7-1.jpg");
+        }
+        .main_title:nth-child(2) {
+            background-image: url("src/show/大侦探第九季_2024-01-18.jpg");
         }
     </style>
 </head>
-<body>
-    <!-- <div id="header">魏大勋</div> -->
+<body style="margin: 0 auto;">
+    <div id="placeholder"></div>
+    <div id="main_header">【三夕楠原创】魏大勋-个人作品合集<hr style="margin: 0;"></div>
     <div id="main_body">
-        <div id="main_header">【三夕楠原创】魏大勋-个人作品合集</div>
-        <hr>
-        <a href="film_tv.html" class="main_title">影视</a>
-        <a href="show.html" class="main_title">综艺</a>
+        <div class="main_title"><a href="film_tv.html"><div class="main_title_shade">影视</div></a></div>
+        <div class="main_title"><a href="show.html"><div class="main_title_shade">综艺</div></a></div>
+        <div class="main_title"><a href="film_tv.html"><div class="main_title_shade">音乐（准备写）</div></a></div>
+        <div class="main_title"><a href="film_tv.html"><div class="main_title_shade">杂志（还没写）</div></a></div>
+        <div class="main_title"><a href="film_tv.html"><div class="main_title_shade">活动(还没写)</div></a></div>
     </div>
 
     <div id="footer">
@@ -36,7 +85,23 @@
         </p>
     </div>
 </body>
+<script src='main.js'></script>
 <script type="text/javascript">
-    
+    var main_title_objs = document.getElementsByClassName("main_title");
+    var main_title_shade_objs = document.getElementsByClassName("main_title_shade");
+    main_body.style.height = (is_phone) ? ("calc((70vw + 10vw) * 5)") : ("calc((29.3vw + 10vw) * 2)");
+    for (var i = 0; i < main_title_objs.length; i++) {
+        if (is_phone) {
+            main_title_objs[i].style.fontSize = "10vw";
+            main_title_objs[i].style.margin = "5vw 15vw";
+            main_title_objs[i].style.width = "calc(100% - 30vw)";
+            main_title_shade_objs[i].style.padding = "10vw 0";
+        } else {
+            main_title_objs[i].style.fontSize = "3vw";
+            main_title_objs[i].style.margin = "5vw 2vw";
+            main_title_objs[i].style.width = "calc(33.3% - 4vw)";
+            main_title_shade_objs[i].style.padding = "5vw 0";
+        }
+    }
 </script>
 </html>

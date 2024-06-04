@@ -6,6 +6,10 @@
   font-family: 'PMZDBiaoTi';
   src: url('./src/font/庞门正道标题体.woff') format('woff');
 }
+@font-face {
+  font-family: 'BTXiaoBai';
+  src: url('./src/font/包图小白体.woff') format('woff');
+}
 
 
 * {
