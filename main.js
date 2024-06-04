@@ -1,4 +1,6 @@
 var is_phone = (document.body.scrollWidth < 769);
+var navigation = document.getElementById("navigation");
+navigation.style.fontSize = (is_phone) ? ("100%") : ("60%");
 
 // Single Section Bar Initialization
 function section_init(selected_bar, works, works_unaired, page_on) {

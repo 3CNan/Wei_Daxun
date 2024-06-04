@@ -16,16 +16,16 @@
     font-family: serif;
 }
 #header {
-    height: 7vw;
+    height: 8vw;
     background-color: black;
     color: gold;
     text-align: center;
-    font-size: 5vw;
-    padding-top: 1vw;
+    font-size: 5.5vw;
+    padding-top: 1.5vw;
     font-family: 'PMZDBiaoTi', serif;
 }
 #navigation {
-    font-size: 60%;
+/*    font-size: 60%;*/
     display: inline;
 }
 #navigation a, #header a {
