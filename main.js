@@ -173,6 +173,8 @@ function get_video_source(keyword, platform) {
         return "https://sou.pptv.com/s_video?kw=" + keyword;
     case "bili":
         return "https://search.bilibili.com/all?keyword=" + keyword;
+    case "weibo":
+        return "https://weibo.com/7883248565/" + weibo_source[keyword];
     default:
         return "no valid source";
     }
