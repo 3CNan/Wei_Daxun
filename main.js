@@ -49,6 +49,7 @@ function section_init(selected_bar, works, works_unaired, page_on) {
             section_text_objs[i].innerHTML += "<div class='section_text_sub'>" + works[works_unaired + i][2] + "</div>";
         }
     }
+    section_title[0].innerHTML += "<div class='section_title_sub'>点击展开</div>";
 }
 
 function section_load_image(all_works, works_unaired, page_on) {
@@ -164,20 +165,35 @@ function get_video_source(keyword, platform) {
         return "https://www.iqiyi.com/search/" + keyword + ".html";
     case "tencent":
         return "https://v.qq.com/x/search/?q=" + keyword;
+    case "cctv":
+        return "https://search.cctv.com/search.php?qtext=" + keyword;
+    case "pptv":
+        return "https://sou.pptv.com/s_video?kw=" + keyword;
+    case "bili":
+        return "https://search.bilibili.com/all?keyword=" + keyword;
     default:
         return "no valid source";
     }
 }
 
-function section_write_video_source(all_works, works_unaired) {
+function section_write_video_source(all_works, works_unaired, ) {
     var section_bar_objs = document.getElementsByClassName("section_bar");
     for (var i = 0; i < section_bar_objs.length; i++) {
         var section_link_objs = section_bar_objs[i].getElementsByClassName("section_link");
         for (var j = 0; j < section_link_objs.length; j++) {
-            var link_ref = get_video_source(all_works[i][j][0], all_works[i][j][3]);
+            var link_ref = get_video_source(all_works[i][works_unaired[i] + j][0], all_works[i][works_unaired[i] + j][3]);
             if (link_ref != "no valid source") {
                 section_link_objs[j].href = link_ref;
             }
         }
     }
+}
+
+function alert_all_works(works) {
+    var alert_bg = document.getElementById("alert_bg");
+    alert_bg.style.height = document.getElementsByTagName("body")[0].style.height;
+}
+
+for (var i = 0; i < section_title_sub.length; i++) {
+    section_title_sub[i]
 }
