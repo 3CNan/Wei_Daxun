@@ -24,6 +24,19 @@
     padding-top: 1vw;
     font-family: 'PMZDBiaoTi', serif;
 }
+#navigation {
+    font-size: 60%;
+    display: inline;
+}
+#navigation a, #header a {
+    font-family: 'PMZDBiaoTi', serif;
+    color: inherit;
+    text-decoration: none;
+}
+#navigation a:hover, #header a:hover {
+    background-color: gold;
+    color: black;
+}
 #footer {
     padding: 1%;
     font-size: 1.5vw;
