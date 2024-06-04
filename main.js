@@ -25,14 +25,14 @@ function section_init(selected_bar, works, works_unaired, page_on) {
     if(is_phone) {
         for (var i = 0; i < 2; i++) {
             for (var j = 0; j < 3; j++) {
-                section_content_objs[i].innerHTML += '<div class="section_box"><a class="section_link" target="_blank"><div class="section_img"></div><div class="section_text"></div></a></div>';
+                section_content_objs[i].innerHTML += '<div class="section_box"><a class="src_link" target="_blank"><div class="section_img"></div><div class="section_text"></div></a></div>';
                 section_content_objs[i].style.height = "30vw";
             }
         }
         box_in_bar = 3;
     } else {
         for (var j = 0; j < 6; j++) {
-            section_content_objs[0].innerHTML += '<div class="section_box"><a class="section_link" target="_blank"><div class="section_img"></div><div class="section_text"></div></a></div>';
+            section_content_objs[0].innerHTML += '<div class="section_box"><a class="src_link" target="_blank"><div class="section_img"></div><div class="section_text"></div></a></div>';
             section_content_objs[0].style.height = "15vw";
         }
         box_in_bar = 6;
@@ -41,7 +41,7 @@ function section_init(selected_bar, works, works_unaired, page_on) {
     // initialize the specific img
     for (var i = 0; i < section_box_objs.length; i++) {
         section_img_objs[i].style.height = Math.floor(works[0].length / 3) * -10 + 75 + "%";
-        section_box_objs[i].style.width = "calc(100% / " + box_in_bar + " - 3vw)";
+        section_box_objs[i].style.width = "calc(100% / " + box_in_bar + " - 2.8vw)";
         section_text_objs[i].style.fontSize = (9 / box_in_bar) + "vw";
         section_text_objs[i].innerHTML = works[works_unaired + i][0];
         section_text_objs[i].innerHTML += "<div class='section_text_sub'>" + works[works_unaired + i][1] + "</div>";
@@ -49,7 +49,7 @@ function section_init(selected_bar, works, works_unaired, page_on) {
             section_text_objs[i].innerHTML += "<div class='section_text_sub'>" + works[works_unaired + i][2] + "</div>";
         }
     }
-    section_title[0].innerHTML += "<div class='section_title_sub'>点击展开</div>";
+    section_title[0].innerHTML += "<div class='section_title_sub' onclick='alert_by_index(" + ($(selected_bar).index() - 1) + ", \"" + page_on + "\")'>点击展开</div>";
 }
 
 function section_load_image(all_works, works_unaired, page_on) {
@@ -176,24 +176,69 @@ function get_video_source(keyword, platform) {
     }
 }
 
-function section_write_video_source(all_works, works_unaired, ) {
-    var section_bar_objs = document.getElementsByClassName("section_bar");
-    for (var i = 0; i < section_bar_objs.length; i++) {
-        var section_link_objs = section_bar_objs[i].getElementsByClassName("section_link");
-        for (var j = 0; j < section_link_objs.length; j++) {
+function class_write_video_source(class_name, all_works, works_unaired) {
+    var class_name_objs = document.getElementsByClassName(class_name);
+    for (var i = 0; i < class_name_objs.length; i++) {
+        var src_link_objs = class_name_objs[i].getElementsByClassName("src_link");
+        for (var j = 0; j < src_link_objs.length; j++) {
             var link_ref = get_video_source(all_works[i][works_unaired[i] + j][0], all_works[i][works_unaired[i] + j][3]);
             if (link_ref != "no valid source") {
-                section_link_objs[j].href = link_ref;
+                src_link_objs[j].href = link_ref;
+            } else {
+                src_link_objs[j].innerHTML += " (" + link_ref + ")";
             }
         }
     }
 }
 
-function alert_all_works(works) {
+function alert_init(all_works) {
     var alert_bg = document.getElementById("alert_bg");
-    alert_bg.style.height = document.getElementsByTagName("body")[0].style.height;
+    var alert_win_objs = document.getElementsByClassName("alert_win");
+    alert_bg.style.height = document.body.scrollHeight + "px";
+    for(var i = 0; i < all_works.length; i++) {
+        alert_bg.innerHTML += "<div class='alert_win'><div class='alert_title'>全部作品<div class='alert_close_btn' onclick='alert_close()'>点击关闭</div></div></div>";
+        alert_win_objs[i].style.display = "none";
+        alert_win_objs[i].style.fontSize = (is_phone) ? ("2.5vw") : ("1.5vw");
+
+        // initialize bubbles inside        
+        create_bubble(alert_win_objs[i], all_works[i]);
+    }
+    // alert_win_objs[0].style.display = "block"; // for test use, will be delete later
 }
 
-for (var i = 0; i < section_title_sub.length; i++) {
-    section_title_sub[i]
+function alert_by_index(i, page_on) {
+    alert_all_works(i, get_all_works(page_on));
+}
+
+function get_all_works(page_on) {
+    switch(page_on) {
+    case "film_tv":
+        return all_film_tv;
+    case "show":
+        return all_show;
+    default:
+        return [[]];
+    }
+}
+
+function alert_all_works(i, works) {
+    var alert_bg = document.getElementById("alert_bg");
+    var alert_win_objs = document.getElementsByClassName("alert_win");
+    alert_bg.style.display = "block";
+    alert_win_objs[i].style.display = "block";
+}
+
+function alert_close() {
+    var alert_bg = document.getElementById("alert_bg");
+    var alert_win_objs = document.getElementsByClassName("alert_win");
+    alert_bg.style.display = "none";
+    for (var i = 0; i < alert_win_objs.length; i++) {
+        alert_win_objs[i].style.display = "none";
+    }
+}
+
+function create_bubble(canva, content) {
+    for (var i = 0; i < content.length; i++) {
+        canva.innerHTML += "<div class='alert_bubble'><div class='alert_bubble_date'>" + content[i][1] + "</div><div class='alert_bubble_content'><a class='src_link' target='_blank'>" + content[i][0] + "</a></div></div>";
+    }
 }
