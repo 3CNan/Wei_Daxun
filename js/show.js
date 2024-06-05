@@ -7,10 +7,10 @@ function shows_init() {
     for (var i = 0; i < section_bar_objs.length; i++) {
         section_init(section_bar_objs[i], all_show[i], 0, "show");
     }
-    section_load_image(all_show, [0, 0, 0], "show");
-    class_write_video_source("section_bar", all_show, [0, 0, 0]);
+    class_write_video_source("section_bar", all_show, [0, 0, 0], true);
     alert_init(all_show);
-    class_write_video_source("alert_win", all_show, [0, 0, 0]);
+    class_write_video_source("alert_win", all_show, [0, 0, 0], false);
+    section_load_image(all_show, [0, 0, 0], "show");
 }
 
 window.onload = function() {

@@ -25,15 +25,15 @@ function section_init(selected_bar, works, works_unaired, page_on) {
 
     // initialize the amount of box in each content bar
     if(is_phone) {
-        for (var i = 0; i < 2; i++) {
-            for (var j = 0; j < 3; j++) {
+        for (var i = 0; i < 2; i++) {       // 2行
+            for (var j = 0; j < 3; j++) {   // 一行各3个框
                 section_content_objs[i].innerHTML += '<div class="section_box"><a class="src_link" target="_blank"><div class="section_img"></div><div class="section_text"></div></a></div>';
                 section_content_objs[i].style.height = "30vw";
             }
         }
         box_in_bar = 3;
     } else {
-        for (var j = 0; j < 6; j++) {
+        for (var j = 0; j < 6; j++) {       // 共一行，一行6个框
             section_content_objs[0].innerHTML += '<div class="section_box"><a class="src_link" target="_blank"><div class="section_img"></div><div class="section_text"></div></a></div>';
             section_content_objs[0].style.height = "15vw";
         }
@@ -42,7 +42,7 @@ function section_init(selected_bar, works, works_unaired, page_on) {
 
     // initialize the specific img
     for (var i = 0; i < section_box_objs.length; i++) {
-        section_img_objs[i].style.height = Math.floor(works[0].length / 3) * -10 + 75 + "%";
+        section_img_objs[i].style.height = Number(works[works_unaired + i][2] != "") * (-10) + 75 + "%";
         section_box_objs[i].style.width = "calc(100% / " + box_in_bar + " - 2.8vw)";
         section_text_objs[i].style.fontSize = (9 / box_in_bar) + "vw";
         section_text_objs[i].innerHTML = works[works_unaired + i][0];
@@ -175,22 +175,80 @@ function get_video_source(keyword, platform) {
         return "https://search.bilibili.com/all?keyword=" + keyword;
     case "weibo":
         return "https://weibo.com/7883248565/" + weibo_source[keyword];
+    case "douyin":
+        return "https://www.douyin.com/search/" + keyword;
+    case "xigua":
+        return "https://www.ixigua.com/search/" + keyword;
     default:
-        return "no valid source";
+        return "(no valid source)";
     }
 }
 
-function class_write_video_source(class_name, all_works, works_unaired) {
-    var class_name_objs = document.getElementsByClassName(class_name);
-    for (var i = 0; i < class_name_objs.length; i++) {
-        var src_link_objs = class_name_objs[i].getElementsByClassName("src_link");
-        for (var j = 0; j < src_link_objs.length; j++) {
-            var link_ref = get_video_source(all_works[i][works_unaired[i] + j][0], all_works[i][works_unaired[i] + j][3]);
-            if (link_ref != "no valid source") {
-                src_link_objs[j].href = link_ref;
-            } else {
-                src_link_objs[j].innerHTML += " (" + link_ref + ")";
+function get_platform_name(platform) {
+    switch(platform) {
+    case "youku":
+        return "优酷";
+    case "mgtv":
+        return "芒果tv";
+    case "iqiyi":
+        return "爱奇艺";
+    case "tencent":
+        return "腾讯视频";
+    case "cctv":
+        return "央视网";
+    case "pptv":
+        return "PP视频";
+    case "bili":
+        return "哔哩哔哩";
+    case "weibo":
+        return "微博";
+    case "douyin":
+        return "抖音";
+    case "xigua":
+        return "西瓜视频";
+    default:
+        return "(no valid source)";
+    }
+}
+
+function get_all_video_source(keyword, all_platforms) {
+    var src = [];
+    for (var i = 0; i < all_platforms.length; i++) {
+        src.push(get_video_source(keyword, all_platforms[i]));
+    }
+    console.log(all_platforms, src);
+    return src;
+}
+
+function write_single_source(class_name_objs, all_works, works_unaired, i) {
+    var src_link_objs = class_name_objs[i].getElementsByClassName("src_link");
+    for (var j = 0; j < src_link_objs.length; j++) {
+        var link_ref = get_all_video_source(all_works[i][works_unaired[i] + j][0], all_works[i][works_unaired[i] + j][3]);
+        src_link_objs[j].href = link_ref[0];
+    }
+}
+
+function write_multiple_source(class_name_objs, all_works, works_unaired, i) {
+    var alert_bubble_content_objs = class_name_objs[i].getElementsByClassName("alert_bubble_content");
+    for (var j = 0; j < alert_bubble_content_objs.length; j++) {
+        var src_link_objs = alert_bubble_content_objs[j].getElementsByClassName("src_link");
+        var link_ref = get_all_video_source(all_works[i][works_unaired[i] + j][0], all_works[i][works_unaired[i] + j][3]);
+        if (link_ref[0] != "(no valid source)") {
+            for (var k = 0; k < src_link_objs.length; k++) {
+                src_link_objs[k].href = link_ref[k];
             }
+        }
+    }
+}
+
+function class_write_video_source(class_name, all_works, works_unaired, is_single) {
+    var class_name_objs = document.getElementsByClassName(class_name);
+    // var num_src_link = 0;
+    for (var i = 0; i < class_name_objs.length; i++) {
+        if (is_single) {
+            write_single_source(class_name_objs, all_works, works_unaired, i);
+        } else {
+            write_multiple_source(class_name_objs, all_works, works_unaired, i);
         }
     }
 }
@@ -243,6 +301,12 @@ function alert_close() {
 
 function create_bubble(canva, content) {
     for (var i = 0; i < content.length; i++) {
-        canva.innerHTML += "<div class='alert_bubble'><div class='alert_bubble_date'>" + content[i][1] + "</div><div class='alert_bubble_content'><a class='src_link' target='_blank'>" + content[i][0] + "</a></div></div>";
+        var all_a = "";
+        // if (content[i][3][0] != "") {
+            for (var j = 0; j < content[i][3].length; j++) {
+            all_a += "<a class='src_link' target='_blank'>|" + get_platform_name(content[i][3][j]) + "</a>";
+            }
+        // }
+        canva.innerHTML += "<div class='alert_bubble'><div class='alert_bubble_date'>" + content[i][1] + "</div><div class='alert_bubble_content'>" + content[i][0] + all_a + "</div></div>"
     }
 }

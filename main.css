@@ -51,7 +51,6 @@
 
 /* carousel section */
 #carousel {
-/*    background-image: url("./src/film_tv/志愿军.jpeg");*/
     background-position: center;
     background-size: auto 100%;
     overflow: hidden;
@@ -187,3 +186,12 @@
     box-shadow: 0 0 3px gray;
 /*    background-color: ;*/
 }
+.alert_bubble_content .src_link {
+    float: right;
+    font-size: 80%;
+    color: gray;
+}
+
+
+
+
