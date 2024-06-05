@@ -164,7 +164,7 @@ function get_video_source(keyword, platform) {
     case "mgtv":
         return "https://so.mgtv.com/so?k=" + keyword;
     case "iqiyi":
-        return "https://m.iqiyi.com/search/" + keyword + ".html";
+        return "https://www.iqiyi.com/search/" + keyword + ".html";
     case "tencent":
         return "https://v.qq.com/x/search/?q=" + keyword;
     case "cctv":
