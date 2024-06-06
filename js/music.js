@@ -1,19 +1,22 @@
 // film and tv section initialization
-function film_tv_init() {
-    // get elements from html
-    var section_bar_objs = document.getElementsByClassName("section_bar");
-
-    // initialize the amount of content bar needed
-    for (var i = 0; i < section_bar_objs.length; i++) {
-        section_init(section_bar_objs[i], all_film_tv[i], all_unaired[i], "film_tv");
-    }
-    class_write_video_source("section_bar", all_film_tv, all_unaired);
-    alert_init(all_film_tv);
-    class_write_video_source("alert_win", all_film_tv, [0, 0, 0]);
-    section_load_image(all_film_tv, all_unaired, "film_tv");
+function music_init() {
+    var ranking = document.getElementById("ranking");
+    var ranking_break = (is_phone) ? ('</div><div class="ranking_list_bar">') : ("");
+    var ranking_content = '<div class="ranking_list_bar"> \
+                                <div class="ranking_list">单曲</div>' + ranking_break +' \
+                                <div class="ranking_list">ost</div>' + ranking_break +' \
+                                <div class="ranking_list">碎片</div> \
+                            </div> \
+                            <div class="ranking_list_bar"> \
+                                <div class="ranking_list">综艺Live</div>' + ranking_break +' \
+                                <div class="ranking_list">晚会Live</div> \
+                            </div>';
+    ranking.innerHTML = ranking_content;
 }
+
+
 
 window.onload = function() {
-    carousel_init(masterpiece, "film_tv");
-    film_tv_init();
+    music_init();
 }
+

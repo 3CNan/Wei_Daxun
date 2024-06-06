@@ -179,6 +179,16 @@ function get_video_source(keyword, platform) {
         return "https://www.douyin.com/search/" + keyword;
     case "xigua":
         return "https://www.ixigua.com/search/" + keyword;
+    case "wangyi":
+        return "https://music.163.com/#/search/m/?s=魏大勋%20" + keyword;
+    case "qq":
+        return "https://y.qq.com/n/ryqq/search?w=魏大勋%20" + keyword;
+    case "kuwo":
+        return "http://www.kuwo.cn/search/list?key=魏大勋%20" + keyword;
+    case "kugou":
+        return "https://www.kugou.com/yy/html/search.html#searchType=song&searchKeyWord=魏大勋%20" + keyword;
+    case "bili+":
+        return "https://search.bilibili.com/all?keyword=魏大勋%20" + keyword;
     default:
         return "(no valid source)";
     }
@@ -206,6 +216,14 @@ function get_platform_name(platform) {
         return "抖音";
     case "xigua":
         return "西瓜视频";
+    case "wangyi":
+        return "网易云音乐";
+    case "qq": 
+        return "QQ音乐";
+    case "kuwo":
+        return "酷我音乐";
+    case "kugou":
+        return "酷狗音乐"
     default:
         return "(no valid source)";
     }
@@ -216,7 +234,6 @@ function get_all_video_source(keyword, all_platforms) {
     for (var i = 0; i < all_platforms.length; i++) {
         src.push(get_video_source(keyword, all_platforms[i]));
     }
-    console.log(all_platforms, src);
     return src;
 }
 
@@ -265,7 +282,6 @@ function alert_init(all_works) {
         // initialize bubbles inside        
         create_bubble(alert_win_objs[i], all_works[i]);
     }
-    // alert_win_objs[0].style.display = "block"; // for test use, will be delete later
 }
 
 function alert_by_index(i, page_on) {
@@ -299,12 +315,12 @@ function alert_close() {
     }
 }
 
-function create_bubble(canva, content) {
+function create_bubble(canva, content, class_name) {
     for (var i = 0; i < content.length; i++) {
         var all_a = "";
         // if (content[i][3][0] != "") {
             for (var j = 0; j < content[i][3].length; j++) {
-            all_a += "<a class='src_link' target='_blank'>|" + get_platform_name(content[i][3][j]) + "</a>";
+            all_a += "<a class='src_link " + class_name + "' target='_blank'>|" + get_platform_name(content[i][3][j]) + "</a>";
             }
         // }
         canva.innerHTML += "<div class='alert_bubble'><div class='alert_bubble_date'>" + content[i][1] + "</div><div class='alert_bubble_content'>" + content[i][0] + all_a + "</div></div>"
