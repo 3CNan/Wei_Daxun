@@ -1,7 +1,3 @@
-var is_phone = (document.body.scrollWidth < 769);
-var navigation = document.getElementById("navigation");
-navigation.style.fontSize = (is_phone) ? ("100%") : ("60%");
-
 // Single Section Bar Initialization
 function section_init(selected_bar, works, works_unaired, page_on) {
 	// get elements from html
@@ -19,7 +15,7 @@ function section_init(selected_bar, works, works_unaired, page_on) {
         section_title[0].style.fontSize = "3.5vw";
         selected_bar.innerHTML += '<div class="section_content"></div><div class="section_content"></div>';
     } else {
-        section_title[0].style.fontSize = "2.5vw";
+        // section_title[0].style.fontSize = "2.5vw";
         selected_bar.innerHTML += '<div class="section_content"></div>';
     }
 
@@ -51,7 +47,8 @@ function section_init(selected_bar, works, works_unaired, page_on) {
             section_text_objs[i].innerHTML += "<div class='section_text_sub'>" + works[works_unaired + i][2] + "</div>";
         }
     }
-    section_title[0].innerHTML += "<div class='section_title_sub' onclick='alert_by_index(" + ($(selected_bar).index() - 1) + ", \"" + page_on + "\")'>点击展开</div>";
+    section_title[0].innerHTML += "<div class='section_title_sub' onclick='alert_open(" + ($(selected_bar).index() - 1) + ")'>点击展开</div>";
+    console.log("Section bar initialization finished.");
 }
 
 function section_load_image(all_works, works_unaired, page_on) {
@@ -62,6 +59,7 @@ function section_load_image(all_works, works_unaired, page_on) {
             section_img_objs[j].style.backgroundImage = 'url(' + get_url(page_on, all_works[i], works_unaired[i] + j) + ')';
         }
     }
+    console.log("Section bar loading image finished.");
 }
 
 // carousel area initialization
@@ -83,20 +81,20 @@ function carousel_init(works, page_on) {
         ep_name_area.style.marginLeft = "-30%";
     } else {
         carousel_height = 550;
-        ep_area.style.width = "20%";
-        ep_name_area.style.width = "20%";
-        ep_name_area.style.marginLeft = "-20%";
     }
     carousel.style.height = carousel_height + "px";
     ep_name_area.style.height = "calc(" + carousel_height + "px / 6";
     for(var i = 0; i < 12; i++) {
-        // ep_name_objs[i].innerHTML = all_film_tv[ep_tot_unaired + i % 6][0];      // carousel the recent 6 works
         ep_name_objs[i].innerHTML = works[i % 6][0];                          // carousel the recent best 6 (I think) works
+        ep_name_objs[i].title = works[i % 6][0];  
         ep_name_objs[i].style.height = "calc(" + carousel_height + "px / 6";
         ep_name_objs[i].style.fontSize = (carousel_height / 20) + "px";
     }
 
-    // animation initialization
+    carousel_anime_init(carousel_height, works, page_on);
+}
+
+function carousel_anime_init(carousel_height, works, page_on) {
     var style = document.createElement('style');
     style.innerHTML = '\
     @keyframes carousel_ep_names{               /* animation for ep_name_area to scroll up */ \
@@ -151,6 +149,7 @@ function carousel_init(works, page_on) {
         100%  {background-image: url("' + get_url(page_on, works, 0) + '");}\
     }'; // add animations
     document.head.appendChild(style);
+    console.log("Carousel initialization finished.");
 }
 
 function get_url(page_on, works, work_on) {
@@ -268,6 +267,7 @@ function class_write_video_source(class_name, all_works, works_unaired, is_singl
             write_multiple_source(class_name_objs, all_works, works_unaired, i);
         }
     }
+    console.log("Writing video source finished.");
 }
 
 function alert_init(all_works) {
@@ -282,24 +282,10 @@ function alert_init(all_works) {
         // initialize bubbles inside        
         create_bubble(alert_win_objs[i], all_works[i]);
     }
+    console.log("Alert window initialization finished.");
 }
 
-function alert_by_index(i, page_on) {
-    alert_all_works(i, get_all_works(page_on));
-}
-
-function get_all_works(page_on) {
-    switch(page_on) {
-    case "film_tv":
-        return all_film_tv;
-    case "show":
-        return all_show;
-    default:
-        return [[]];
-    }
-}
-
-function alert_all_works(i, works) {
+function alert_open(i) {
     var alert_bg = document.getElementById("alert_bg");
     var alert_win_objs = document.getElementsByClassName("alert_win");
     alert_bg.style.display = "block";
@@ -325,4 +311,43 @@ function create_bubble(canva, content, class_name) {
         // }
         canva.innerHTML += "<div class='alert_bubble'><div class='alert_bubble_date'>" + content[i][1] + "</div><div class='alert_bubble_content'>" + content[i][0] + all_a + "</div></div>"
     }
+    console.log("Create bubbled on " + canva.class + " finished.");
+}
+
+function get_rencent_six(all_works, works_unaired) {
+    var all_recent_size = all_works.length * 6;
+    var all_recent = []
+    for (var i = 0; i < all_recent_size; i++) {
+        all_recent[i] = all_works[Math.floor(i / 6)][i % 6 + works_unaired[Math.floor(i / 6)]];
+    }
+    var sort_by_index = function(array_index) {
+        return function(item1, item2) {
+            // format: yyyy-mm-dd
+            var a = item1[array_index];
+            var b = item2[array_index];
+            var a_y = Number(a.slice(0, 4)), a_m = Number(a.slice(5, 7)), a_d = Number(a.slice(8, 10));
+            var b_y = Number(b.slice(0, 4)), b_m = Number(b.slice(5, 7)), b_d = Number(b.slice(8, 10));
+            if (a_y < b_y) {
+                return 1;
+            } else if (a_y > b_y) {
+                return -1;
+            } else {
+                if (a_m < b_m) {
+                    return 1;
+                } else if (a_m > b_m) {
+                    return -1;
+                } else {
+                    if (a_d < b_d) {
+                        return 1;
+                    } else if (a_d > b_d) {
+                        return -1;
+                    } else {
+                        return 0;  // if equal
+                    }
+                }
+            }
+        }
+    }
+    all_recent.sort(sort_by_index(1));
+    return all_recent.slice(0, 6);
 }

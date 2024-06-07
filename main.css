@@ -58,6 +58,7 @@
 }
 #ep_area {
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0.6));
+    width: 20%;
     height:100%;
     float: right;
     overflow: hidden;
@@ -66,6 +67,8 @@
     animation: carousel_ep_names 15s linear infinite;
 }
 #ep_name_area {
+    width: 20%;
+    margin-left: -20%;
     float: right;
     animation: gradient_ep_names 15s linear infinite;;
     background-image: linear-gradient(to left, transparent, #e16c1d);
@@ -83,7 +86,8 @@
 }
 
 /* film and tv section */
-.section_title {
+.section_title, .ranking_title {
+    font-size: 2.5vw;
     box-sizing: border-box;
     padding-top: 2vw;
     padding-left: 3vw;
@@ -196,22 +200,52 @@
 
 /* music page */
 #ranking {
-    padding: 0 6vw;
+    padding: 0 8vw;
 }
 .ranking_list_bar {
     width: calc(100% - 2vw);
-    height: calc(60vh + 2vw);
+    height: calc(70vh + 2vw);
     margin: 1vw;
     display: flex;
+    justify-content: center;
 }
 .ranking_list {
-    width: calc(100% - 4vw);
-    height: calc(100% - 4vw);
-    margin: 2vw;
+    width: calc(33.3% - 4vw);
+    height: calc(100% - 4vh);
+    margin: 2vh 2vw;
+    border-radius: 5px;
     box-sizing: border-box;
     box-shadow: 0px 0px 5px gray;
     float: left;
+    overflow: hidden;
 }
+.ranking_list_header_bg {
+    width: 100%;
+    height: 35%;
+    background: url("src/music/时光音乐会·老友记_2023-11-04.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+}
+.ranking_list_header {
+    width: 100%;
+    height: 50%;
+    text-align: center;
+    line-height: calc((70vh - 2vw) * 0.35 * 0.5);
+    margin: auto;
+    background-color: rgba(225, 108, 29, 0.5);
+    font-family: 'LXGWWenKai-M', serif;
+    text-shadow: 1px 1px white, -1px -1px lightskyblue;
+}
+.ranking_content_area {
+    width: calc(100% + 15px);
+    height: 65%;
+    overflow-y: scroll;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
 
 
 

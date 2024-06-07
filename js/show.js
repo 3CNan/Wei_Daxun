@@ -1,5 +1,11 @@
+var is_phone = (document.body.scrollWidth < 769);
+var navigation = document.getElementById("navigation");
+navigation.style.fontSize = (is_phone) ? ("100%") : ("60%");
+
 // film and tv section initialization
 function shows_init() {
+    carousel_init(all_show_recent, "show");
+    
     // get elements from html
     var section_bar_objs = document.getElementsByClassName("section_bar");
 
@@ -14,6 +20,5 @@ function shows_init() {
 }
 
 window.onload = function() {
-    carousel_init(all_recent, "show");
     shows_init();
 }
