@@ -177,6 +177,7 @@ function filter_sort() {
     song2 = filter_not_include(song1);      // not include
     song3 = filter_include_either(song2);   // include either
     write_filter_content(song3);
+    toggle_tag_win();
 }
 
 function get_all_songs() {
