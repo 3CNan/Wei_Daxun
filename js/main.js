@@ -173,7 +173,7 @@ function get_video_source(keyword, platform) {
     case "bili":
         return "https://search.bilibili.com/all?keyword=" + keyword;
     case "weibo":
-        return "https://weibo.com/7883248565/" + weibo_source[keyword];
+        return "https://weibo.com/7883248565/" + weibo_source[keyword]; // 花园里的小蝴蝶_
     case "douyin":
         return "https://www.douyin.com/search/" + keyword;
     case "xigua":
@@ -188,6 +188,8 @@ function get_video_source(keyword, platform) {
         return "https://www.kugou.com/yy/html/search.html#searchType=song&searchKeyWord=魏大勋%20" + keyword;
     case "bili+":
         return "https://search.bilibili.com/all?keyword=魏大勋%20" + keyword;
+    case "weibo+":
+        return "https://weibo.com/7659141491/" + weibo_source[keyword]; // 魏大勋de花园
     default:
         return "(no valid source)";
     }
@@ -208,8 +210,10 @@ function get_platform_name(platform) {
     case "pptv":
         return "PP视频";
     case "bili":
+    case "bili+":
         return "哔哩哔哩";
     case "weibo":
+    case "weibo+":
         return "微博";
     case "douyin":
         return "抖音";
@@ -301,17 +305,28 @@ function alert_close() {
     }
 }
 
-function create_bubble(canva, content, class_name) {
+function create_bubble(canva, content, extra_content=undefined) {
     for (var i = 0; i < content.length; i++) {
         var all_a = "";
-        // if (content[i][3][0] != "") {
-            for (var j = 0; j < content[i][3].length; j++) {
-            all_a += "<a class='src_link " + class_name + "' target='_blank'>|" + get_platform_name(content[i][3][j]) + "</a>";
-            }
-        // }
-        canva.innerHTML += "<div class='alert_bubble'><div class='alert_bubble_date'>" + content[i][1] + "</div><div class='alert_bubble_content'>" + content[i][0] + all_a + "</div></div>"
+        for (var j = 0; j < content[i][3].length; j++) {
+            all_a += "<a class='src_link' target='_blank'>|" + get_platform_name(content[i][3][j]) + "</a>";
+        }
+        var extra = "";
+        if (extra_content != undefined) {
+            extra = " <div class='bubble_description'>\
+                        " + extra_content[i][2] + "\
+                    </div>";
+        }
+        canva.innerHTML += "<div class='bubble'>\
+                                <div class='bubble_date'>\
+                                    " + content[i][1] + "\
+                                </div>\
+                                <div class='bubble_content'>\
+                                    " + content[i][0] + extra + all_a + "\
+                                </div>\
+                            </div>";
     }
-    console.log("Create bubbled on " + canva.class + " finished.");
+    console.log("Create bubbles finished.");
 }
 
 function get_rencent_six(all_works, works_unaired) {
@@ -351,3 +366,10 @@ function get_rencent_six(all_works, works_unaired) {
     all_recent.sort(sort_by_index(1));
     return all_recent.slice(0, 6);
 }
+
+
+
+
+
+
+

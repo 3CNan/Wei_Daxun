@@ -16,7 +16,51 @@
         <div id="ranking">
         </div>
         <div id="filter">
-            
+            <div id="filter_tool_bar">
+                <div id="filter_title">筛选器</div>                      <!-- 搜索筛选 -->
+                <div id="filter_tool_area">
+                     <div id="search_select">
+                        <input type="text" id="search_keyword">
+                        <button id="search_btn" onclick="search_sort()">点击搜索</button>
+                    </div>
+                    <div id="filter_select">        <!-- 标签筛选: 全部包含，包含任一，不包含 -->
+                    <div class="filter_tag_area">
+                        <div class="filter_tag all_include" onclick="set_select_mode(1)">全部包含</div>
+                        <div class="filter_tag include_either" onclick="set_select_mode(0)">包含任一</div>
+                        <div class="filter_tag not_include" onclick="set_select_mode(-1)">&nbsp; 不包含 &nbsp;</div>
+                        <button id="show_all_tag" onclick="toggle_tag_win()">点击展开所有标签</button>
+                        <div id="filter_tag_win">
+                            <div class="filter_tag_bar"><!-- 演唱编排类型 -->
+                                <div class="filter_tag">独唱</div>
+                                <div class="filter_tag">合唱</div>
+                                <div class="filter_tag">齐唱</div>
+                            </div>
+                            <div class="filter_tag_bar"><!-- 音频类型 -->
+                                <div class="filter_tag">录音室</div>
+                                <div class="filter_tag">Live</div>
+                                <div class="filter_tag">清唱</div>
+                                <div class="filter_tag">朗读</div>
+                            </div>
+                            <div class="filter_tag_bar"><!-- 视频类型 -->
+                                <div class="filter_tag">有MV</div>
+                                <div class="filter_tag">有Live</div>
+                            </div>
+                            <div class="filter_tag_bar">
+                                <div class="filter_tag">单曲</div>
+                                <div class="filter_tag">OST</div>
+                                <div class="filter_tag">影视Live</div>
+                                <div class="filter_tag">综艺Live</div>
+                                <div class="filter_tag">晚会Live</div>
+                                <div class="filter_tag">碎片</div>
+                            </div>
+                            <button id="filter_reset_btn" onclick="reset_tag_select()">重置</button>
+                            <button id="filter_btn" onclick="filter_sort()">点击筛选</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div id="filter_content"></div>
         </div>
     </div>
 

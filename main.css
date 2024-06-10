@@ -134,7 +134,7 @@
     display: inline;
     padding: 0.5vw 2vw;
 }
-.section_title_sub:hover, .alert_bubble_content:hover {
+.section_title_sub:hover, .bubble_content:hover {
     background-color: whitesmoke;
 }
 
@@ -171,18 +171,18 @@
     background-color: whitesmoke;
     color: black;
 }
-.alert_bubble {
+.bubble {
     margin: 0.5vw;
     width: calc(100% - 1vw);
     display: flex;
     box-sizing: border-box;
 }
-.alert_bubble_date {
+.bubble_date {
     width: 30%;
     padding: 1vw;
     box-sizing: border-box;
 }
-.alert_bubble_content {
+.bubble_content {
     width: 70%;
     padding: 1vw;
     border-radius: 5px;
@@ -190,11 +190,20 @@
     box-shadow: 0 0 3px gray;
 /*    background-color: ;*/
 }
-.alert_bubble_content .src_link {
+.bubble_content .src_link {
     float: right;
     padding: 0.5%;
     font-size: 80%;
     color: gray;
+}
+.bubble_description {
+    color: rgb(225, 108, 90);
+    background-color: darkgray;
+    display: inline;
+    text-align: center;
+    font-size: 90%;
+    margin: 1%;
+    color: white;
 }
 
 
@@ -222,15 +231,10 @@
 .ranking_list_header_bg {
     width: 100%;
     height: 35%;
-    background-image: linear-gradient(to bottom, transparent, transparent, transparent, white), url('src/music/时光音乐会·老友记_2023-11-04.jpg');
-/*    background-blend-mode: multiply;*/
-/*    background-image: url("src/music/时光音乐会·老友记_2023-11-04.jpg");*/
-/*    background-color: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.6));*/
     background-size: cover;
     background-position: center;
     display: flex;
     justify-content: center;
-/*    border-radius: 5px;*/
 }
 .ranking_list_header {
     width: 100%;
@@ -249,6 +253,114 @@
     padding-right: 20px;
     box-sizing: border-box;
 }
+
+
+#filter {
+    width: calc(100% - 16vw);
+    height: 100vh;
+    margin: 2vw 8vw;
+    border: 1px solid black;
+    overflow: scroll;
+}
+#filter_tool_bar {
+    width: 100%;
+    display: flex;
+    position: sticky;
+    top: 0;
+    box-sizing: border-box;
+    background-color: whitesmoke;
+}
+#filter_title {
+    width: 20%;
+    height: 100%;
+    color: gray;
+    font-size: 125%;
+    margin: 1vw;
+}
+#filter_tool_area {
+    width: 80%;
+    height: 100%;
+}
+#search_select, #filter_select {
+    float: right;
+    height: calc(100% - 2vw);
+    width: calc(50% - 2vw);
+    padding: 0 5%;
+    margin: 1vw;
+    box-sizing: border-box;
+    display: flex;
+}
+#search_select *, #filter_select * {
+    float: left;
+}
+#search_select input {
+    width: 75%;
+    border-radius: 0;
+    padding: 3px;
+}
+#search_select button, #filter_tag_win button {
+    height: 100%;
+    padding: 6px;
+    border: none;
+    margin-right: 5px;
+    background-color: lightskyblue;
+}
+
+.filter_tag_bar * {
+    float: left;
+}
+#filter_tag_win {
+    margin: 5px 0;
+    border: 1px solid gray;
+/*    overflow: hidden;*/
+    display: none;
+}
+
+.filter_tag_bar {
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.filter_tag_bar:nth-child(odd) {
+    background-color: rgb(255, 255, 255);
+}
+.filter_tag_bar:nth-child(even) {
+    background-color: rgb(220, 220, 220);
+}
+.filter_tag {
+    border-radius: 5px;
+    box-shadow: 0 0 1px gray;
+    display: inline;
+    padding: 2px 5px;
+    margin: 0 2px;
+}
+.filter_tag:hover {
+    box-shadow: 0 0 2px black;
+}
+.all_include {
+    background-color: #e16c1d;
+    color: white;
+}
+.include_either {
+    color: #e16c1d;
+    background-color: white;
+}
+.not_include {
+    background-color: red;
+}
+#show_all_tag {
+    border: none;
+    border-radius: 0;
+    padding: 4px;
+    background-color: lightgray;
+}
+#filter_content {
+    width: 100%;
+    height: 100%;
+/*    overflow: scroll;*/
+}
+
+
 
 
 
