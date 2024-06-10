@@ -197,12 +197,11 @@
     color: gray;
 }
 .bubble_description {
-    color: rgb(225, 108, 90);
-    background-color: darkgray;
-    display: inline;
+    background-color: rgba(225, 108, 90, 0.7);
+    display: inline-block;
     text-align: center;
     font-size: 90%;
-    margin: 1%;
+    margin: 1% 3%;
     color: white;
 }
 
@@ -243,8 +242,10 @@
     line-height: calc((70vh - 2vw) * 0.35 * 0.5);
     margin: auto;
     background-color: rgba(225, 108, 29, 0.5);
-    font-family: 'LXGWWenKai-M', serif;
-    text-shadow: 1px 1px white, -1px -1px lightskyblue;
+    font-family: 'PMZDBiaoTi', serif;
+    font-size: 200%;
+    text-shadow: 0 0 5px black;
+    color: white;
 }
 .ranking_content_area {
     width: calc(100% + 15px);

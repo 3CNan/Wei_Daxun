@@ -35,7 +35,7 @@ function music_init() {
     var ranking_title_objs = document.getElementsByClassName("ranking_title");
     if (is_phone) {
         for (var i = 0; i < ranking_title_objs.length; i++) {
-            ranking_title_objs[i].style.fontSize = "3.5vw";
+            ranking_title_objs[i].style.fontSize = "6vw";
         }
     }
 
@@ -171,13 +171,13 @@ function reset_tag_select() {
 
 function filter_sort() {
     // get all songs into one array
+    toggle_tag_win();
     var all_songs = get_all_songs();
     var song1, song2, song3;
     song1 = filter_all_include(all_songs);  // all include
     song2 = filter_not_include(song1);      // not include
     song3 = filter_include_either(song2);   // include either
     write_filter_content(song3);
-    toggle_tag_win();
 }
 
 function get_all_songs() {
