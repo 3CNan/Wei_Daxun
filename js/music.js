@@ -169,7 +169,7 @@ function reset_tag_select() {
     });
 }
 
-function filter_sort() {
+function tag_filter() {
     // get all songs into one array
     toggle_tag_win();
     var all_songs = get_all_songs();
@@ -262,7 +262,7 @@ function write_filter_content(all_works) {
     }
 }
 
-function search_sort() {
+function search_filter() {
     var search_keyword = document.getElementById("search_keyword").value;
     console.log(search_keyword);
 
@@ -285,7 +285,7 @@ function search_sort() {
 window.onload = function() {
     music_init();
     ranking_init(all_music);
-    filter_sort();
+    tag_filter();
 }
 
 
