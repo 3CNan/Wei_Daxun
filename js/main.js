@@ -157,6 +157,11 @@ function get_url(page_on, works, work_on) {
 }
 
 function get_video_source(keyword, platform) {
+    if (platform.indexOf("+") != -1 && platform != "weibo+") {
+        keyword = "魏大勋%20" + keyword;
+        platform = platform.replace("+", "");
+        console.log(platform);
+    }
     switch(platform) {
     case "youku":
         return "https://so.youku.com/search_video/q_" + keyword;
@@ -186,8 +191,6 @@ function get_video_source(keyword, platform) {
         return "http://www.kuwo.cn/search/list?key=魏大勋%20" + keyword;
     case "kugou":
         return "https://www.kugou.com/yy/html/search.html#searchType=song&searchKeyWord=魏大勋%20" + keyword;
-    case "bili+":
-        return "https://search.bilibili.com/all?keyword=魏大勋%20" + keyword;
     case "weibo+":
         return "https://weibo.com/7659141491/" + weibo_source[keyword]; // 魏大勋de花园
     default:
@@ -200,10 +203,12 @@ function get_platform_name(platform) {
     case "youku":
         return "优酷";
     case "mgtv":
+    case "mgtv+":
         return "芒果tv";
     case "iqiyi":
         return "爱奇艺";
     case "tencent":
+    case "tencent+":
         return "腾讯视频";
     case "cctv":
         return "央视网";
@@ -216,6 +221,7 @@ function get_platform_name(platform) {
     case "weibo+":
         return "微博";
     case "douyin":
+    case "douyin+":
         return "抖音";
     case "xigua":
         return "西瓜视频";
