@@ -249,9 +249,9 @@ function write_single_source(class_name_objs, all_works, works_unaired, i) {
 }
 
 function write_multiple_source(class_name_objs, all_works, works_unaired, i) {
-    var alert_bubble_content_objs = class_name_objs[i].getElementsByClassName("alert_bubble_content");
-    for (var j = 0; j < alert_bubble_content_objs.length; j++) {
-        var src_link_objs = alert_bubble_content_objs[j].getElementsByClassName("src_link");
+    var bubble_content_objs = class_name_objs[i].getElementsByClassName("bubble_content");
+    for (var j = 0; j < bubble_content_objs.length; j++) {
+        var src_link_objs = bubble_content_objs[j].getElementsByClassName("src_link");
         var link_ref = get_all_video_source(all_works[i][works_unaired[i] + j][0], all_works[i][works_unaired[i] + j][3]);
         if (link_ref[0] != "(no valid source)") {
             for (var k = 0; k < src_link_objs.length; k++) {
@@ -272,6 +272,20 @@ function class_write_video_source(class_name, all_works, works_unaired, is_singl
         }
     }
     console.log("Writing video source finished.");
+}
+
+function id_write_video_source(id_name, all_works) {
+    var id_obj = document.getElementById(id_name);
+    var bubble_content_objs = id_obj.getElementsByClassName("bubble_content");
+    for (var j = 0; j < bubble_content_objs.length; j++) {
+        var src_link_objs = bubble_content_objs[j].getElementsByClassName("src_link");
+        var link_ref = get_all_video_source(all_works[j][0], all_works[j][3]);
+        if (link_ref[0] != "(no valid source)") {
+            for (var k = 0; k < src_link_objs.length; k++) {
+                src_link_objs[k].href = link_ref[k];
+            }
+        }
+    }
 }
 
 function alert_init(all_works) {

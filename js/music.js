@@ -259,6 +259,7 @@ function write_filter_content(all_works) {
         filter_content.innerHTML = "未找到符合筛选标准的歌曲";
     } else {
         create_bubble(filter_content, all_works, all_works);
+        id_write_video_source("filter_content", all_works);
     }
 }
 
