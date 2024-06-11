@@ -253,6 +253,14 @@ function filter_include_either(all_works) {
 }
 
 function write_filter_content(all_works) {
+    var ways_to_sort_objs = document.getElementsByName("ways_to_sort");
+    var sort_way = 1; // sort by date recent
+    for (var i = 0; i < ways_to_sort_objs.length; i++) {
+        if (ways_to_sort_objs[i].checked) {
+            sort_way = Number(ways_to_sort_objs[i].value);
+        }
+    }
+    all_works = sort_by_radio(all_works, sort_way);
     var filter_content = document.getElementById("filter_content");
     filter_content.innerHTML = "";
     if (all_works[0] == undefined) {
@@ -280,6 +288,20 @@ function search_filter() {
     });
 
     write_filter_content(res);
+}
+
+function sort_by_radio(all_works, sort_way=1) {
+    switch (sort_way) {
+    case 0:
+        all_works.sort(sort_by_arr_index_zh(0));
+        break;
+    case 1:
+        all_works.sort(sort_by_arr_index(1));
+        break;
+    default:
+        all_works.sort(sort_by_arr_index_zh(2));
+    }
+    return all_works;
 }
 
 

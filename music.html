@@ -19,7 +19,7 @@
             <div id="filter_tool_bar">
                 <div id="filter_title">筛选器</div>                      <!-- 搜索筛选 -->
                 <div id="filter_tool_area">
-                     <div id="search_select">
+                    <div id="search_select">
                         <input type="text" id="search_keyword">
                         <button id="search_btn" onclick="search_filter()">点击搜索</button>
                     </div>
@@ -58,6 +58,16 @@
                         </div>
                     </div>
                 </div>
+                <div id="way_to_sort">
+                        <div>
+                            <input type="radio" name="ways_to_sort" value="1">
+                            <label>时间最近</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="ways_to_sort" value="0">
+                            <label>曲名拼音</label>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="filter_content"></div>

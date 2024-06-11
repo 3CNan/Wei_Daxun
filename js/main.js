@@ -349,41 +349,46 @@ function get_rencent_six(all_works, works_unaired) {
     for (var i = 0; i < all_recent_size; i++) {
         all_recent[i] = all_works[Math.floor(i / 6)][i % 6 + works_unaired[Math.floor(i / 6)]];
     }
-    var sort_by_index = function(array_index) {
-        return function(item1, item2) {
-            // format: yyyy-mm-dd
-            var a = item1[array_index];
-            var b = item2[array_index];
-            var a_y = Number(a.slice(0, 4)), a_m = Number(a.slice(5, 7)), a_d = Number(a.slice(8, 10));
-            var b_y = Number(b.slice(0, 4)), b_m = Number(b.slice(5, 7)), b_d = Number(b.slice(8, 10));
-            if (a_y < b_y) {
+    all_recent.sort(sort_by_arr_index(1));
+    return all_recent.slice(0, 6);
+}
+
+var sort_by_arr_index = function(array_index) {
+    return function(item1, item2) {
+        // format: yyyy-mm-dd
+        var a = item1[array_index];
+        var b = item2[array_index];
+        var a_y = Number(a.slice(0, 4)), a_m = Number(a.slice(5, 7)), a_d = Number(a.slice(8, 10));
+        var b_y = Number(b.slice(0, 4)), b_m = Number(b.slice(5, 7)), b_d = Number(b.slice(8, 10));
+        if (a_y < b_y) {
+            return 1;
+        } else if (a_y > b_y) {
+            return -1;
+        } else {
+            if (a_m < b_m) {
                 return 1;
-            } else if (a_y > b_y) {
+            } else if (a_m > b_m) {
                 return -1;
             } else {
-                if (a_m < b_m) {
+                if (a_d < b_d) {
                     return 1;
-                } else if (a_m > b_m) {
+                } else if (a_d > b_d) {
                     return -1;
                 } else {
-                    if (a_d < b_d) {
-                        return 1;
-                    } else if (a_d > b_d) {
-                        return -1;
-                    } else {
-                        return 0;  // if equal
-                    }
+                    return 0;  // if equal
                 }
             }
         }
     }
-    all_recent.sort(sort_by_index(1));
-    return all_recent.slice(0, 6);
 }
 
-
-
-
+var sort_by_arr_index_zh = function(array_index) {
+    return function(item1, item2) {
+        var a = item1[array_index];
+        var b = item2[array_index];
+        return a.localeCompare(b, "zh");
+    }
+}
 
 
 
