@@ -160,7 +160,6 @@ function get_video_source(keyword, platform) {
     if (platform.indexOf("+") != -1 && platform != "weibo+") {
         keyword = "魏大勋%20" + keyword;
         platform = platform.replace("+", "");
-        console.log(platform);
     }
     switch(platform) {
     case "youku":
@@ -211,6 +210,7 @@ function get_platform_name(platform) {
     case "tencent+":
         return "腾讯视频";
     case "cctv":
+    case "cctv+":
         return "央视网";
     case "pptv":
         return "PP视频";
