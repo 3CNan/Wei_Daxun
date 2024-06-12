@@ -119,16 +119,16 @@ function add_select_style(element, class_name) {
     element.classList.remove("all_include");
     element.classList.remove("include_either");
     element.classList.remove("not_include");
+    var element_parent = element.parentNode;
+    var sibling_element = element_parent.getElementsByClassName("filter_tag");
     if (class_name == "all_include") {
-        var element_parent = element.parentNode;
-        var sibling_element = element_parent.getElementsByClassName("filter_tag");
         for (var i = 0; i < sibling_element.length; i++) {
             sibling_element[i].classList.remove("all_include");
-            tag_state[sibling_element[i].innerHTML] = (tag_state[sibling_element[i].innerHTML] == 1) ? (2) : (tag_state[sibling_element[i].innerHTML]);
+            sibling_element[i].classList.remove("include_either");
+            sibling_element[i].classList.remove("not_include");
+            tag_state[sibling_element[i].innerHTML] = 2;
         }
     } else if (class_name == "include_either") {
-        var element_parent = element.parentNode;
-        var sibling_element = element_parent.getElementsByClassName("filter_tag");
         var is_all_include = false;
         for (var i = 0; i < sibling_element.length; i++) {
             if (i == $(element).index()) {continue;}
@@ -138,8 +138,6 @@ function add_select_style(element, class_name) {
         }
         if (is_all_include) {return;} // if this bar has an all_include, it cannot be either include
     } else if (class_name == "not_include") {
-        var element_parent = element.parentNode;
-        var sibling_element = element_parent.getElementsByClassName("filter_tag");
         var is_all_not = true;
         for (var i = 0; i < sibling_element.length; i++) {
             if (i == $(element).index()) {continue;}
@@ -278,13 +276,18 @@ function search_filter() {
     var all_songs = get_all_songs();
 
     var res = all_songs.filter(item => {
-        var is_include_either = false;
         for (var i = 0; i < item.length; i++) {
-            if(item[i].indexOf(search_keyword) != -1) {
-                is_include_either = true;
+            if (item[i].indexOf(search_keyword) != -1) {
+                return true;
+            } else if (i > 2) {
+                for (var j = 0; j < item[i].length; j++) {
+                    if (get_platform_name(item[i][j]).indexOf(search_keyword) != -1) {
+                        return true;
+                    }
+                }
             }
         }
-        return is_include_either;
+        return false;
     });
 
     write_filter_content(res);
