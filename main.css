@@ -191,9 +191,7 @@
 /*    background-color: ;*/
 }
 .bubble_content .src_link {
-    float: right;
-    padding: 0.5%;
-    font-size: 80%;
+    font-size: 70%;
     color: gray;
 }
 .bubble_description {
@@ -203,6 +201,22 @@
     font-size: 90%;
     margin: 1% 3%;
     color: white;
+}
+.bubble_tag {
+    border-radius: 8px;
+    box-shadow: 0 0 1px gray;
+    display: inline;
+    padding: 1px 3px;
+    margin: 0 1px;
+    font-size: 60%;
+    color: rgb(50, 50, 50);
+}
+.bubble_tag_bar, .bubble_src_bar {
+    display: inline-block;
+    margin: 1% 0;
+}
+.bubble_src_bar {
+    float: right;
 }
 
 

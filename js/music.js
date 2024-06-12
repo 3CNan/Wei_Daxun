@@ -250,24 +250,6 @@ function filter_include_either(all_works) {
     return res;
 }
 
-function write_filter_content(all_works) {
-    var ways_to_sort_objs = document.getElementsByName("ways_to_sort");
-    var sort_way = -1; // not sort
-    for (var i = 0; i < ways_to_sort_objs.length; i++) {
-        if (ways_to_sort_objs[i].checked) {
-            sort_way = Number(ways_to_sort_objs[i].value);
-        }
-    }
-    all_works = sort_by_radio(all_works, sort_way);
-    var filter_content = document.getElementById("filter_content");
-    filter_content.innerHTML = "";
-    if (all_works[0] == undefined) {
-        filter_content.innerHTML = "未找到符合筛选标准的歌曲";
-    } else {
-        create_bubble(filter_content, all_works, all_works);
-        id_write_video_source("filter_content", all_works);
-    }
-}
 
 function search_filter() {
     var search_keyword = document.getElementById("search_keyword").value;
@@ -289,9 +271,35 @@ function search_filter() {
         }
         return false;
     });
-
     write_filter_content(res);
 }
+
+
+function write_filter_content(all_works) {
+    var ways_to_sort_objs = document.getElementsByName("ways_to_sort");
+    var sort_way = -1; // not sort
+    for (var i = 0; i < ways_to_sort_objs.length; i++) {
+        if (ways_to_sort_objs[i].checked) {
+            sort_way = Number(ways_to_sort_objs[i].value);
+        }
+    }
+    all_works = sort_by_radio(all_works, sort_way);
+    var filter_content = document.getElementById("filter_content");
+    filter_content.innerHTML = "";
+    if (all_works[0] == undefined) {
+        filter_content.innerHTML = "未找到符合筛选标准的歌曲";
+    } else {
+        create_bubble(filter_content, all_works, all_works);
+        id_write_video_source("filter_content", all_works);
+        if (is_phone) {
+            var bubble_tag_bar_objs = document.getElementsByClassName("bubble_tag_bar");
+            for (var i = 0; i < bubble_tag_bar_objs.length; i++) {
+                bubble_tag_bar_objs[i].style.display = "block";
+            }
+        }
+    }
+}
+
 
 function sort_by_radio(all_works, sort_way=1) {
     switch (sort_way) {
@@ -305,6 +313,20 @@ function sort_by_radio(all_works, sort_way=1) {
         // all_works.sort(sort_by_arr_index_zh(2));
     }
     return all_works;
+}
+
+function write_tag_to_class(all_works, class_name) {
+    var class_name_objs = document.getElementsByClassName(class_name);
+    for (var i = 0; i < all_works.length; i++) {
+        var tags = all_works[i][4];         // ["歌曲名称", "时间", "出处", "平台", "标签"]
+        for (var j = 0; j < tags.length; j++) {
+            class_name_objs[i].innerHTML += "<div class='bubble_tag'>" + tags[j] + "</div>";
+        }
+    }
+}
+
+function show_bubble_tag() {
+
 }
 
 
@@ -325,7 +347,9 @@ $(".filter_tag_bar").on('click', function(e) {
     select_filter_bar = $(this).index();
     // mark_tag(this, select_mode);
 })
-
+$(".bubble_content").on('mouseover', function(e) {
+    show_bubble_tag();
+})
 
 
 

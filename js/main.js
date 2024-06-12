@@ -329,20 +329,32 @@ function create_bubble(canva, content, extra_content=undefined) {
     for (var i = 0; i < content.length; i++) {
         var all_a = "";
         for (var j = 0; j < content[i][3].length; j++) {
-            all_a += "<a class='src_link' target='_blank'>|" + get_platform_name(content[i][3][j]) + "</a>";
+            all_a += "<a class='src_link' target='_blank'>&nbsp;|" + get_platform_name(content[i][3][j]) + "</a>";
         }
-        var extra = "";
+        var extra = "", extra_temp = "";
         if (extra_content != undefined) {
-            extra = " <div class='bubble_description'>\
+            for (var j = 0; j < extra_content[i][4].length; j++) {
+                extra_temp += "<div class='bubble_tag'>\
+                                    " + extra_content[i][4][j] + "\
+                                </div>";
+            }
+            extra = "<div class='bubble_description'>\
                         " + extra_content[i][2] + "\
+                    </div>\
+                    <div class='bubble_tag_bar'>\
+                        " + extra_temp + "\
                     </div>";
+            
         }
         canva.innerHTML += "<div class='bubble'>\
                                 <div class='bubble_date'>\
                                     " + content[i][1] + "\
                                 </div>\
                                 <div class='bubble_content'>\
-                                    " + content[i][0] + extra + all_a + "\
+                                    " + content[i][0] + extra + "\
+                                    <div class='bubble_src_bar'>\
+                                        " + all_a + "\
+                                    </div>\
                                 </div>\
                             </div>";
     }
