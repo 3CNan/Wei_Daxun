@@ -261,7 +261,7 @@ function search_filter() {
         for (var i = 0; i < item.length; i++) {
             if (item[i].indexOf(search_keyword) != -1) {
                 return true;
-            } else if (i > 2) {
+            } else if (i == 3) {
                 for (var j = 0; j < item[i].length; j++) {
                     if (get_platform_name(item[i][j]).indexOf(search_keyword) != -1) {
                         return true;
