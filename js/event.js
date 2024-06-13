@@ -1,23 +1,16 @@
 var is_phone = (document.body.scrollWidth < 769);
 var navigation = document.getElementById("navigation");
 navigation.style.fontSize = (is_phone) ? ("100%") : ("60%");
-var date_on = new Date();
-var a = ["a", "a2"];
-var b = ["b", "b2"];
-var c = {
-    "c1": a,
-    "c2": b
-};
-var ab_obj = {
-    "a": a,
-    "b": b,
-    "c": c
-};
+var date_on = new Date().toISOString().slice(0, 10); // yyyy-mm-dd
+var days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 // film and tv section initialization
 function event_init() {
     
-    console.log(m_date.value);
+}
+
+function get_days_in_month(year, month) {
+    if()
 }
 
 window.onload = function() {
@@ -25,6 +18,8 @@ window.onload = function() {
     var icon = document.getElementsByClassName("icon");
     console.log("navigation: " + navigation[0]);
     console.log("icon: " + icon[0]);
+
+    console.log(date_on);
 }
 
 $("#m_date").on("blur", function() {
