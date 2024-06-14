@@ -426,17 +426,10 @@
     font-family: "BTXiaoBai", serif;
 }
 .calendar_month_btn {
-/*    font-size: 100%;*/
     height: 100%;
     font-family: "BTXiaoBai", serif;
     display: inline;
     margin: 0;
-/*    width: 10%;*/
-/*    height: 10px;*/
-/*    background-color: lightskyblue;*/
-}
-.calendar_month_btn:nth-child(2) {
-    float: right;
 }
 #calendar_content {
     background-color: whitesmoke;
@@ -462,7 +455,7 @@
     border-radius: 10px;
 }
 .calendar_day_box_other {
-    color: gray;
+    color: darkgray;
 }
 .date_on {
     background-color: orange;

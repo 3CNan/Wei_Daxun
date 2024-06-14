@@ -127,13 +127,14 @@ function redraw_calendar(is_redraw, i, j) {
 
 
 function set_date_on(date_arr, obj=undefined) {
+    date_on = date_arr;
     if (obj != undefined) {
         for (var i = 0; i < $(".calendar_day_box").length; i++) {
             $(".calendar_day_box")[i].classList.remove("date_on");
         }
         obj.classList.add("date_on");
+        get_event(date_arr);
     }
-    date_on = date_arr;
 }
 
 
@@ -147,7 +148,7 @@ function redraw_new_month(direction) {
     draw_calendar();
 }
 
-function get_event(year, month, day) {
+function get_event(date_arr) {
 }
 
 
@@ -157,9 +158,12 @@ window.onload = function() {
 }
 
 $("#m_date").on("blur", function(e) {
-    date_on = this.value;
-    date_on = get_date_arr(date_on);
-    draw_calendar();
+    // console.log(this.value == '');
+    if (this.value != '') {
+        date_on = this.value;
+        date_on = get_date_arr(date_on);
+        draw_calendar();
+    }
 });
 
 
