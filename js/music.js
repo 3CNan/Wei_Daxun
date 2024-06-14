@@ -325,10 +325,6 @@ function write_tag_to_class(all_works, class_name) {
     }
 }
 
-function show_bubble_tag() {
-
-}
-
 
 window.onload = function() {
     music_init();
@@ -347,9 +343,7 @@ $(".filter_tag_bar").on('click', function(e) {
     select_filter_bar = $(this).index();
     // mark_tag(this, select_mode);
 })
-$(".bubble_content").on('mouseover', function(e) {
-    show_bubble_tag();
-})
+
 
 
 

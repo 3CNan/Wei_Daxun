@@ -14,6 +14,26 @@
     <div id="header"><a href="index.html">魏大勋</a><div id="navigation">|<a href="film_tv.html">影视</a>|<a href="show.html">综艺</a>|<a href="music.html">音乐</a>|<a>杂志</a>|<a href="event.html">活动</a>|</div></div>
     <div id="main_body">
         <input type="date" id="m_date">
+        <div id="calendar">
+            <div id="calendar_header">
+                <div id="calendar_title">追勋日历</div>
+                <div id="calendar_month_area">
+                    <button class="calendar_month_btn" onclick="redraw_new_month(-1)"><</button>
+                    <div id="calendar_month_content"></div>
+                    <button class="calendar_month_btn" onclick="redraw_new_month(1)">></button>
+                </div>
+                <div class="calendar_header_bar">
+                    <div class="calendar_header_box">周日</div>
+                    <div class="calendar_header_box">周一</div>
+                    <div class="calendar_header_box">周二</div>
+                    <div class="calendar_header_box">周三</div>
+                    <div class="calendar_header_box">周四</div>
+                    <div class="calendar_header_box">周五</div>
+                    <div class="calendar_header_box">周六</div>
+                </div>
+            </div>
+            <div id="calendar_content"></div>
+        </div>
     </div>
 
     <div id="footer">

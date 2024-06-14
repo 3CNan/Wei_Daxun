@@ -49,6 +49,12 @@
 }
 
 
+
+
+
+
+
+
 /* carousel section */
 #carousel {
     background-position: center;
@@ -220,6 +226,13 @@
 }
 
 
+
+
+
+
+
+
+
 /* music page */
 #ranking {
     padding: 0 8vw;
@@ -317,11 +330,10 @@
     border-radius: 0;
     padding: 3px;
 }
-#search_select button, #filter_tag_win button {
+#search_select button, #filter_tag_win button, #calendar_month_area button {
     height: 100%;
     padding: 6px;
     border: none;
-    margin-right: 5px;
     background-color: lightskyblue;
 }
 #way_to_sort div {
@@ -388,4 +400,74 @@
 
 
 
+
+
+/* event page */
+#calendar {
+    margin: 2% auto;
+}
+#calendar_header {
+    background-color: lightyellow;
+}
+#calendar_title {
+    width: 100%;
+    text-align: center;
+    font-size: 200%;
+    font-family: "BTXiaoBai", serif;
+}
+#calendar_month_area {
+    width: 100%;
+    font-size: 150%;
+    display: flex;
+}
+#calendar_month_content {
+    width: 100%;
+    text-align: center;
+    font-family: "BTXiaoBai", serif;
+}
+.calendar_month_btn {
+/*    font-size: 100%;*/
+    height: 100%;
+    font-family: "BTXiaoBai", serif;
+    display: inline;
+    margin: 0;
+/*    width: 10%;*/
+/*    height: 10px;*/
+/*    background-color: lightskyblue;*/
+}
+.calendar_month_btn:nth-child(2) {
+    float: right;
+}
+#calendar_content {
+    background-color: whitesmoke;
+}
+.calendar_day_bar, .calendar_header_bar {
+    width: 100%;
+    display: flex;
+}
+.calendar_day_box, .date_on, .calendar_header_box, .calendar_day_box_other {
+    width: 100%;
+    margin: 1%;
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    font-family: "BTXiaoBai", serif;
+}
+.calendar_header_box {
+    aspect-ratio: 1/0.5;
+}
+.calendar_day_box, .calendar_day_box_other {
+    background-color: white;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+}
+.calendar_day_box_other {
+    color: gray;
+}
+.date_on {
+    background-color: orange;
+    color: white;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+}
 
