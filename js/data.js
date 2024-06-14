@@ -110,6 +110,7 @@ var all_show = [all_resident, all_flying, all_guest];
 var all_show_recent = get_rencent_six(all_show, [0, 0, 0]);
 
 
+
 //["节目名称", "播出时间", "简介", "平台"]
 var all_film = [["天堂旅行团","约 2024","",[""]],
                 ["来都来了","2024-02-08","",["tencent"]],
@@ -182,6 +183,11 @@ var all_film_tv_recent = get_rencent_six(all_film_tv, all_film_tv_unaired);
 
 
 
+
+
+
+
+
 // 部分微博资源
 var weibo_source = {
     "极限挑战宝藏行·三区三州公益季": "Ohs9omyx3",
@@ -198,6 +204,11 @@ var weibo_source = {
     "东方之珠": "5042373048666556",
     "熊猫之歌": "5040951911519216"
 };
+
+
+
+
+
 
 
 
@@ -393,6 +404,21 @@ var all_music = [all_single, all_ost, all_tv_live, all_show_live, all_event_live
 
 
 
+
+
+
+
+var all_event_2024_6 = {
+
+}
+var all_event_2024 = {
+    6: all_event_2024_6
+}
+
+var all_event = {
+    2024: all_event_2024,
+    2023: all_event_2023
+};
 
 
 

@@ -413,7 +413,8 @@
     width: 100%;
     text-align: center;
     font-size: 200%;
-    font-family: "BTXiaoBai", serif;
+    font-family: "PMZDBiaoTi", serif;
+    color: orange;
 }
 #calendar_month_area {
     width: 100%;
@@ -424,12 +425,15 @@
     width: 100%;
     text-align: center;
     font-family: "BTXiaoBai", serif;
+    color: salmon;
 }
 .calendar_month_btn {
     height: 100%;
     font-family: "BTXiaoBai", serif;
     display: inline;
     margin: 0;
+    color: white;
+    text-shadow: 0 0 1px white;
 }
 #calendar_content {
     background-color: whitesmoke;
