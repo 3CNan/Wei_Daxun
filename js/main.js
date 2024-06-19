@@ -239,6 +239,9 @@ function get_platform_name(platform) {
 }
 
 function get_all_video_source(keyword, all_platforms) {
+    if (typeof(all_platforms) == "string") {
+        all_platforms = all_platforms.split(", ");
+    }
     var src = [];
     for (var i = 0; i < all_platforms.length; i++) {
         src.push(get_video_source(keyword, all_platforms[i]));
@@ -327,12 +330,20 @@ function alert_close() {
 
 function create_bubble(canva, content, extra_content=undefined) {
     for (var i = 0; i < content.length; i++) {
+        if (typeof(content[i][3]) == "string") {
+            content[i][3] = content[i][3].split(", ");
+        }
+        // console.log("content:", content[i][3]);
         var all_a = "";
         for (var j = 0; j < content[i][3].length; j++) {
             all_a += "<a class='src_link' target='_blank'>&nbsp;|" + get_platform_name(content[i][3][j]) + "</a>";
         }
         var extra = "", extra_temp = "";
         if (extra_content != undefined) {
+            if (typeof(extra_content[i][4]) == "string") {
+                extra_content[i][4] = extra_content[i][4].split(", ");
+            }
+            // console.log("extra_content", extra_content[i][4]);
             for (var j = 0; j < extra_content[i][4].length; j++) {
                 extra_temp += "<div class='bubble_tag'>\
                                     " + extra_content[i][4][j] + "\
