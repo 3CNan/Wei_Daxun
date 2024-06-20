@@ -157,7 +157,7 @@ function get_url(page_on, works, work_on) {
 }
 
 function get_video_source(keyword, platform) {
-    if (platform.indexOf("+") != -1 && platform != "weibo+") {
+    if (platform.indexOf("+") != -1) {
         keyword = "魏大勋%20" + keyword;
         platform = platform.replace("+", "");
     }
@@ -176,8 +176,6 @@ function get_video_source(keyword, platform) {
         return "https://sou.pptv.com/s_video?kw=" + keyword;
     case "bili":
         return "https://search.bilibili.com/all?keyword=" + keyword;
-    case "weibo":
-        return "https://weibo.com/7883248565/" + weibo_source[keyword]; // 花园里的小蝴蝶_
     case "douyin":
         return "https://www.douyin.com/search/" + keyword;
     case "xigua":
@@ -190,38 +188,47 @@ function get_video_source(keyword, platform) {
         return "http://www.kuwo.cn/search/list?key=魏大勋%20" + keyword;
     case "kugou":
         return "https://www.kugou.com/yy/html/search.html#searchType=song&searchKeyWord=魏大勋%20" + keyword;
-    case "weibo+":
+    case "weibo1":
+        return "https://weibo.com/7883248565/" + weibo_source[keyword]; // 花园里的小蝴蝶_
+    case "weibo2":
         return "https://weibo.com/7659141491/" + weibo_source[keyword]; // 魏大勋de花园
+    case "weibo3":
+        return "https://weibo.com/7854404337/" + weibo_source[keyword]; // 魏大勋de记录博
+    case "weibo4":
+        return "https://m.weibo.cn/c/novelty/detail?card_id=" + weibo_source[keyword]; // 魏大勋de记录博
     default:
         return "(no valid source)";
     }
 }
 
 function get_platform_name(platform) {
+    platform = platform.replace("+", "");
     switch(platform) {
     case "youku":
         return "优酷";
     case "mgtv":
-    case "mgtv+":
+    // case "mgtv+":
         return "芒果tv";
     case "iqiyi":
         return "爱奇艺";
     case "tencent":
-    case "tencent+":
+    // case "tencent+":
         return "腾讯视频";
     case "cctv":
-    case "cctv+":
+    // case "cctv+":
         return "央视网";
     case "pptv":
         return "PP视频";
     case "bili":
-    case "bili+":
+    // case "bili+":
         return "哔哩哔哩";
-    case "weibo":
-    case "weibo+":
+    case "weibo1":
+    case "weibo2":
+    case "weibo3":
+    case "weibo4":
         return "微博";
     case "douyin":
-    case "douyin+":
+    // case "douyin+":
         return "抖音";
     case "xigua":
         return "西瓜视频";

@@ -196,7 +196,7 @@
     box-shadow: 0 0 3px gray;
 /*    background-color: ;*/
 }
-.bubble_content .src_link {
+.bubble_content .src_link, .event_bubble_link .src_link {
     font-size: 70%;
     color: gray;
 }
@@ -330,7 +330,7 @@
     border-radius: 0;
     padding: 3px;
 }
-#search_select button, #filter_tag_win button, #calendar_month_area button {
+#search_select button, #filter_tag_win button, #calendar_month_area button, #calendar_input_area button {
     height: 100%;
     padding: 6px;
     border: none;
@@ -403,7 +403,7 @@
 
 
 /* event page */
-#calendar {
+#calendar, #event_area {
     margin: 2% auto;
 }
 #calendar_header {
@@ -468,4 +468,20 @@
     aspect-ratio: 1/1;
     border-radius: 10px;
 }
-
+#calendar_input_area {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2% 0;
+    text-align: center;
+    background-color: whitesmoke;
+}
+#calendar_input_area input {
+    padding: 3px;
+}
+.event_bubble {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2%;
+    box-shadow: 0 0 3px darkorange;
+    border-radius: 5px;
+}

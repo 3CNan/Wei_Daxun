@@ -4,6 +4,7 @@ navigation.style.fontSize = (is_phone) ? ("100%") : ("60%");
 
 var date_on = new Date().toISOString().slice(0, 10); // yyyy-mm-dd
 date_on = get_date_arr(date_on);
+update_date_on();
 var days_in_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 var year, month, day, month_len, calendar;
 var month_zh = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
@@ -15,6 +16,8 @@ function event_init() {
     var calendar = document.getElementById("calendar");
     calendar.style.width = (is_phone) ? "90%" : "70%";
     calendar.style.fontSize = (is_phone) ? "100%" : "200%";
+    var event_area = document.getElementById("event_area");
+    event_area.style.width = (is_phone) ? "90%" : "70%";
 }
 
 function get_days_in_months(year, month) { // month: 1-12
@@ -28,10 +31,10 @@ function get_days_in_months(year, month) { // month: 1-12
 }
 
 function get_date_arr(date_str) {
-    year = Number(date_on.slice(0, 4));
-    month = Number(date_on.slice(5, 7));
-    day = Number(date_on.slice(8, 10));
-    return [year, month, day];
+    var m_year = Number(date_str.slice(0, 4));
+    var m_month = Number(date_str.slice(5, 7));
+    var m_day = Number(date_str.slice(8, 10));
+    return [m_year, m_month, m_day];
 }
 
 function get_day(day) { // return 1-7
@@ -39,9 +42,7 @@ function get_day(day) { // return 1-7
 }
 
 function get_calendar() {
-    year = date_on[0];
-    month = date_on[1];
-    day = date_on[2];
+    update_date_on();
     month_len = get_days_in_months(year, month);
     var prev_month_len = get_days_in_months(year, month - 1);
     var first_weekday = get_day(new Date(year, month - 1, 2).getDay());
@@ -128,6 +129,7 @@ function redraw_calendar(is_redraw, i, j) {
 
 function set_date_on(date_arr, obj=undefined) {
     date_on = date_arr;
+    update_date_on();
     if (obj != undefined) {
         for (var i = 0; i < $(".calendar_day_box").length; i++) {
             $(".calendar_day_box")[i].classList.remove("date_on");
@@ -138,17 +140,68 @@ function set_date_on(date_arr, obj=undefined) {
 }
 
 
+function update_date_on() {
+    year = date_on[0];
+    month = date_on[1];
+    day = date_on[2];
+}
+
+
 function redraw_new_month(direction) {
+    update_date_on();
     month = month + direction;
     year = (month == 0) ? (year - 1) : year;
-    month = (month == 0) ? 12 : month;
     year = (month == 13) ? (year + 1) : year;
+    month = (month == 0) ? 12 : month;
     month = (month == 13) ? 1 : month;
     set_date_on([year, month, day]);
     draw_calendar();
 }
 
+
 function get_event(date_arr) {
+    var event_area = document.getElementById("event_area");
+    event_area.innerHTML = '';
+    is_having_event = false;
+    for (var i = 0; i < all_event.length; i++) {
+        event_date = get_date_arr(all_event[i][1]);
+        if (event_date[0] == date_arr[0] && event_date[1] == date_arr[1] && event_date[2] == date_arr[2]) {
+            is_having_event = true;
+            create_event_bubbles(event_area, all_event[i]);
+        }
+    }
+    if (!is_having_event) {
+        event_area.innerHTML = '<div class="event_bubble">今天没有活动 / 有活动暂时还没更新，请耐心等等哦 :D</div>';
+    }
+}
+
+
+function create_event_bubbles(canva, event) {
+    var event_format = function(event) {
+        var event_platform = event[3].split(", ");
+        var event_link = '';
+        var event_info = event[2];
+        var event_name = event[0];
+        for (var i = 0; i < event_platform.length; i++) {
+            var keyword = (event_platform[i] == "weibo4") ? event[0] + "_" + event[1]: event[0];
+            var suffix = (event_platform[i].indexOf("weibo") != -1) ? weibo_source_index[keyword] : "";
+            
+            event_link += "<a class='src_link' target='_blank' href='" + get_video_source(keyword, event_platform[i]) + "'>&nbsp;|" +  get_platform_name(event_platform[i]) + "_" + suffix + "</a>"; 
+        }
+        console.log(event_platform);
+        return '<div class="event_bubble">\
+                    <div class="event_bubble_title">\
+                        ' + event_name + '\
+                    </div>\
+                    <div class="event_bubble_description">\
+                        ' + event_info + '\
+                    </div>\
+                    <div class="event_bubble_link">\
+                        ' + event_link + '\
+                    </div>\
+                </div>';
+    }
+    canva.innerHTML += event_format(event);
 }
 
 
