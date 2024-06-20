@@ -82,7 +82,7 @@ function get_calendar() {
     for (var i = later_index; i < 7; i++) {
         calendar_push_date(m_calendar.length - 1, i, year, month + 1, i - later_index + 1);
     }
-    // console.log(m_calendar);
+    console.log(m_calendar);
     calendar = m_calendar;
 }
 
@@ -93,6 +93,7 @@ function draw_calendar() {
         for (var i = 0; i < 7; i++) {
             var class_html = "calendar_day_box";
             class_html += (txt_bar[i][1] != month) ? " calendar_day_box_other" : "";
+            class_html += (get_event(txt_bar[i], false)) ? " calendar_day_box_event_on" : "";
             var onclick_html = (txt_bar[i][1] != month) ? "redraw_calendar(1, " + index + ", " + i + ")" : "redraw_calendar(0, " + index + ", " + i + ")";
             class_html = ' class="' + class_html + '"';
             onclick_html = ' onclick="' + onclick_html + '"';
@@ -135,7 +136,7 @@ function set_date_on(date_arr, obj=undefined) {
             $(".calendar_day_box")[i].classList.remove("date_on");
         }
         obj.classList.add("date_on");
-        get_event(date_arr);
+        get_event(date_arr, true);
     }
 }
 
@@ -159,7 +160,7 @@ function redraw_new_month(direction) {
 }
 
 
-function get_event(date_arr) {
+function get_event(date_arr, is_create_bubble) {
     var event_area = document.getElementById("event_area");
     event_area.innerHTML = '';
     is_having_event = false;
@@ -167,12 +168,15 @@ function get_event(date_arr) {
         event_date = get_date_arr(all_event[i][1]);
         if (event_date[0] == date_arr[0] && event_date[1] == date_arr[1] && event_date[2] == date_arr[2]) {
             is_having_event = true;
-            create_event_bubbles(event_area, all_event[i]);
+            if (is_create_bubble) {
+                create_event_bubbles(event_area, all_event[i]);
+            }   
         }
     }
-    if (!is_having_event) {
+    if (!is_having_event && is_create_bubble) {
         event_area.innerHTML = '<div class="event_bubble">今天没有活动 / 有活动暂时还没更新，请耐心等等哦 :D</div>';
     }
+    return is_having_event;
 }
 
 
@@ -203,6 +207,35 @@ function create_event_bubbles(canva, event) {
     }
     canva.innerHTML += event_format(event);
 }
+
+
+// function exportPictureDownPNG(pngName, pngId) {
+//     if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"") == "MSIE8.0" || navigator.appVersion.split(";")[1].replace(/[ ]/g,"") == "MSIE9.0") {
+//             //IE亲测
+//             alert("请升级您的IE浏览器版本，暂不支持IE9及以下版本导出图片。")
+//     }
+//     html2canvas(document.getElementById(pngId)，{
+//         onrendered:function(canvas){
+//         var imgData = canvas.toDataURL('image/octet-stream');  // IE 9+浏览器
+//         if(canvas.msToBlob){
+//             var blob = canvas.msToBlob();
+//             window.navigator.msSaveBlob(blob, pngName);
+//         } else {
+//             saveFile(imgData,pngName);
+//         }
+//     });
+// }
+// function saveFile(data, filename)f
+// var save link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');save link.href = data;save link.download = filename;
+// var event = document.createEvent('MouseEvents');event.initMouseEvent('click', true, false, window,0,0,0,0,0, false, false, false, false,0, null);save link.dispatchEvent(event);
+
+
+
+
+
+
+
+
 
 
 window.onload = function() {

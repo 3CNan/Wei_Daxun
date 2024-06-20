@@ -454,13 +454,16 @@
 .calendar_header_box {
     aspect-ratio: 1/0.5;
 }
-.calendar_day_box, .calendar_day_box_other {
+.calendar_day_box, .calendar_day_box_other, .calendar_day_box_event_on {
     background-color: white;
     aspect-ratio: 1/1;
     border-radius: 10px;
 }
 .calendar_day_box_other {
     color: darkgray;
+}
+.calendar_day_box_event_on {
+    box-shadow: 0 0 5px orange;
 }
 .date_on {
     background-color: orange;
