@@ -189,16 +189,34 @@ function get_video_source(keyword, platform) {
     case "kugou":
         return "https://www.kugou.com/yy/html/search.html#searchType=song&searchKeyWord=魏大勋%20" + keyword;
     case "weibo1":
-        return "https://weibo.com/7883248565/" + weibo_source[keyword]; // 花园里的小蝴蝶_
+        return "https://weibo.com/7883248565/" + weibo_source[keyword][0]['link']; // 花园里的小蝴蝶_
     case "weibo2":
-        return "https://weibo.com/7659141491/" + weibo_source[keyword]; // 魏大勋de花园
+        return "https://weibo.com/7659141491/" + weibo_source[keyword][0]['link']; // 魏大勋de花园
     case "weibo3":
-        return "https://weibo.com/7854404337/" + weibo_source[keyword]; // 魏大勋de记录博
+        return "https://weibo.com/7854404337/" + keyword; // 魏大勋de记录博
     case "weibo4":
-        return "https://m.weibo.cn/c/novelty/detail?card_id=" + weibo_source[keyword]; // 魏大勋de记录博
+        return "https://m.weibo.cn/c/novelty/detail?card_id=" + keyword; // 魏大勋de记录博
+    case "weibo5":
+        return "https://weibo.com/7854404337?key_word=" + keyword; // 魏大勋de记录博
     default:
-        return "(no valid source)";
+        return "";
     }
+}
+
+function get_weibo_source(item_list, date, platform) {
+    if (date == "" || (platform != "weibo3" && platform != 'weibo4')) {
+        return "";
+    }
+    for (var i = 0; i < item_list.length; i++) {
+        item = item_list[i];
+        item_date = item['date'];
+        item_platform = item['type'];
+        if (item_date == date && item_platform == platform) {
+            return item;
+        }
+        console.log(item);
+    }
+    return '';
 }
 
 function get_platform_name(platform) {
@@ -226,6 +244,7 @@ function get_platform_name(platform) {
     case "weibo2":
     case "weibo3":
     case "weibo4":
+    case "weibo5":
         return "微博";
     case "douyin":
     // case "douyin+":
@@ -269,7 +288,7 @@ function write_multiple_source(class_name_objs, all_works, works_unaired, i) {
     for (var j = 0; j < bubble_content_objs.length; j++) {
         var src_link_objs = bubble_content_objs[j].getElementsByClassName("src_link");
         var link_ref = get_all_video_source(all_works[i][works_unaired[i] + j][0], all_works[i][works_unaired[i] + j][3]);
-        if (link_ref[0] != "(no valid source)") {
+        if (link_ref[0] != "") {
             for (var k = 0; k < src_link_objs.length; k++) {
                 src_link_objs[k].href = link_ref[k];
             }

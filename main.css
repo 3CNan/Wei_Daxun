@@ -309,13 +309,13 @@
     width: 90%;
     height: 100%;
 }
-#search_select, #filter_select, #way_to_sort {
+#search_select, #filter_select, #way_to_sort, #date_select {
     float: right;
     height: calc(100% - 2vw);
     margin: 1vw;
     box-sizing: border-box;
 }
-#search_select, #filter_select {
+#search_select, #filter_select, #date_select {
     width: calc(42% - 2vw);
     display: flex;
 }
@@ -487,4 +487,7 @@
     padding: 2%;
     box-shadow: 0 0 3px darkorange;
     border-radius: 5px;
+}
+#date_select select {
+    padding: 6px;
 }

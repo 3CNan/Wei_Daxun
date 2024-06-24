@@ -14,10 +14,12 @@ var month_en = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June", "July", "Aug.", "
 // event basic style initialization
 function event_init() {
     var calendar = document.getElementById("calendar");
-    calendar.style.width = (is_phone) ? "90%" : "70%";
+    calendar.style.width = (is_phone) ? "90%" : "45%";
     calendar.style.fontSize = (is_phone) ? "100%" : "200%";
     var event_area = document.getElementById("event_area");
-    event_area.style.width = (is_phone) ? "90%" : "70%";
+    event_area.style.width = (is_phone) ? "90%" : "45%";
+    // var filter = document.getElementById("filter");
+    // filter.style.height = (is_phone) ? "70vh" : "90vh";
 }
 
 function get_days_in_months(year, month) { // month: 1-12
@@ -186,19 +188,27 @@ function create_event_bubbles(canva, event) {
         var event_link = '';
         var event_info = event[2];
         var event_name = event[0];
+        var event_date = event[1];
+        var suffix = '';
         for (var i = 0; i < event_platform.length; i++) {
-            var keyword = (event_platform[i] == "weibo4") ? event[0] + "_" + event[1]: event[0];
-            var suffix = (event_platform[i].indexOf("weibo") != -1) ? weibo_source_index[keyword] : "";
-            
-            event_link += "<a class='src_link' target='_blank' href='" + get_video_source(keyword, event_platform[i]) + "'>&nbsp;|" +  get_platform_name(event_platform[i]) + "_" + suffix + "</a>"; 
+            var keyword = event_name;
+            item = get_weibo_source(weibo_source[event_name], event_date, event_platform[i]);
+            if (item != '') {
+                keyword = item['link'];
+                suffix = "_" + item['from'];
+            }
+            var src = get_video_source(keyword, event_platform[i]);
+            src = (src != "") ? " href='" + src + "'" : src;
+            var plat_name = get_platform_name(event_platform[i]);
+            event_link += "<a class='src_link' target='_blank'" + src + ">&nbsp;|" + plat_name + suffix + "</a>"; 
         }
-        console.log(event_platform);
+        // console.log(event_platform);
         return '<div class="event_bubble">\
                     <div class="event_bubble_title">\
                         ' + event_name + '\
                     </div>\
                     <div class="event_bubble_description">\
-                        ' + event_info + '\
+                        ' + event_date + "\n" + event_info + '\
                     </div>\
                     <div class="event_bubble_link">\
                         ' + event_link + '\
@@ -209,26 +219,28 @@ function create_event_bubbles(canva, event) {
 }
 
 
-// function exportPictureDownPNG(pngName, pngId) {
-//     if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"") == "MSIE8.0" || navigator.appVersion.split(";")[1].replace(/[ ]/g,"") == "MSIE9.0") {
-//             //IE亲测
-//             alert("请升级您的IE浏览器版本，暂不支持IE9及以下版本导出图片。")
-//     }
-//     html2canvas(document.getElementById(pngId)，{
-//         onrendered:function(canvas){
-//         var imgData = canvas.toDataURL('image/octet-stream');  // IE 9+浏览器
-//         if(canvas.msToBlob){
-//             var blob = canvas.msToBlob();
-//             window.navigator.msSaveBlob(blob, pngName);
-//         } else {
-//             saveFile(imgData,pngName);
-//         }
-//     });
-// }
-// function saveFile(data, filename)f
-// var save link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');save link.href = data;save link.download = filename;
-// var event = document.createEvent('MouseEvents');event.initMouseEvent('click', true, false, window,0,0,0,0,0, false, false, false, false,0, null);save link.dispatchEvent(event);
+function search_filter() {
+    var search_keyword = document.getElementById("search_keyword").value;
+    console.log(search_keyword);
+    var year_ops = document.getElementsByName("year_ops");
+    var month_ops = document.getElementsByName("month_ops");
 
+    var res = all_event.filter(item => {
+        for (var i = 0; i < item.length; i++) {
+            if (item[i].indexOf(search_keyword) != -1) {
+                return true;
+            } else if (i == 3) {
+                for (var j = 0; j < item[i].length; j++) {
+                    if (get_platform_name(item[i][j]).indexOf(search_keyword) != -1) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    });
+    // write_filter_content(res);
+}
 
 
 
