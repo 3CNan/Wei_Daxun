@@ -18,8 +18,8 @@ function event_init() {
     calendar.style.fontSize = (is_phone) ? "100%" : "200%";
     var event_area = document.getElementById("event_area");
     event_area.style.width = (is_phone) ? "90%" : "45%";
-    // var filter = document.getElementById("filter");
-    // filter.style.height = (is_phone) ? "70vh" : "90vh";
+    var filter = document.getElementById("filter");
+    filter.style.height = (is_phone) ? "70vh" : "90vh";
 }
 
 function get_days_in_months(year, month) { // month: 1-12
@@ -114,13 +114,22 @@ function draw_calendar() {
 
     var calendar_month_content = document.getElementById("calendar_month_content");
     calendar_month_content.innerHTML = year + " " + month_zh[month - 1] + " " + month_en[month - 1];
+
+    for (var i = 0; i < calendar.length; i++) {
+        for (var j = 0; j < calendar[i].length; j++) {
+            if (calendar[i][j][0] == date_on[0] && calendar[i][j][1] == date_on[1] && calendar[i][j][2] == date_on[2]) {
+                var calendar_day_bar = document.getElementsByClassName("calendar_day_bar");
+                var calendar_day_box = calendar_day_bar[i].getElementsByClassName("calendar_day_box");
+                set_date_on(date_on, calendar_day_box[j]);
+            }
+        }
+    }
 }
 
 
 function redraw_calendar(is_redraw, i, j) {
     var calendar_day_bar = document.getElementsByClassName("calendar_day_bar");
     var calendar_day_box = calendar_day_bar[i].getElementsByClassName("calendar_day_box");
-    var calendar_day_box_other = document.getElementsByClassName("calendar_day_box_other");
     if (is_redraw) {
         set_date_on(calendar[i][j]);
         draw_calendar();
@@ -184,23 +193,32 @@ function get_event(date_arr, is_create_bubble) {
 
 function create_event_bubbles(canva, event) {
     var event_format = function(event) {
-        var event_platform = event[3].split(", ");
+        var event_platform = event[3];
         var event_link = '';
         var event_info = event[2];
         var event_name = event[0];
         var event_date = event[1];
         var suffix = '';
-        for (var i = 0; i < event_platform.length; i++) {
-            var keyword = event_name;
-            item = get_weibo_source(weibo_source[event_name], event_date, event_platform[i]);
-            if (item != '') {
-                keyword = item['link'];
-                suffix = "_" + item['from'];
-            }
+        var write_src = function(event_platform, keyword, plat_name, suffix) {
             var src = get_video_source(keyword, event_platform[i]);
             src = (src != "") ? " href='" + src + "'" : src;
-            var plat_name = get_platform_name(event_platform[i]);
+            var plat_name = get_platform_name(plat_name);
             event_link += "<a class='src_link' target='_blank'" + src + ">&nbsp;|" + plat_name + suffix + "</a>"; 
+        }
+        for (var i = 0; i < event_platform.length; i++) {
+            var keyword = event_name;
+            item_list = get_weibo_source(weibo_source[event_name], event_date, event_platform[i]);
+            if (item_list != []) {
+                for (var i = 0; i < item_list.length; i++) {
+                    keyword = item_list[i]['link'];
+                    suffix = "_" + item_list[i]['from'];
+                    plat_name = item_list[i]['type'];
+                    write_src(event_platform[i], keyword, plat_name, suffix);
+                }
+            } else {
+                write_src(event_platform[i], keyword, plat_name, suffix);
+            }
+            // write_src(event_platform[i], keyword, suffix);
         }
         // console.log(event_platform);
         return '<div class="event_bubble">\
@@ -219,39 +237,34 @@ function create_event_bubbles(canva, event) {
 }
 
 
-function search_filter() {
-    var search_keyword = document.getElementById("search_keyword").value;
-    console.log(search_keyword);
-    var year_ops = document.getElementsByName("year_ops");
-    var month_ops = document.getElementsByName("month_ops");
-
+function select_filter() {
+    var year_selected = Number(document.getElementById("date_select_year").value);
+    var month_selected = Number(document.getElementById("date_select_month").value);
+    // console.log(year_selected, month_selected);
     var res = all_event.filter(item => {
-        for (var i = 0; i < item.length; i++) {
-            if (item[i].indexOf(search_keyword) != -1) {
-                return true;
-            } else if (i == 3) {
-                for (var j = 0; j < item[i].length; j++) {
-                    if (get_platform_name(item[i][j]).indexOf(search_keyword) != -1) {
-                        return true;
-                    }
-                }
-            }
+        var m_date = item[1];
+        var m_year = Number(m_date.slice(0, 4));
+        var m_month = Number(m_date.slice(5, 7));
+        // console.log(m_year == year_selected && !month_selected);
+        if (m_year == year_selected && m_month == month_selected) {
+            return true;
+        } else if (m_year == year_selected && !month_selected) {
+            return true;
+        } else if (m_month == month_selected && !year_selected) {
+            return true;
+        } else {
+            return false;
         }
-        return false;
     });
-    // write_filter_content(res);
+
+    write_filter_content(res, "活动");
 }
-
-
-
-
-
-
 
 
 
 window.onload = function() {
     event_init();
+    write_filter_content(all_event);
     draw_calendar();
 }
 

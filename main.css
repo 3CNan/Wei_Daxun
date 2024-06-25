@@ -330,7 +330,7 @@
     border-radius: 0;
     padding: 3px;
 }
-#search_select button, #filter_tag_win button, #calendar_month_area button, #calendar_input_area button {
+#search_select button, #filter_tag_win button, #calendar_month_area button, #calendar_input_area button, #date_select_btn {
     height: 100%;
     padding: 6px;
     border: none;
@@ -488,6 +488,12 @@
     box-shadow: 0 0 3px darkorange;
     border-radius: 5px;
 }
+.event_bubble_description {
+    font-size: 80%;
+    color: darkgray;
+}
 #date_select select {
-    padding: 6px;
+    width: 40%;
+    border-radius: 0;
+/*    padding: 3px;*/
 }

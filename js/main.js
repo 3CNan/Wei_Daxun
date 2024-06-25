@@ -205,18 +205,19 @@ function get_video_source(keyword, platform) {
 
 function get_weibo_source(item_list, date, platform) {
     if (date == "" || (platform != "weibo3" && platform != 'weibo4')) {
-        return "";
+        return [];
     }
+    var res = [];
     for (var i = 0; i < item_list.length; i++) {
         item = item_list[i];
         item_date = item['date'];
         item_platform = item['type'];
         if (item_date == date && item_platform == platform) {
-            return item;
+            console.log(item);
+            res.push(item);
         }
-        console.log(item);
     }
-    return '';
+    return res;
 }
 
 function get_platform_name(platform) {
@@ -315,7 +316,7 @@ function id_write_video_source(id_name, all_works) {
     for (var j = 0; j < bubble_content_objs.length; j++) {
         var src_link_objs = bubble_content_objs[j].getElementsByClassName("src_link");
         var link_ref = get_all_video_source(all_works[j][0], all_works[j][3]);
-        if (link_ref[0] != "(no valid source)") {
+        if (link_ref[0] != "") {
             for (var k = 0; k < src_link_objs.length; k++) {
                 src_link_objs[k].href = link_ref[k];
             }
@@ -354,7 +355,7 @@ function alert_close() {
     }
 }
 
-function create_bubble(canva, content, extra_content=undefined) {
+function create_bubble(canva, content, des_index=undefined, tag_index=undefined) {
     for (var i = 0; i < content.length; i++) {
         if (typeof(content[i][3]) == "string") {
             content[i][3] = content[i][3].split(", ");
@@ -365,24 +366,26 @@ function create_bubble(canva, content, extra_content=undefined) {
             all_a += "<a class='src_link' target='_blank'>&nbsp;|" + get_platform_name(content[i][3][j]) + "</a>";
         }
         var extra = "", extra_temp = "";
-        if (extra_content != undefined) {
-            if (typeof(extra_content[i][4]) == "string") {
-                extra_content[i][4] = extra_content[i][4].split(", ");
+        if (des_index != undefined) {
+            extra = "<div class='bubble_description'>\
+                        " + content[i][des_index] + "\
+                    </div>"
+        }
+        if (tag_index != undefined) {
+            if (typeof(content[i][tag_index]) == "string") {
+                content[i][tag_index] = content[i][tag_index].split(", ");
             }
             // console.log("extra_content", extra_content[i][4]);
-            for (var j = 0; j < extra_content[i][4].length; j++) {
+            for (var j = 0; j < content[i][tag_index].length; j++) {
                 extra_temp += "<div class='bubble_tag'>\
-                                    " + extra_content[i][4][j] + "\
+                                    " + content[i][tag_index][j] + "\
                                 </div>";
             }
-            extra = "<div class='bubble_description'>\
-                        " + extra_content[i][2] + "\
-                    </div>\
-                    <div class='bubble_tag_bar'>\
+            extra += "<div class='bubble_tag_bar'>\
                         " + extra_temp + "\
                     </div>";
-            
         }
+          
         canva.innerHTML += "<div class='bubble'>\
                                 <div class='bubble_date'>\
                                     " + content[i][1] + "\
@@ -445,5 +448,63 @@ var sort_by_arr_index_zh = function(array_index) {
     }
 }
 
+function sort_by_radio(all_works, sort_way=1) {
+    switch (sort_way) {
+    case 0:
+        all_works.sort(sort_by_arr_index_zh(0));
+        break;
+    case 1:
+        all_works.sort(sort_by_arr_index(1));
+        break;
+    default:
+        // all_works.sort(sort_by_arr_index_zh(2));
+    }
+    return all_works;
+}
 
+function search_filter(all_works, work_type_name) {
+    var search_keyword = document.getElementById("search_keyword").value;
+    console.log(search_keyword);
+
+    var res = all_works.filter(item => {
+        for (var i = 0; i < item.length; i++) {
+            if (item[i].indexOf(search_keyword) != -1) {
+                return true;
+            } else if (i == 3) {
+                for (var j = 0; j < item[i].length; j++) {
+                    if (get_platform_name(item[i][j]).indexOf(search_keyword) != -1) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    });
+    write_filter_content(res, work_type_name);
+}
+
+function write_filter_content(all_works, work_type_name) {
+    var ways_to_sort_objs = document.getElementsByName("ways_to_sort");
+    var sort_way = -1; // not sort
+    for (var i = 0; i < ways_to_sort_objs.length; i++) {
+        if (ways_to_sort_objs[i].checked) {
+            sort_way = Number(ways_to_sort_objs[i].value);
+        }
+    }
+    all_works = sort_by_radio(all_works, sort_way);
+    var filter_content = document.getElementById("filter_content");
+    filter_content.innerHTML = "";
+    if (all_works[0] == undefined) {
+        filter_content.innerHTML = "未找到符合筛选标准的" + work_type_name;
+    } else {
+        create_bubble(filter_content, all_works);
+        id_write_video_source("filter_content", all_works);
+        if (is_phone) {
+            var bubble_tag_bar_objs = document.getElementsByClassName("bubble_tag_bar");
+            for (var i = 0; i < bubble_tag_bar_objs.length; i++) {
+                bubble_tag_bar_objs[i].style.display = "block";
+            }
+        }
+    }
+}
 
