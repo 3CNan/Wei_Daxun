@@ -213,7 +213,7 @@ function get_weibo_source(item_list, date, platform) {
         item_date = item['date'];
         item_platform = item['type'];
         if (item_date == date && item_platform == platform) {
-            console.log(item);
+            // console.log(item);
             res.push(item);
         }
     }
@@ -483,28 +483,28 @@ function search_filter(all_works, work_type_name) {
     write_filter_content(res, work_type_name);
 }
 
-function write_filter_content(all_works, work_type_name) {
-    var ways_to_sort_objs = document.getElementsByName("ways_to_sort");
-    var sort_way = -1; // not sort
-    for (var i = 0; i < ways_to_sort_objs.length; i++) {
-        if (ways_to_sort_objs[i].checked) {
-            sort_way = Number(ways_to_sort_objs[i].value);
-        }
-    }
-    all_works = sort_by_radio(all_works, sort_way);
-    var filter_content = document.getElementById("filter_content");
-    filter_content.innerHTML = "";
-    if (all_works[0] == undefined) {
-        filter_content.innerHTML = "未找到符合筛选标准的" + work_type_name;
-    } else {
-        create_bubble(filter_content, all_works);
-        id_write_video_source("filter_content", all_works);
-        if (is_phone) {
-            var bubble_tag_bar_objs = document.getElementsByClassName("bubble_tag_bar");
-            for (var i = 0; i < bubble_tag_bar_objs.length; i++) {
-                bubble_tag_bar_objs[i].style.display = "block";
-            }
-        }
-    }
-}
+// function write_filter_content(all_works, work_type_name) {
+//     var ways_to_sort_objs = document.getElementsByName("ways_to_sort");
+//     var sort_way = -1; // not sort
+//     for (var i = 0; i < ways_to_sort_objs.length; i++) {
+//         if (ways_to_sort_objs[i].checked) {
+//             sort_way = Number(ways_to_sort_objs[i].value);
+//         }
+//     }
+//     all_works = sort_by_radio(all_works, sort_way);
+//     var filter_content = document.getElementById("filter_content");
+//     filter_content.innerHTML = "";
+//     if (all_works[0] == undefined) {
+//         filter_content.innerHTML = "未找到符合筛选标准的" + work_type_name;
+//     } else {
+//         create_bubble(filter_content, all_works);
+//         id_write_video_source("filter_content", all_works);
+//         if (is_phone) {
+//             var bubble_tag_bar_objs = document.getElementsByClassName("bubble_tag_bar");
+//             for (var i = 0; i < bubble_tag_bar_objs.length; i++) {
+//                 bubble_tag_bar_objs[i].style.display = "block";
+//             }
+//         }
+//     }
+// }
 

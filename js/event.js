@@ -192,48 +192,87 @@ function get_event(date_arr, is_create_bubble) {
 
 
 function create_event_bubbles(canva, event) {
-    var event_format = function(event) {
-        var event_platform = event[3];
-        var event_link = '';
-        var event_info = event[2];
-        var event_name = event[0];
-        var event_date = event[1];
-        var suffix = '';
-        var write_src = function(event_platform, keyword, plat_name, suffix) {
-            var src = get_video_source(keyword, event_platform[i]);
-            src = (src != "") ? " href='" + src + "'" : src;
-            var plat_name = get_platform_name(plat_name);
-            event_link += "<a class='src_link' target='_blank'" + src + ">&nbsp;|" + plat_name + suffix + "</a>"; 
-        }
-        for (var i = 0; i < event_platform.length; i++) {
-            var keyword = event_name;
-            item_list = get_weibo_source(weibo_source[event_name], event_date, event_platform[i]);
-            if (item_list != []) {
-                for (var i = 0; i < item_list.length; i++) {
-                    keyword = item_list[i]['link'];
-                    suffix = "_" + item_list[i]['from'];
-                    plat_name = item_list[i]['type'];
-                    write_src(event_platform[i], keyword, plat_name, suffix);
-                }
-            } else {
-                write_src(event_platform[i], keyword, plat_name, suffix);
-            }
-            // write_src(event_platform[i], keyword, suffix);
-        }
-        // console.log(event_platform);
-        return '<div class="event_bubble">\
-                    <div class="event_bubble_title">\
-                        ' + event_name + '\
-                    </div>\
-                    <div class="event_bubble_description">\
-                        ' + event_date + "\n" + event_info + '\
-                    </div>\
-                    <div class="event_bubble_link">\
-                        ' + event_link + '\
-                    </div>\
-                </div>';
+    var event_arr = event_format(event);
+    canva.innerHTML +=  '<div class="event_bubble">\
+                            <div class="event_bubble_title">\
+                                ' + event_arr[0] + '\
+                            </div>\
+                            <div class="event_bubble_description">\
+                                ' + event_arr[1] + "\n" + event_arr[2] + '\
+                            </div>\
+                            <div class="event_bubble_link">\
+                                ' + event_arr[3] + '\
+                            </div>\
+                        </div>';
+}
+
+var event_format = function(event) {
+    var event_platform = event[3];
+    var event_link = '';
+    var event_info = event[2];
+    var event_name = event[0];
+    var event_date = event[1];
+    var suffix = '';
+    var src_list = [];
+    var write_src = function(keyword, plat_name, suffix) {
+        var src = get_video_source(keyword, plat_name);
+        (src != "") ? src_list.push(src) : "";
+        src = (src != "") ? " href='" + src + "'" : src;
+        var plat_name = get_platform_name(plat_name);
+        event_link += "<a class='src_link' target='_blank'" + src + ">&nbsp;|" + plat_name + suffix + "</a>"; 
     }
-    canva.innerHTML += event_format(event);
+    for (var i = 0; i < event_platform.length; i++) {
+        var keyword = event_name;
+        item_list = get_weibo_source(weibo_source[event_name], event_date, event_platform[i]);
+        if (item_list != []) {
+            for (var j = 0; j < item_list.length; j++) {
+                keyword = item_list[j]['link'];
+                suffix = "_" + item_list[j]['from'];
+                plat_name = item_list[j]['type'];
+                write_src(keyword, plat_name, suffix);
+            }
+        }
+    }
+    console.log(src_list);
+    // console.log(event_name, event_link);
+    return [event_name, event_date, event_info, event_link, src_list];
+}
+
+function write_filter_content(all_works) {
+    var ways_to_sort_objs = document.getElementsByName("ways_to_sort");
+    var sort_way = -1; // not sort
+    for (var i = 0; i < ways_to_sort_objs.length; i++) {
+        if (ways_to_sort_objs[i].checked) {
+            sort_way = Number(ways_to_sort_objs[i].value);
+        }
+    }
+    all_works = sort_by_radio(all_works, sort_way);
+    var filter_content = document.getElementById("filter_content");
+    filter_content.innerHTML = "";
+    if (all_works[0] == undefined) {
+        filter_content.innerHTML = "未找到符合筛选标准的活动";
+    } else {
+        create_bubble(filter_content, all_works);
+        // id_write_video_source("filter_content", all_works);
+        var id_obj = document.getElementById("filter_content");
+        var bubble_content_objs = id_obj.getElementsByClassName("bubble_content");
+        for (var j = 0; j < bubble_content_objs.length; j++) {
+            var src_link_objs = bubble_content_objs[j].getElementsByClassName("src_link");
+            var link_ref = event_format(all_works[j])[4];
+            if (link_ref[0] != "") {
+                for (var k = 0; k < src_link_objs.length; k++) {
+                    src_link_objs[k].href = link_ref[k];
+                }
+            }
+        }
+
+        if (is_phone) {
+            var bubble_tag_bar_objs = document.getElementsByClassName("bubble_tag_bar");
+            for (var i = 0; i < bubble_tag_bar_objs.length; i++) {
+                bubble_tag_bar_objs[i].style.display = "block";
+            }
+        }
+    }
 }
 
 
