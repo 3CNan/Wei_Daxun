@@ -286,7 +286,7 @@
 #filter {
     width: calc(100% - 16vw);
     height: 90vh;
-    margin: 2vw 8vw;
+    margin: 5vh 8vw;
     border: 1px solid black;
     overflow: scroll;
 }
