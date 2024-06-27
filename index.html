@@ -92,6 +92,7 @@
 </body>
 <script src='js/main.js'></script>
 <script type="text/javascript">
+    var is_phone = (document.body.scrollWidth < 769);
     var cover_bg = document.getElementById("cover_bg");
     if(is_phone) {
         cover_bg.style.height = "100vh";
