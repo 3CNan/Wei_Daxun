@@ -23,9 +23,11 @@
     font-size: 5.5vw;
     padding-top: 1.5vw;
     font-family: 'PMZDBiaoTi', serif;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
 }
 #navigation {
-/*    font-size: 60%;*/
     display: inline;
 }
 #navigation a, #header a {
@@ -297,6 +299,7 @@
     top: 0;
     box-sizing: border-box;
     background-color: whitesmoke;
+    z-index: 1;
 }
 #filter_title {
     width: 10%;
@@ -352,7 +355,7 @@
 }
 
 .filter_tag_bar {
-    padding: 5px;
+    padding: 2px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -367,7 +370,7 @@
     box-shadow: 0 0 1px gray;
     display: inline;
     padding: 2px 5px;
-    margin: 0 2px;
+    margin: 2px;
 }
 .filter_tag:hover {
     box-shadow: 0 0 2px black;
