@@ -339,19 +339,22 @@
 #date_select select {
     width: 40%;
     border-radius: 0;
-/*    padding: 3px;*/
 }
 
 
 
-
+@media (max-width: 1024px) {
+    .default-block {
+        max-width: 768px;
+    }
+}
 
 
 @media (max-width: 767px) {
-    #navigation {
-        font-size: 100%;
-    }
     .default-block {
         margin: 0 24px;
+    }
+    #navigation {
+        font-size: 100%;
     }
 }

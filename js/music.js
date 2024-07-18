@@ -3,8 +3,6 @@ var is_phone = (document.body.scrollWidth < 769);
 // initialization
 function music_init() {
     var ranking = document.getElementById("ranking");
-    // var ranking_break = (is_phone) ? ('</div><div class="ranking_list_bar">') : ("");
-    var ranking_break = "";
     var ranking_format = function(list_name) {
         return '<div class="ranking_list">\
                     <div class="ranking_list_header_bg">\
@@ -20,25 +18,20 @@ function music_init() {
     var ranking_content = '<div class="default-block"> \
                                 <div class="ranking_title">录音室</div>  \
                                 <div class="ranking_list_bar"> \
-                                    ' + ranking_format("单曲") + ranking_break +' \
-                                    ' + ranking_format("OST") + ranking_break +' \
+                                    ' + ranking_format("单曲") +' \
+                                    ' + ranking_format("OST") +' \
                                     ' + ranking_format("影视Live") + ' \
                                 </div> \
                                 <div class="ranking_title">Live</div>\
                                 <div class="ranking_list_bar"> \
-                                    ' + ranking_format("综艺Live") + ranking_break +' \
-                                    ' + ranking_format("晚会Live") + ranking_break +' \
+                                    ' + ranking_format("综艺Live") +' \
+                                    ' + ranking_format("晚会Live") +' \
                                     ' + ranking_format("碎片") +' \
                                 </div>\
                             </div>';
     ranking.innerHTML = ranking_content;
 
     var ranking_title_objs = document.getElementsByClassName("ranking_title");
-    if (is_phone) {
-        for (var i = 0; i < ranking_title_objs.length; i++) {
-            ranking_title_objs[i].style.fontSize = "6vw";
-        }
-    }
 
     var ranking_list_objs = document.getElementsByClassName("ranking_list");
     if (is_phone) {
