@@ -1,11 +1,10 @@
 var is_phone = (document.body.scrollWidth < 769);
-var navigation = document.getElementById("navigation");
-navigation.style.fontSize = (is_phone) ? ("100%") : ("60%");
 
 // initialization
 function music_init() {
     var ranking = document.getElementById("ranking");
-    var ranking_break = (is_phone) ? ('</div><div class="ranking_list_bar">') : ("");
+    // var ranking_break = (is_phone) ? ('</div><div class="ranking_list_bar">') : ("");
+    var ranking_break = "";
     var ranking_format = function(list_name) {
         return '<div class="ranking_list">\
                     <div class="ranking_list_header_bg">\
@@ -18,17 +17,19 @@ function music_init() {
                     </div>\
                 </div>';
     };
-    var ranking_content = '<div class="ranking_title">录音室</div>  \
-                            <div class="ranking_list_bar"> \
-                                ' + ranking_format("单曲") + ranking_break +' \
-                                ' + ranking_format("OST") + ranking_break +' \
-                                ' + ranking_format("影视Live") + ' \
-                            </div> \
-                            <div class="ranking_title">Live</div>\
-                            <div class="ranking_list_bar"> \
-                                ' + ranking_format("综艺Live") + ranking_break +' \
-                                ' + ranking_format("晚会Live") + ranking_break +' \
-                                ' + ranking_format("碎片") +' \
+    var ranking_content = '<div class="default-block"> \
+                                <div class="ranking_title">录音室</div>  \
+                                <div class="ranking_list_bar"> \
+                                    ' + ranking_format("单曲") + ranking_break +' \
+                                    ' + ranking_format("OST") + ranking_break +' \
+                                    ' + ranking_format("影视Live") + ' \
+                                </div> \
+                                <div class="ranking_title">Live</div>\
+                                <div class="ranking_list_bar"> \
+                                    ' + ranking_format("综艺Live") + ranking_break +' \
+                                    ' + ranking_format("晚会Live") + ranking_break +' \
+                                    ' + ranking_format("碎片") +' \
+                                </div>\
                             </div>';
     ranking.innerHTML = ranking_content;
 

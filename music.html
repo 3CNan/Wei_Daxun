@@ -9,6 +9,194 @@
     <script type="text/javascript" src='js/main.js'></script>
     <script type="text/javascript" src="js/data.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style type="text/css">
+        /* ranking area */
+        .ranking_list_bar {
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+        }
+        .ranking_list {
+            width: 33%;
+            height: 100%;
+            border-radius: 20px;
+            box-sizing: border-box;
+            box-shadow: 0px 0px 5px gray;
+            overflow: hidden;
+        }
+        .ranking_list_header_bg {
+            width: 100%;
+            height: 35%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+        }
+        .ranking_list_header {
+            width: 100%;
+            height: 50%;
+            text-align: center;
+            line-height: calc((70vh - 2vw) * 0.35 * 0.5);
+            margin: auto;
+            background-color: rgba(225, 108, 29, 0.5);
+            font-family: 'PMZDBiaoTi', serif;
+            font-size: 200%;
+            text-shadow: 0 0 5px black;
+            color: white;
+        }
+        .ranking_title {
+            font-size: 2.5vw;
+            box-sizing: border-box;
+            padding-top: 2vw;
+            padding-left: 3vw;
+        }
+        .ranking_content_area {
+            width: calc(100% + 15px);
+            height: 65%;
+            overflow-y: scroll;
+            padding-right: 20px;
+            box-sizing: border-box;
+        }
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /* Filter Area */
+        #filter {
+/*            width: calc(100% - 16vw);*/
+            height: 90vh;
+            margin: 5vh 8vw;
+            border: 1px solid black;
+            overflow: scroll;
+        }
+        #filter_tool_bar {
+            width: 100%;
+            display: flex;
+            position: sticky;
+            top: 0;
+            box-sizing: border-box;
+            background-color: whitesmoke;
+            z-index: 1;
+        }
+        #filter_title {
+            width: 10%;
+            height: 100%;
+            color: gray;
+            font-size: 125%;
+            margin: 1vw;
+        }
+        #filter_tool_area {
+            width: 90%;
+            height: 100%;
+        }
+        #search_select, #filter_select, #way_to_sort, #date_select {
+            float: right;
+            height: calc(100% - 2vw);
+            margin: 1vw;
+            box-sizing: border-box;
+        }
+        #search_select, #filter_select, #date_select {
+            width: calc(42% - 2vw);
+            display: flex;
+        }
+        #way_to_sort {
+            width: calc(16% - 2vw);
+        }
+        #search_select *, #filter_select * {
+            float: left;
+        }
+        #search_select input {
+            width: 75%;
+            border-radius: 0;
+            padding: 3px;
+        }
+        #search_select button, #filter_tag_win button, #calendar_month_area button, #calendar_input_area button, #date_select_btn {
+            height: 100%;
+            padding: 6px;
+            border: none;
+            background-color: lightskyblue;
+        }
+        #way_to_sort div {
+            font-size: 80%;
+        }
+        .filter_tag_bar * {
+            float: left;
+        }
+        #filter_tag_win {
+            margin: 5px 0;
+            border: 1px solid gray;
+            display: none;
+        }
+
+        .filter_tag_bar {
+            padding: 2px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .filter_tag_bar:nth-child(odd) {
+            background-color: rgb(255, 255, 255);
+        }
+        .filter_tag_bar:nth-child(even) {
+            background-color: rgb(220, 220, 220);
+        }
+        .filter_tag {
+            border-radius: 5px;
+            box-shadow: 0 0 1px gray;
+            display: inline;
+            padding: 2px 5px;
+            margin: 2px;
+        }
+        .filter_tag:hover {
+            box-shadow: 0 0 2px black;
+        }
+        .all_include {
+            background-color: #e16c1d;
+            color: white;
+        }
+        .include_either {
+            color: #e16c1d;
+            background-color: white;
+        }
+        .not_include {
+            background-color: red;
+        }
+        #show_all_tag {
+            border: none;
+            border-radius: 0;
+            padding: 4px;
+            background-color: lightgray;
+        }
+        #filter_content {
+            width: 100%;
+            height: 100%;
+        }
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /**/
+        /* media selector */
+        @media (max-width: 767px) {
+            .ranking_list_bar {
+                flex-direction: column;
+                height: calc((500px + 50px) * 3);
+            }
+            .ranking_list {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body style="margin: 0 auto;">
     <div id="header"><a href="index.html">魏大勋</a><div id="navigation">|<a href="film_tv.html">影视</a>|<a href="show.html">综艺</a>|<a href="music.html">音乐</a>|<a>杂志</a>|<a href="event.html">活动</a>|</div></div>
@@ -16,55 +204,57 @@
         <div id="ranking">
         </div>
         <div id="filter">
-            <div id="filter_tool_bar">
-                <div id="filter_title">筛选器</div>                      <!-- 搜索筛选 -->
-                <div id="filter_tool_area">
-                    <div id="search_select">
-                        <input type="text" id="search_keyword">
-                        <button id="search_btn" onclick="search_filter(get_all_songs())">点击搜索</button>
-                    </div>
-                    <div id="filter_select">
-                        <!-- 标签筛选: 全部包含，包含任一，不包含 -->
-                        <div class="filter_tag_area">
-                            <div class="filter_tag all_include" onclick="set_select_mode(1)">全部包含</div>
-                            <div class="filter_tag include_either" onclick="set_select_mode(0)">包含任一</div>
-                            <div class="filter_tag not_include" onclick="set_select_mode(-1)">&nbsp; 不包含 &nbsp;</div>
-                            <button id="show_all_tag" onclick="toggle_tag_win()">点击展开所有标签</button>
-                            <div id="filter_tag_win">
-                                <div class="filter_tag_bar"><!-- 演唱编排类型 -->
-                                    <div class="filter_tag">独唱</div>
-                                    <div class="filter_tag">合唱</div>
-                                    <div class="filter_tag">齐唱</div>
+            <div class="default-block">
+                <div id="filter_tool_bar">
+                    <div id="filter_title">筛选器</div><!-- 搜索筛选 -->
+                    <div id="filter_tool_area">
+                        <div id="search_select">
+                            <input type="text" id="search_keyword">
+                            <button id="search_btn" onclick="search_filter(get_all_songs())">点击搜索</button>
+                        </div>
+                        <div id="filter_select">
+                            <!-- 标签筛选: 全部包含，包含任一，不包含 -->
+                            <div class="filter_tag_area">
+                                <div class="filter_tag all_include" onclick="set_select_mode(1)">全部包含</div>
+                                <div class="filter_tag include_either" onclick="set_select_mode(0)">包含任一</div>
+                                <div class="filter_tag not_include" onclick="set_select_mode(-1)">&nbsp; 不包含 &nbsp;</div>
+                                <button id="show_all_tag" onclick="toggle_tag_win()">点击展开所有标签</button>
+                                <div id="filter_tag_win">
+                                    <div class="filter_tag_bar"><!-- 演唱编排类型 -->
+                                        <div class="filter_tag">独唱</div>
+                                        <div class="filter_tag">合唱</div>
+                                        <div class="filter_tag">齐唱</div>
+                                    </div>
+                                    <div class="filter_tag_bar"><!-- 音频类型 -->
+                                        <div class="filter_tag">录音室</div>
+                                        <div class="filter_tag">Live</div>
+                                        <div class="filter_tag">清唱</div>
+                                        <div class="filter_tag">朗读</div>
+                                    </div>
+                                    <div class="filter_tag_bar"><!-- 视频类型 -->
+                                        <div class="filter_tag">有MV</div>
+                                        <div class="filter_tag">有Live</div>
+                                    </div>
+                                    <div class="filter_tag_bar"><!-- 音乐总类型 -->
+                                        <div class="filter_tag">单曲</div>
+                                        <div class="filter_tag">OST</div>
+                                        <div class="filter_tag">影视Live</div>
+                                        <div class="filter_tag">综艺Live</div>
+                                        <div class="filter_tag">晚会Live</div>
+                                        <div class="filter_tag">碎片</div>
+                                    </div>
+                                    <button id="filter_reset_btn" onclick="reset_tag_select()">重置</button>
+                                    <button id="filter_btn" onclick="tag_filter()">点击筛选</button>
                                 </div>
-                                <div class="filter_tag_bar"><!-- 音频类型 -->
-                                    <div class="filter_tag">录音室</div>
-                                    <div class="filter_tag">Live</div>
-                                    <div class="filter_tag">清唱</div>
-                                    <div class="filter_tag">朗读</div>
-                                </div>
-                                <div class="filter_tag_bar"><!-- 视频类型 -->
-                                    <div class="filter_tag">有MV</div>
-                                    <div class="filter_tag">有Live</div>
-                                </div>
-                                <div class="filter_tag_bar">
-                                    <div class="filter_tag">单曲</div>
-                                    <div class="filter_tag">OST</div>
-                                    <div class="filter_tag">影视Live</div>
-                                    <div class="filter_tag">综艺Live</div>
-                                    <div class="filter_tag">晚会Live</div>
-                                    <div class="filter_tag">碎片</div>
-                                </div>
-                                <button id="filter_reset_btn" onclick="reset_tag_select()">重置</button>
-                                <button id="filter_btn" onclick="tag_filter()">点击筛选</button>
                             </div>
                         </div>
-                    </div>
-                    <div id="way_to_sort">
-                        <div>
-                            <label><input type="radio" name="ways_to_sort" value="1"> 时间最近</label>
-                        </div>
-                        <div>
-                            <label><input type="radio" name="ways_to_sort" value="0"> 曲名拼音</label>
+                        <div id="way_to_sort">
+                            <div>
+                                <label><input type="radio" name="ways_to_sort" value="1"> 时间最近</label>
+                            </div>
+                            <div>
+                                <label><input type="radio" name="ways_to_sort" value="0"> 曲名拼音</label>
+                            </div>
                         </div>
                     </div>
                 </div>

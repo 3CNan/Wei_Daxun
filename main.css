@@ -28,6 +28,7 @@
     z-index: 9999;
 }
 #navigation {
+    font-size: 60%;
     display: inline;
 }
 #navigation a, #header a {
@@ -49,9 +50,10 @@
     aspect-ratio: 1/1;
     height: 2vw;
 }
-
-
-
+.default-block {
+    max-width: 928px;
+    margin: 0 auto;
+}
 
 
 
@@ -94,7 +96,7 @@
 }
 
 /* film and tv section */
-.section_title, .ranking_title {
+.section_title {
     font-size: 2.5vw;
     box-sizing: border-box;
     padding-top: 2vw;
@@ -235,168 +237,7 @@
 
 
 
-/* music page */
-#ranking {
-    padding: 0 8vw;
-}
-.ranking_list_bar {
-    width: calc(100% - 2vw);
-    height: calc(70vh + 2vw);
-    margin: 1vw;
-    display: flex;
-    justify-content: center;
-}
-.ranking_list {
-    width: calc(33.3% - 4vw);
-    height: calc(100% - 4vh);
-    margin: 2vh 2vw;
-    border-radius: 5px;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 5px gray;
-    float: left;
-    overflow: hidden;
-}
-.ranking_list_header_bg {
-    width: 100%;
-    height: 35%;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-}
-.ranking_list_header {
-    width: 100%;
-    height: 50%;
-    text-align: center;
-    line-height: calc((70vh - 2vw) * 0.35 * 0.5);
-    margin: auto;
-    background-color: rgba(225, 108, 29, 0.5);
-    font-family: 'PMZDBiaoTi', serif;
-    font-size: 200%;
-    text-shadow: 0 0 5px black;
-    color: white;
-}
-.ranking_content_area {
-    width: calc(100% + 15px);
-    height: 65%;
-    overflow-y: scroll;
-    padding-right: 20px;
-    box-sizing: border-box;
-}
 
-
-#filter {
-    width: calc(100% - 16vw);
-    height: 90vh;
-    margin: 5vh 8vw;
-    border: 1px solid black;
-    overflow: scroll;
-}
-#filter_tool_bar {
-    width: 100%;
-    display: flex;
-    position: sticky;
-    top: 0;
-    box-sizing: border-box;
-    background-color: whitesmoke;
-    z-index: 1;
-}
-#filter_title {
-    width: 10%;
-    height: 100%;
-    color: gray;
-    font-size: 125%;
-    margin: 1vw;
-}
-#filter_tool_area {
-    width: 90%;
-    height: 100%;
-}
-#search_select, #filter_select, #way_to_sort, #date_select {
-    float: right;
-    height: calc(100% - 2vw);
-    margin: 1vw;
-    box-sizing: border-box;
-}
-#search_select, #filter_select, #date_select {
-    width: calc(42% - 2vw);
-    display: flex;
-}
-#way_to_sort {
-    width: calc(16% - 2vw);
-}
-#search_select *, #filter_select * {
-    float: left;
-}
-#search_select input {
-    width: 75%;
-    border-radius: 0;
-    padding: 3px;
-}
-#search_select button, #filter_tag_win button, #calendar_month_area button, #calendar_input_area button, #date_select_btn {
-    height: 100%;
-    padding: 6px;
-    border: none;
-    background-color: lightskyblue;
-}
-#way_to_sort div {
-/*    width: 100%;*/
-    font-size: 80%;
-}
-
-.filter_tag_bar * {
-    float: left;
-}
-#filter_tag_win {
-    margin: 5px 0;
-    border: 1px solid gray;
-/*    overflow: hidden;*/
-    display: none;
-}
-
-.filter_tag_bar {
-    padding: 2px;
-    width: 100%;
-    box-sizing: border-box;
-}
-.filter_tag_bar:nth-child(odd) {
-    background-color: rgb(255, 255, 255);
-}
-.filter_tag_bar:nth-child(even) {
-    background-color: rgb(220, 220, 220);
-}
-.filter_tag {
-    border-radius: 5px;
-    box-shadow: 0 0 1px gray;
-    display: inline;
-    padding: 2px 5px;
-    margin: 2px;
-}
-.filter_tag:hover {
-    box-shadow: 0 0 2px black;
-}
-.all_include {
-    background-color: #e16c1d;
-    color: white;
-}
-.include_either {
-    color: #e16c1d;
-    background-color: white;
-}
-.not_include {
-    background-color: red;
-}
-#show_all_tag {
-    border: none;
-    border-radius: 0;
-    padding: 4px;
-    background-color: lightgray;
-}
-#filter_content {
-    width: 100%;
-    height: 100%;
-/*    overflow: scroll;*/
-}
 
 
 
@@ -499,4 +340,18 @@
     width: 40%;
     border-radius: 0;
 /*    padding: 3px;*/
+}
+
+
+
+
+
+
+@media (max-width: 767px) {
+    #navigation {
+        font-size: 100%;
+    }
+    .default-block {
+        margin: 0 24px;
+    }
 }
