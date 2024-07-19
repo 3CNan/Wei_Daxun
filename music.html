@@ -12,7 +12,7 @@
     <style type="text/css">
         /* ranking area */
         .ranking_list_bar {
-            height: 400px;
+            height: 600px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -21,9 +21,6 @@
         .ranking_list {
             width: 33%;
             height: 100%;
-            border-radius: 20px;
-            box-sizing: border-box;
-            box-shadow: 0px 0px 5px gray;
             overflow: hidden;
         }
         .ranking_list_header_bg {
@@ -72,7 +69,8 @@
             height: 90vh;
             margin: 5vh 0;
             border: 1px solid black;
-            overflow: scroll;
+            display: flex;
+            flex-direction: column;
         }
         #filter_tool_bar {
             width: 100%;
@@ -83,16 +81,15 @@
             background-color: whitesmoke;
             z-index: 1;
         }
+        .filter_tools {
+
+        }
         #filter_title {
             width: 10%;
             height: 100%;
             color: gray;
             font-size: 125%;
             margin: 1vw;
-        }
-        #filter_tool_area {
-            width: 90%;
-            height: 100%;
         }
         #search_select, #filter_select, #way_to_sort, #date_select {
             float: right;
@@ -199,6 +196,9 @@
             .ranking_list_header {
                 
             }
+            .bubble_tag_bar {
+                display: block;
+            }
         }
     </style>
 </head>
@@ -210,59 +210,58 @@
         <div class="default-block">
             <div id="filter">
                 <div id="filter_tool_bar">
-                    <div id="filter_title">筛选器</div><!-- 搜索筛选 -->
-                    <div id="filter_tool_area">
-                        <div id="search_select">
-                            <input type="text" id="search_keyword">
-                            <button id="search_btn" onclick="search_filter(get_all_songs())">点击搜索</button>
+                    <div id="way_to_sort" class="filter_tools">
+                        <div>
+                            <label><input type="radio" name="ways_to_sort" value="1"> 时间最近</label>
                         </div>
-                        <div id="filter_select">
-                            <!-- 标签筛选: 全部包含，包含任一，不包含 -->
-                            <div class="filter_tag_area">
-                                <div class="filter_tag all_include" onclick="set_select_mode(1)">全部包含</div>
-                                <div class="filter_tag include_either" onclick="set_select_mode(0)">包含任一</div>
-                                <div class="filter_tag not_include" onclick="set_select_mode(-1)">&nbsp; 不包含 &nbsp;</div>
-                                <button id="show_all_tag" onclick="toggle_tag_win()">点击展开所有标签</button>
-                                <div id="filter_tag_win">
-                                    <div class="filter_tag_bar"><!-- 演唱编排类型 -->
-                                        <div class="filter_tag">独唱</div>
-                                        <div class="filter_tag">合唱</div>
-                                        <div class="filter_tag">齐唱</div>
-                                    </div>
-                                    <div class="filter_tag_bar"><!-- 音频类型 -->
-                                        <div class="filter_tag">录音室</div>
-                                        <div class="filter_tag">Live</div>
-                                        <div class="filter_tag">清唱</div>
-                                        <div class="filter_tag">朗读</div>
-                                    </div>
-                                    <div class="filter_tag_bar"><!-- 视频类型 -->
-                                        <div class="filter_tag">有MV</div>
-                                        <div class="filter_tag">有Live</div>
-                                    </div>
-                                    <div class="filter_tag_bar"><!-- 音乐总类型 -->
-                                        <div class="filter_tag">单曲</div>
-                                        <div class="filter_tag">OST</div>
-                                        <div class="filter_tag">影视Live</div>
-                                        <div class="filter_tag">综艺Live</div>
-                                        <div class="filter_tag">晚会Live</div>
-                                        <div class="filter_tag">碎片</div>
-                                    </div>
-                                    <button id="filter_reset_btn" onclick="reset_tag_select()">重置</button>
-                                    <button id="filter_btn" onclick="tag_filter()">点击筛选</button>
+                        <div>
+                            <label><input type="radio" name="ways_to_sort" value="0"> 曲名拼音</label>
+                        </div>
+                    </div>
+                    <div id="filter_select" class="filter_tools">
+                        <!-- 标签筛选: 全部包含，包含任一，不包含 -->
+                        <div class="filter_tag_area">
+                            <div class="filter_tag all_include" onclick="set_select_mode(1)">全部包含</div>
+                            <div class="filter_tag include_either" onclick="set_select_mode(0)">包含任一</div>
+                            <div class="filter_tag not_include" onclick="set_select_mode(-1)">&nbsp; 不包含 &nbsp;</div>
+                            <button id="show_all_tag" onclick="toggle_tag_win()">点击展开所有标签</button>
+                            <div id="filter_tag_win">
+                                <div class="filter_tag_bar"><!-- 演唱编排类型 -->
+                                    <div class="filter_tag">独唱</div>
+                                    <div class="filter_tag">合唱</div>
+                                    <div class="filter_tag">齐唱</div>
                                 </div>
-                            </div>
-                        </div>
-                        <div id="way_to_sort">
-                            <div>
-                                <label><input type="radio" name="ways_to_sort" value="1"> 时间最近</label>
-                            </div>
-                            <div>
-                                <label><input type="radio" name="ways_to_sort" value="0"> 曲名拼音</label>
+                                <div class="filter_tag_bar"><!-- 音频类型 -->
+                                    <div class="filter_tag">录音室</div>
+                                    <div class="filter_tag">Live</div>
+                                    <div class="filter_tag">清唱</div>
+                                    <div class="filter_tag">朗读</div>
+                                </div>
+                                <div class="filter_tag_bar"><!-- 视频类型 -->
+                                    <div class="filter_tag">有MV</div>
+                                    <div class="filter_tag">有Live</div>
+                                </div>
+                                <div class="filter_tag_bar"><!-- 音乐总类型 -->
+                                    <div class="filter_tag">单曲</div>
+                                    <div class="filter_tag">OST</div>
+                                    <div class="filter_tag">影视Live</div>
+                                    <div class="filter_tag">综艺Live</div>
+                                    <div class="filter_tag">晚会Live</div>
+                                    <div class="filter_tag">碎片</div>
+                                </div>
+                                <button id="filter_reset_btn" onclick="reset_tag_select()">重置</button>
+                                <button id="filter_btn" onclick="tag_filter()">点击筛选</button>
                             </div>
                         </div>
                     </div>
+                    <div id="search_select" class="filter_tools">
+                        <input type="text" id="search_keyword">
+                        <button id="search_btn" onclick="search_filter(get_all_songs())">点击搜索</button>
+                    </div>
                 </div>
-                <div id="filter_content"></div>
+                <div class="scroll-wrapper">
+                    <div id="filter_content"></div>
+                </div>
             </div>
         </div>
     </div>

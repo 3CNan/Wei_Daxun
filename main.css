@@ -1,3 +1,4 @@
+/* FONT */
 @font-face {
   font-family: 'LXGWWenKai-M';
   src: url('./src/font/霞鹜文楷（LXGWWenKai-Medium）.woff') format('woff');
@@ -10,8 +11,10 @@
   font-family: 'BTXiaoBai';
   src: url('./src/font/包图小白体.woff') format('woff');
 }
-
-
+/**/
+/**/
+/**/
+/**/
 * {
     font-family: serif;
 }
@@ -53,6 +56,16 @@
 .default-block {
     max-width: 928px;
     margin: 0 auto;
+}
+.box {
+    border-radius: 20px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 5px gray;
+}
+.scroll-wrapper {
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
 }
 
 
@@ -232,6 +245,24 @@
 
 
 
+
+
+
+
+
+
+#search_select, #filter_select, #way_to_sort, #date_select {
+    float: right;
+    height: calc(100% - 2vw);
+    margin: 1vw;
+    box-sizing: border-box;
+}
+#search_select button, #filter_tag_win button, #calendar_month_area button, #calendar_input_area button, #date_select_btn {
+    height: 100%;
+    padding: 6px;
+    border: none;
+    background-color: lightskyblue;
+}
 
 
 

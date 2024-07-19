@@ -4,7 +4,7 @@ var is_phone = (document.body.scrollWidth < 769);
 function music_init() {
     var ranking = document.getElementById("ranking");
     var ranking_format = function(list_name) {
-        return '<div class="ranking_list">\
+        return '<div class="ranking_list box">\
                     <div class="ranking_list_header_bg">\
                         <div class="ranking_list_header">\
                             ' + list_name + '\
@@ -30,15 +30,6 @@ function music_init() {
                                 </div>\
                             </div>';
     ranking.innerHTML = ranking_content;
-
-    var ranking_title_objs = document.getElementsByClassName("ranking_title");
-
-    var ranking_list_objs = document.getElementsByClassName("ranking_list");
-    if (is_phone) {
-        for (var i = 0; i < ranking_list_objs.length; i++) {
-            ranking_list_objs[i].style.width = "calc(100% - 4vw)";
-        }
-    }
 
     var ranking_list_header_bg_objs = document.getElementsByClassName("ranking_list_header_bg");
     for (var i = 0; i < ranking_list_header_bg_objs.length; i++) {
@@ -261,12 +252,6 @@ function write_filter_content(all_works) {
     } else {
         create_bubble(filter_content, all_works, 2, 4);
         id_write_video_source("filter_content", all_works);
-        if (is_phone) {
-            var bubble_tag_bar_objs = document.getElementsByClassName("bubble_tag_bar");
-            for (var i = 0; i < bubble_tag_bar_objs.length; i++) {
-                bubble_tag_bar_objs[i].style.display = "block";
-            }
-        }
     }
 }
 
