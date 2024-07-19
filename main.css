@@ -184,15 +184,6 @@ a, audio, b, body, canvas, caption, center, div, figcaption, figure, footer, for
     background-position: center;
     overflow: hidden;
 }
-.section_img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 .section_text {
     font-family: 'LXGWWenKai-M', sans-serif;
     font-size: 1.5vw;
