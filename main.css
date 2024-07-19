@@ -159,12 +159,17 @@ a, audio, b, body, canvas, caption, center, div, figcaption, figure, footer, for
     padding-left: 3vw;
 }
 .section_content {
-    height: 15vw;
+    display: flex;
+    gap: 1.4vw;
+    margin: 0 1.4vw;
+}
+.section_child_bar {
+    width: 100%;
+    display: flex;
+    gap: 1.4vw;
 }
 .section_box {
-    float: left;
-    height: calc(100% - 2.8vw);
-    margin: 1.4vw;
+    width: 100%;
     overflow: hidden;
 }
 .src_link {
@@ -173,7 +178,7 @@ a, audio, b, body, canvas, caption, center, div, figcaption, figure, footer, for
 }
 .section_img {
     width: 100%;
-/*    height: 75%;*/
+    aspect-ratio: 3 / 2;
     border-radius: 5px;
     background-size: cover;
     background-position: center;
@@ -190,6 +195,7 @@ a, audio, b, body, canvas, caption, center, div, figcaption, figure, footer, for
 }
 .section_text {
     font-family: 'LXGWWenKai-M', sans-serif;
+    font-size: 1.5vw;
 }
 .section_text_sub {
     font-family: 'LXGWWenKai-M', sans-serif;
@@ -443,6 +449,9 @@ a, audio, b, body, canvas, caption, center, div, figcaption, figure, footer, for
         font-size: 3.5vw;
     }
     .section_content {
-        height: 30vw;
+        flex-direction: column;
+    }
+    .section_text {
+        font-size: 3vw;
     }
 }

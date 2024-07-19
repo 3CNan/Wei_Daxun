@@ -9,179 +9,6 @@
     <script type="text/javascript" src='js/main.js'></script>
     <script type="text/javascript" src="js/data.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style type="text/css">
-        /* film and tv section */
-        .section_title {
-            font-size: 2.5vw;
-            box-sizing: border-box;
-            padding-top: 2vw;
-            padding-left: 3vw;
-        }
-        .section_box {
-            float: left;
-            height: calc(100% - 2.8vw);
-            margin: 1.4vw;
-            overflow: hidden;
-        }
-        .src_link {
-            color: black;
-            text-decoration: none;
-        }
-        .section_img {
-            width: 100%;
-            border-radius: 5px;
-            background-size: cover;
-            background-position: center;
-            overflow: hidden;
-        }
-        .section_img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: relative;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .section_text {
-            font-family: 'LXGWWenKai-M', sans-serif;
-        }
-        .section_text_sub {
-            font-family: 'LXGWWenKai-M', sans-serif;
-            font-size: 70%;
-            color: gray;
-        }
-        .section_title_sub {
-            font-family: 'LXGWWenKai-M', sans-serif;
-            font-size: 60%;
-            color: gray;
-            display: inline;
-            padding: 0.5vw 2vw;
-        }
-        .section_title_sub:hover, .bubble_content:hover {
-            background-color: whitesmoke;
-        }
-        /**/
-        /**/
-        /**/
-        /**/
-        /**/
-        /**/
-        /**/
-        /**/
-        /**/
-        /* alert section */
-        #alert_bg {
-            width: 100%;
-            position: absolute;
-            top: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: none;
-        }
-        .alert_win {
-            width: 60vw;
-            height: 60vh;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            overflow: scroll;
-            display: flex;
-        }
-        .alert_title {
-            padding: 2%;
-            color: white;
-            background-color: orange;
-        }
-        .alert_close_btn {
-            margin: -2%;
-            padding: 2%;
-            float: right;
-        }
-        .alert_close_btn:hover {
-            background-color: whitesmoke;
-            color: black;
-        }
-        .bubble {
-            margin: 0.5vw;
-            width: calc(100% - 1vw);
-            display: flex;
-            box-sizing: border-box;
-        }
-        .bubble_date {
-            width: 30%;
-            padding: 1vw;
-            box-sizing: border-box;
-        }
-        .bubble_content {
-            width: 70%;
-            padding: 1vw;
-            border-radius: 5px;
-            box-sizing: border-box;
-            box-shadow: 0 0 3px gray;
-        /*    background-color: ;*/
-        }
-        .bubble_content .src_link, .event_bubble_link .src_link {
-            font-size: 70%;
-            color: gray;
-        }
-        .bubble_description {
-            background-color: rgba(225, 108, 90, 0.7);
-            display: inline-block;
-            text-align: center;
-            font-size: 90%;
-            margin: 1% 3%;
-            color: white;
-        }
-        .bubble_tag {
-            border-radius: 8px;
-            box-shadow: 0 0 1px gray;
-            display: inline;
-            padding: 1px 3px;
-            margin: 0 1px;
-            font-size: 60%;
-            color: rgb(50, 50, 50);
-        }
-        .bubble_tag_bar, .bubble_src_bar {
-            display: inline-block;
-            margin: 1% 0;
-        }
-        .bubble_src_bar {
-            float: right;
-        }
-        /**/
-        /**/
-        /**/
-        /**/
-        /**/
-        /**/
-        /**/
-        /**/
-        /**/
-        /* media selector */
-        @media (max-width: 1279px) {
-            .default-block {
-                max-width: 928px;
-            }
-        }
-
-        @media (max-width: 1023px) {
-            .default-block {
-                max-width: 768px;
-            }
-        }
-
-
-        @media (max-width: 767px) {
-            .section_title {
-                font-size: 2.5vw;
-                box-sizing: border-box;
-                padding-top: 2vw;
-                padding-left: 3vw;
-            }
-        }
-    </style>
 </head>
 <body style="margin: 0 auto;">
     <div id="header"><a href="index.html">魏大勋</a><div id="navigation">|<a href="film_tv.html">影视</a>|<a href="show.html">综艺</a>|<a href="music.html">音乐</a>|<a>杂志</a>|<a href="event.html">活动</a>|</div></div>
@@ -208,10 +35,94 @@
 
         <div id="film" class="section_bar">
             <div class="section_title">电影</div>
+            <div class="section_content">
+                <div class="section_child_bar">
+                    <div class="section_box">
+                        <a class="src_link" target="_blank">
+                            <div class="section_img"></div>
+                            <div class="section_text"></div>
+                        </a>
+                    </div>
+                    <div class="section_box">
+                        <a class="src_link" target="_blank">
+                            <div class="section_img"></div>
+                            <div class="section_text"></div>
+                        </a>
+                    </div>
+                    <div class="section_box">
+                        <a class="src_link" target="_blank">
+                            <div class="section_img"></div>
+                            <div class="section_text"></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="section_child_bar">
+                    <div class="section_box">
+                        <a class="src_link" target="_blank">
+                            <div class="section_img"></div>
+                            <div class="section_text"></div>
+                        </a>
+                    </div>
+                    <div class="section_box">
+                        <a class="src_link" target="_blank">
+                            <div class="section_img"></div>
+                            <div class="section_text"></div>
+                        </a>
+                    </div>
+                    <div class="section_box">
+                        <a class="src_link" target="_blank">
+                            <div class="section_img"></div>
+                            <div class="section_text"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div id="tv" class="section_bar">
             <div class="section_title">电视剧</div>
+            <div class="section_content">
+                <div class="section_child_bar">
+                    <div class="section_box">
+                        <a class="src_link" target="_blank">
+                            <div class="section_img"></div>
+                            <div class="section_text"></div>
+                        </a>
+                    </div>
+                    <div class="section_box">
+                        <a class="src_link" target="_blank">
+                            <div class="section_img"></div>
+                            <div class="section_text"></div>
+                        </a>
+                    </div>
+                    <div class="section_box">
+                        <a class="src_link" target="_blank">
+                            <div class="section_img"></div>
+                            <div class="section_text"></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="section_child_bar">
+                    <div class="section_box">
+                        <a class="src_link" target="_blank">
+                            <div class="section_img"></div>
+                            <div class="section_text"></div>
+                        </a>
+                    </div>
+                    <div class="section_box">
+                        <a class="src_link" target="_blank">
+                            <div class="section_img"></div>
+                            <div class="section_text"></div>
+                        </a>
+                    </div>
+                    <div class="section_box">
+                        <a class="src_link" target="_blank">
+                            <div class="section_img"></div>
+                            <div class="section_text"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="alert_bg"></div>

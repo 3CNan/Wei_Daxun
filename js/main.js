@@ -10,33 +10,33 @@ function section_init(selected_bar, works, works_unaired, page_on) {
     // var img_section_img_objs = selected_bar.getElementsByTagName("img");
     var box_in_bar;
 
-	// initialize the amount of content bar needed
-    if (is_phone) {
-        selected_bar.innerHTML += '<div class="section_content"></div><div class="section_content"></div>';
-    } else {
-        selected_bar.innerHTML += '<div class="section_content"></div>';
-    }
+	// // initialize the amount of content bar needed
+    // if (is_phone) {
+    //     selected_bar.innerHTML += '<div class="section_content"></div><div class="section_content"></div>';
+    // } else {
+    //     selected_bar.innerHTML += '<div class="section_content"></div>';
+    // }
 
-    // initialize the amount of box in each content bar
-    if(is_phone) {
-        for (var i = 0; i < 2; i++) {       // 2行
-            for (var j = 0; j < 3; j++) {   // 一行各3个框
-                section_content_objs[i].innerHTML += '<div class="section_box"><a class="src_link" target="_blank"><div class="section_img"></div><div class="section_text"></div></a></div>';
-            }
-        }
-        box_in_bar = 3;
-    } else {
-        for (var j = 0; j < 6; j++) {       // 共一行，一行6个框
-            section_content_objs[0].innerHTML += '<div class="section_box"><a class="src_link" target="_blank"><div class="section_img"></div><div class="section_text"></div></a></div>';
-        }
-        box_in_bar = 6;
-    }
+    // // initialize the amount of box in each content bar
+    // if(is_phone) {
+    //     for (var i = 0; i < 2; i++) {       // 2行
+    //         for (var j = 0; j < 3; j++) {   // 一行各3个框
+    //             section_content_objs[i].innerHTML += '<div class="section_box"><a class="src_link" target="_blank"><div class="section_img"></div><div class="section_text"></div></a></div>';
+    //         }
+    //     }
+    //     box_in_bar = 3;
+    // } else {
+    //     for (var j = 0; j < 6; j++) {       // 共一行，一行6个框
+    //         section_content_objs[0].innerHTML += '<div class="section_box"><a class="src_link" target="_blank"><div class="section_img"></div><div class="section_text"></div></a></div>';
+    //     }
+    //     box_in_bar = 6;
+    // }
 
     // initialize the specific img
     for (var i = 0; i < section_box_objs.length; i++) {
-        section_img_objs[i].style.height = Number(works[works_unaired + i][2] != "") * (-10) + 75 + "%";
-        section_box_objs[i].style.width = "calc(100% / " + box_in_bar + " - 2.8vw)";
-        section_text_objs[i].style.fontSize = (9 / box_in_bar) + "vw";
+        // section_img_objs[i].style.height = Number(works[works_unaired + i][2] != "") * (-10) + 75 + "%";
+        // section_box_objs[i].style.width = "calc(100% / " + box_in_bar + " - 2.8vw)";
+        // section_text_objs[i].style.fontSize = (9 / box_in_bar) + "vw";
         section_text_objs[i].innerHTML = works[works_unaired + i][0];
         section_text_objs[i].innerHTML += "<div class='section_text_sub'>" + works[works_unaired + i][1] + "</div>";
         if (works[works_unaired + i][2] != "") {
