@@ -15,6 +15,44 @@
 /**/
 /**/
 /**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/*a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {*/
+a, audio, b, body, canvas, caption, center, div, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, iframe, img, label, li, nav, ol, p, section, span, strong, table, ul, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    font-family: serif;
+    vertical-align: baseline;
+}
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
 * {
     font-family: serif;
 }
@@ -43,6 +81,9 @@
     background-color: gold;
     color: black;
 }
+#main_body {
+    margin-bottom: 5vh;
+}
 #footer {
     padding: 1%;
     font-size: 1.5vw;
@@ -54,13 +95,15 @@
     height: 2vw;
 }
 .default-block {
-    max-width: 928px;
+    max-width: 1024px;
     margin: 0 auto;
 }
 .box {
     border-radius: 20px;
     box-sizing: border-box;
     box-shadow: 0px 0px 5px gray;
+    overflow: hidden;
+    background-color: white;
 }
 .scroll-wrapper {
     overflow-y: scroll;
@@ -105,7 +148,7 @@
     padding: 1.6vw 1vw;
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis; 
 }
 
 /* film and tv section */
@@ -114,6 +157,9 @@
     box-sizing: border-box;
     padding-top: 2vw;
     padding-left: 3vw;
+}
+.section_content {
+    height: 15vw;
 }
 .section_box {
     float: left;
@@ -251,19 +297,19 @@
 
 
 
-#search_select, #filter_select, #way_to_sort, #date_select {
+#date_select {
     float: right;
     height: calc(100% - 2vw);
     margin: 1vw;
     box-sizing: border-box;
 }
-#search_select button, #filter_tag_win button, #calendar_month_area button, #calendar_input_area button, #date_select_btn {
+/*#calendar_month_area button, #calendar_input_area button, #date_select_btn {*/
+.func_btn {
     height: 100%;
     padding: 6px;
     border: none;
     background-color: lightskyblue;
 }
-
 
 
 
@@ -373,8 +419,13 @@
 }
 
 
+@media (max-width: 1279px) {
+    .default-block {
+        max-width: 928px;
+    }
+}
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
     .default-block {
         max-width: 768px;
     }
@@ -387,5 +438,11 @@
     }
     #navigation {
         font-size: 100%;
+    }
+    .section_title {
+        font-size: 3.5vw;
+    }
+    .section_content {
+        height: 30vw;
     }
 }

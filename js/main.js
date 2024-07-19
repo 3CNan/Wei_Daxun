@@ -12,10 +12,8 @@ function section_init(selected_bar, works, works_unaired, page_on) {
 
 	// initialize the amount of content bar needed
     if (is_phone) {
-        section_title[0].style.fontSize = "3.5vw";
         selected_bar.innerHTML += '<div class="section_content"></div><div class="section_content"></div>';
     } else {
-        // section_title[0].style.fontSize = "2.5vw";
         selected_bar.innerHTML += '<div class="section_content"></div>';
     }
 
@@ -24,14 +22,12 @@ function section_init(selected_bar, works, works_unaired, page_on) {
         for (var i = 0; i < 2; i++) {       // 2行
             for (var j = 0; j < 3; j++) {   // 一行各3个框
                 section_content_objs[i].innerHTML += '<div class="section_box"><a class="src_link" target="_blank"><div class="section_img"></div><div class="section_text"></div></a></div>';
-                section_content_objs[i].style.height = "30vw";
             }
         }
         box_in_bar = 3;
     } else {
         for (var j = 0; j < 6; j++) {       // 共一行，一行6个框
             section_content_objs[0].innerHTML += '<div class="section_box"><a class="src_link" target="_blank"><div class="section_img"></div><div class="section_text"></div></a></div>';
-            section_content_objs[0].style.height = "15vw";
         }
         box_in_bar = 6;
     }

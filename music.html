@@ -12,19 +12,18 @@
     <style type="text/css">
         /* ranking area */
         .ranking_list_bar {
-            height: 600px;
+            height: 500px;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 50px;
         }
         .ranking_list {
-            width: 33%;
+            width: 100%;
             height: 100%;
             overflow: hidden;
         }
         .ranking_list_header_bg {
-            width: 100%;
             height: 35%;
             background-size: cover;
             background-position: center;
@@ -45,15 +44,19 @@
         .ranking_title {
             font-size: 2.5vw;
             box-sizing: border-box;
-            padding-top: 2vw;
-            padding-left: 3vw;
+            padding: 2vw 0;
         }
         .ranking_content_area {
-            width: calc(100% + 15px);
+            width: calc(100% + 20px);
             height: 65%;
+            padding: 20px;
             overflow-y: scroll;
             padding-right: 20px;
             box-sizing: border-box;
+        }
+        .ranking_content_area li {
+            list-style: square;
+            list-style-position: inside;
         }
         /**/
         /**/
@@ -65,24 +68,32 @@
         /**/
         /**/
         /* Filter Area */
-        #filter {
+        #filter_area {
             height: 90vh;
-            margin: 5vh 0;
-            border: 1px solid black;
+            margin-top: 5vh;
             display: flex;
             flex-direction: column;
         }
         #filter_tool_bar {
-            width: 100%;
-            display: flex;
-            position: sticky;
-            top: 0;
             box-sizing: border-box;
             background-color: whitesmoke;
+            padding: 5px 15px;
+
+            position: sticky;
+            top: 0;
             z-index: 1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         .filter_tools {
-
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         #filter_title {
             width: 10%;
@@ -91,65 +102,41 @@
             font-size: 125%;
             margin: 1vw;
         }
-        #search_select, #filter_select, #way_to_sort, #date_select {
-            float: right;
-            height: calc(100% - 2vw);
-            margin: 1vw;
-            box-sizing: border-box;
-        }
-        #search_select, #filter_select, #date_select {
-            width: calc(42% - 2vw);
+        .filter_tag_featured {
             display: flex;
-        }
-        #way_to_sort {
-            width: calc(16% - 2vw);
-        }
-        #search_select *, #filter_select * {
-            float: left;
-        }
-        #search_select input {
-            width: 75%;
-            border-radius: 0;
-            padding: 3px;
-        }
-        #search_select button, #filter_tag_win button, #calendar_month_area button, #calendar_input_area button, #date_select_btn {
-            height: 100%;
-            padding: 6px;
-            border: none;
-            background-color: lightskyblue;
-        }
-        #way_to_sort div {
-            font-size: 80%;
-        }
-        .filter_tag_bar * {
-            float: left;
+            gap: 5px;
         }
         #filter_tag_win {
             margin: 5px 0;
             border: 1px solid gray;
             display: none;
         }
-
         .filter_tag_bar {
-            padding: 2px;
+            padding: 5px;
             width: 100%;
             box-sizing: border-box;
-        }
-        .filter_tag_bar:nth-child(odd) {
-            background-color: rgb(255, 255, 255);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            background-color: white;
         }
         .filter_tag_bar:nth-child(even) {
-            background-color: rgb(220, 220, 220);
+            background-color: rgba(0, 0, 0, .03);
         }
         .filter_tag {
             border-radius: 5px;
-            box-shadow: 0 0 1px gray;
-            display: inline;
-            padding: 2px 5px;
-            margin: 2px;
+            padding: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 80%;
+            transition: .25s ease-in-out;
+        }
+        .filter_tag_bar .filter_tag {
+            border: 1px solid darkgray;
         }
         .filter_tag:hover {
-            box-shadow: 0 0 2px black;
+            transform: scale(1.1);
         }
         .all_include {
             background-color: #e16c1d;
@@ -168,9 +155,13 @@
             padding: 4px;
             background-color: lightgray;
         }
-        #filter_content {
-            width: 100%;
-            height: 100%;
+        #search_select input {
+            width: 75%;
+            border-radius: 0;
+            padding: 3px;
+        }
+        #search_btn {
+            width: 25%;
         }
         /**/
         /**/
@@ -182,22 +173,27 @@
         /**/
         /**/
         /* media selector */
+        @media (max-width: 1024px) {
+            #way_to_sort {
+                flex-direction: column;
+            }
+        }
         @media (max-width: 767px) {
             .ranking_list_bar {
                 flex-direction: column;
                 height: calc((500px + 50px) * 3);
             }
-            .ranking_list {
-                width: 100%;
-            }
             .ranking_title {
                 font-size: 6vw;
             }
-            .ranking_list_header {
-                
-            }
             .bubble_tag_bar {
                 display: block;
+            }
+            #filter_tool_bar {
+                flex-direction: column;
+            }
+            #way_to_sort {
+                flex-direction: row;
             }
         }
     </style>
@@ -207,10 +203,10 @@
     <div id="main_body">
         <div id="ranking">
         </div>
-        <div class="default-block">
-            <div id="filter">
+        <div id="filter">
+            <div class="default-block box" id="filter_area">
                 <div id="filter_tool_bar">
-                    <div id="way_to_sort" class="filter_tools">
+                    <div id="way_to_sort" class="filter_tools" style="width: 60%;">
                         <div>
                             <label><input type="radio" name="ways_to_sort" value="1"> 时间最近</label>
                         </div>
@@ -221,10 +217,12 @@
                     <div id="filter_select" class="filter_tools">
                         <!-- 标签筛选: 全部包含，包含任一，不包含 -->
                         <div class="filter_tag_area">
-                            <div class="filter_tag all_include" onclick="set_select_mode(1)">全部包含</div>
-                            <div class="filter_tag include_either" onclick="set_select_mode(0)">包含任一</div>
-                            <div class="filter_tag not_include" onclick="set_select_mode(-1)">&nbsp; 不包含 &nbsp;</div>
-                            <button id="show_all_tag" onclick="toggle_tag_win()">点击展开所有标签</button>
+                            <div class="filter_tag_featured">
+                                <div class="filter_tag all_include" onclick="set_select_mode(1)">全部包含</div>
+                                <div class="filter_tag include_either" onclick="set_select_mode(0)">包含任一</div>
+                                <div class="filter_tag not_include" onclick="set_select_mode(-1)">&nbsp; 不包含 &nbsp;</div>
+                                <button id="show_all_tag" onclick="toggle_tag_win()">点击展开所有标签</button>
+                            </div>
                             <div id="filter_tag_win">
                                 <div class="filter_tag_bar"><!-- 演唱编排类型 -->
                                     <div class="filter_tag">独唱</div>
@@ -249,14 +247,14 @@
                                     <div class="filter_tag">晚会Live</div>
                                     <div class="filter_tag">碎片</div>
                                 </div>
-                                <button id="filter_reset_btn" onclick="reset_tag_select()">重置</button>
-                                <button id="filter_btn" onclick="tag_filter()">点击筛选</button>
+                                <button id="filter_reset_btn" class="func_btn" onclick="reset_tag_select()">重置</button>
+                                <button id="filter_btn" class="func_btn" onclick="tag_filter()">点击筛选</button>
                             </div>
                         </div>
                     </div>
                     <div id="search_select" class="filter_tools">
                         <input type="text" id="search_keyword">
-                        <button id="search_btn" onclick="search_filter(get_all_songs())">点击搜索</button>
+                        <button id="search_btn" class="func_btn" onclick="search_filter(get_all_songs())">点击搜索</button>
                     </div>
                 </div>
                 <div class="scroll-wrapper">
@@ -275,7 +273,7 @@
         </p>
     </div>
 </body>
-<script src='js/music.js'>
+<script>
     var is_phone = (document.body.scrollWidth < 769);
 
     // initialization
@@ -375,7 +373,7 @@
     }
 
     function add_select_style(element, class_name) {
-        if (class_name == "" || element.parentNode.classList.contains("filter_tag_area")) {
+        if (class_name == "" || element.parentNode.classList.contains("filter_tag_featured")) {
             return;
         }
         // class_name: all_include, include_either, not_include
