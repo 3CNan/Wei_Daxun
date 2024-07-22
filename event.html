@@ -17,9 +17,9 @@
             <div id="calendar_header">
                 <div id="calendar_title">追勋日历</div>
                 <div id="calendar_month_area">
-                    <button class="calendar_month_btn" onclick="redraw_new_month(-1)"><</button>
+                    <button class="calendar_month_btn func_btn" onclick="redraw_new_month(-1)"><</button>
                     <div id="calendar_month_content"></div>
-                    <button class="calendar_month_btn" onclick="redraw_new_month(1)">></button>
+                    <button class="calendar_month_btn func_btn" onclick="redraw_new_month(1)">></button>
                 </div>
 
                 <div class="calendar_header_bar">
@@ -35,7 +35,7 @@
             <div id="calendar_content"></div>
             <div id="calendar_input_area">
                 <input type="date" id="m_date">
-                <button>确认搜索</button>
+                <button class="func_btn">确认搜索</button>
             </div>
         </div>
         <div id="event_area">
@@ -43,11 +43,15 @@
         <div id="filter">
             <div class="default-block box" id="filter_area">
                 <div id="filter_tool_bar">
-                    <div id="search_select">
-                        <input type="text" id="search_keyword">
-                        <button id="search_btn" onclick="search_filter(all_event)">点击搜索</button>
+                    <div id="way_to_sort" class="filter_tools" style="width: 60%;">
+                        <div>
+                            <label><input type="radio" name="ways_to_sort" value="1"> 时间最近</label>
+                        </div>
+                        <div>
+                            <label><input type="radio" name="ways_to_sort" value="0"> 首字拼音</label>
+                        </div>
                     </div>
-                    <div id="date_select">
+                    <div id="date_select" class="filter_tools">
                         <select id="date_select_year">
                             <option name="year_ops">year</option>
                             <option name="year_ops">2024</option>
@@ -75,15 +79,11 @@
                             <option name="month_ops">11</option>
                             <option name="month_ops">12</option>
                         </select>
-                        <button id="date_select_btn" onclick="select_filter()">筛选</button>
+                        <button id="date_select_btn" class="func_btn" onclick="select_filter()">点击筛选</button>
                     </div>
-                    <div id="way_to_sort">
-                        <div>
-                            <label><input type="radio" name="ways_to_sort" value="1"> 时间最近</label>
-                        </div>
-                        <div>
-                            <label><input type="radio" name="ways_to_sort" value="0"> 首字拼音</label>
-                        </div>
+                    <div id="search_select" class="filter_tools">
+                        <input type="text" id="search_keyword">
+                        <button id="search_btn" class="func_btn" onclick="search_filter(all_event)">点击搜索</button>
                     </div>
                 </div>
                 <div class="scroll-wrapper">

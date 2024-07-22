@@ -294,20 +294,60 @@ a, audio, b, body, canvas, caption, center, div, figcaption, figure, footer, for
 
 
 
-#date_select {
+#filter_area {
+    height: 70vh;
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+}
+#filter_tool_bar {
+    box-sizing: border-box;
+    background-color: whitesmoke;
+    padding: 5px 15px;
+
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.filter_tools {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*#date_select {
     float: right;
     height: calc(100% - 2vw);
     margin: 1vw;
     box-sizing: border-box;
-}
+}*/
 /*#calendar_month_area button, #calendar_input_area button, #date_select_btn {*/
 .func_btn {
     height: 100%;
+    width: 25%;
     padding: 6px;
     border: none;
     background-color: lightskyblue;
 }
-
+#search_select.filter_tools input {
+    width: 75%;
+    border-radius: 0;
+    padding: 3px;
+}
+.filter_tools select {
+    width: 40%;
+    border-radius: 0;
+    padding: 3px;
+}
+.filter_tools label {
+    display: flex;
+}
 
 
 
@@ -410,10 +450,7 @@ a, audio, b, body, canvas, caption, center, div, figcaption, figure, footer, for
     font-size: 80%;
     color: darkgray;
 }
-#date_select select {
-    width: 40%;
-    border-radius: 0;
-}
+
 
 
 @media (max-width: 1279px) {
@@ -425,6 +462,9 @@ a, audio, b, body, canvas, caption, center, div, figcaption, figure, footer, for
 @media (max-width: 1023px) {
     .default-block {
         max-width: 768px;
+    }
+    #way_to_sort {
+        flex-direction: column;
     }
 }
 
@@ -447,5 +487,8 @@ a, audio, b, body, canvas, caption, center, div, figcaption, figure, footer, for
     }
     #filter_tool_bar {
         flex-direction: column;
+    }
+    #way_to_sort {
+        flex-direction: row;
     }
 }

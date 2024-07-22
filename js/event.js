@@ -1,6 +1,4 @@
 var is_phone = (document.body.scrollWidth < 769);
-var navigation = document.getElementById("navigation");
-navigation.style.fontSize = (is_phone) ? ("100%") : ("60%");
 
 var date_on = new Date().toISOString().slice(0, 10); // yyyy-mm-dd
 date_on = get_date_arr(date_on);
@@ -18,8 +16,8 @@ function event_init() {
     calendar.style.fontSize = (is_phone) ? "100%" : "200%";
     var event_area = document.getElementById("event_area");
     event_area.style.width = (is_phone) ? "90%" : "45%";
-    var filter = document.getElementById("filter");
-    filter.style.height = (is_phone) ? "70vh" : "90vh";
+    // var filter = document.getElementById("filter");
+    // filter.style.height = (is_phone) ? "70vh" : "90vh";
 }
 
 function get_days_in_months(year, month) { // month: 1-12

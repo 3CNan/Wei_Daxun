@@ -68,40 +68,6 @@
         /**/
         /**/
         /* Filter Area */
-        #filter_area {
-            height: 90vh;
-            margin-top: 5vh;
-            display: flex;
-            flex-direction: column;
-        }
-        #filter_tool_bar {
-            box-sizing: border-box;
-            background-color: whitesmoke;
-            padding: 5px 15px;
-
-            position: sticky;
-            top: 0;
-            z-index: 1;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .filter_tools {
-            width: 100%;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        #filter_title {
-            width: 10%;
-            height: 100%;
-            color: gray;
-            font-size: 125%;
-            margin: 1vw;
-        }
         .filter_tag_featured {
             display: flex;
             gap: 5px;
@@ -155,14 +121,6 @@
             padding: 4px;
             background-color: lightgray;
         }
-        #search_select input {
-            width: 75%;
-            border-radius: 0;
-            padding: 3px;
-        }
-        #search_btn {
-            width: 25%;
-        }
         /**/
         /**/
         /**/
@@ -173,11 +131,6 @@
         /**/
         /**/
         /* media selector */
-        @media (max-width: 1024px) {
-            #way_to_sort {
-                flex-direction: column;
-            }
-        }
         @media (max-width: 767px) {
             .ranking_list_bar {
                 flex-direction: column;
@@ -188,9 +141,6 @@
             }
             .bubble_tag_bar {
                 display: block;
-            }
-            #way_to_sort {
-                flex-direction: row;
             }
         }
     </style>
@@ -205,10 +155,10 @@
                 <div id="filter_tool_bar">
                     <div id="way_to_sort" class="filter_tools" style="width: 60%;">
                         <div>
-                            <label><input type="radio" name="ways_to_sort" value="1"> 时间最近</label>
+                            <label><input type="radio" name="ways_to_sort" value="1">时间最近</label>
                         </div>
                         <div>
-                            <label><input type="radio" name="ways_to_sort" value="0"> 曲名拼音</label>
+                            <label><input type="radio" name="ways_to_sort" value="0">曲名拼音</label>
                         </div>
                     </div>
                     <div id="filter_select" class="filter_tools">
