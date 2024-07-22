@@ -445,4 +445,7 @@ a, audio, b, body, canvas, caption, center, div, figcaption, figure, footer, for
     .section_text {
         font-size: 3vw;
     }
+    #filter_tool_bar {
+        flex-direction: column;
+    }
 }

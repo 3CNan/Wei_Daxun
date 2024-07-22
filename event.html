@@ -41,11 +41,8 @@
         <div id="event_area">
         </div>
         <div id="filter">
-            <div id="filter_tool_bar">
-                <div id="filter_title">筛选器</div>
-
-                
-                <div id="filter_tool_area">
+            <div class="default-block box" id="filter_area">
+                <div id="filter_tool_bar">
                     <div id="search_select">
                         <input type="text" id="search_keyword">
                         <button id="search_btn" onclick="search_filter(all_event)">点击搜索</button>
@@ -89,8 +86,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="scroll-wrapper">
+                    <div id="filter_content"></div>
+                </div>
             </div>
-            <div id="filter_content"></div>
         </div>
     </div>
 
