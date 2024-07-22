@@ -10,33 +10,8 @@ function section_init(selected_bar, works, works_unaired, page_on) {
     // var img_section_img_objs = selected_bar.getElementsByTagName("img");
     var box_in_bar;
 
-	// // initialize the amount of content bar needed
-    // if (is_phone) {
-    //     selected_bar.innerHTML += '<div class="section_content"></div><div class="section_content"></div>';
-    // } else {
-    //     selected_bar.innerHTML += '<div class="section_content"></div>';
-    // }
-
-    // // initialize the amount of box in each content bar
-    // if(is_phone) {
-    //     for (var i = 0; i < 2; i++) {       // 2行
-    //         for (var j = 0; j < 3; j++) {   // 一行各3个框
-    //             section_content_objs[i].innerHTML += '<div class="section_box"><a class="src_link" target="_blank"><div class="section_img"></div><div class="section_text"></div></a></div>';
-    //         }
-    //     }
-    //     box_in_bar = 3;
-    // } else {
-    //     for (var j = 0; j < 6; j++) {       // 共一行，一行6个框
-    //         section_content_objs[0].innerHTML += '<div class="section_box"><a class="src_link" target="_blank"><div class="section_img"></div><div class="section_text"></div></a></div>';
-    //     }
-    //     box_in_bar = 6;
-    // }
-
     // initialize the specific img
     for (var i = 0; i < section_box_objs.length; i++) {
-        // section_img_objs[i].style.height = Number(works[works_unaired + i][2] != "") * (-10) + 75 + "%";
-        // section_box_objs[i].style.width = "calc(100% / " + box_in_bar + " - 2.8vw)";
-        // section_text_objs[i].style.fontSize = (9 / box_in_bar) + "vw";
         section_text_objs[i].innerHTML = works[works_unaired + i][0];
         section_text_objs[i].innerHTML += "<div class='section_text_sub'>" + works[works_unaired + i][1] + "</div>";
         if (works[works_unaired + i][2] != "") {
@@ -60,7 +35,6 @@ function section_load_image(all_works, works_unaired, page_on) {
 
 // carousel area initialization
 function carousel_init(works, page_on) {
-    var carousel_height;
 
     // get elements from html
     var carousel = document.getElementById("carousel");
@@ -70,65 +44,17 @@ function carousel_init(works, page_on) {
     var ep_name_area = document.getElementById("ep_name_area");
 
     // initialization
-    if(is_phone) { // if it's opened by phone
-        carousel_height = 300;
-        ep_area.style.width = "30%";
-        ep_name_area.style.width = "30%";
-        ep_name_area.style.marginLeft = "-30%";
-    } else {
-        carousel_height = 550;
-    }
-    carousel.style.height = carousel_height + "px";
-    ep_name_area.style.height = "calc(" + carousel_height + "px / 6";
     for(var i = 0; i < 12; i++) {
         ep_name_objs[i].innerHTML = works[i % 6][0];                          // carousel the recent best 6 (I think) works
         ep_name_objs[i].title = works[i % 6][0];  
-        ep_name_objs[i].style.height = "calc(" + carousel_height + "px / 6";
-        ep_name_objs[i].style.fontSize = (carousel_height / 20) + "px";
     }
 
-    carousel_anime_init(carousel_height, works, page_on);
+    carousel_anime_init(works, page_on);
 }
 
-function carousel_anime_init(carousel_height, works, page_on) {
+function carousel_anime_init(works, page_on) {
     var style = document.createElement('style');
     style.innerHTML = '\
-    @keyframes carousel_ep_names{               /* animation for ep_name_area to scroll up */ \
-        0%    {margin-top: 0px;}\
-        11.1% {margin-top: 0px;}\
-        16.7% {margin-top: calc(-' + carousel_height + 'px / 6 * 1);}\
-        27.8% {margin-top: calc(-' + carousel_height + 'px / 6 * 1);}\
-        33.3% {margin-top: calc(-' + carousel_height + 'px / 6 * 2);}\
-        44.4% {margin-top: calc(-' + carousel_height + 'px / 6 * 2);}\
-        50%   {margin-top: calc(-' + carousel_height + 'px / 6 * 3);}\
-        61.1% {margin-top: calc(-' + carousel_height + 'px / 6 * 3);}\
-        66.7% {margin-top: calc(-' + carousel_height + 'px / 6 * 4);}\
-        77.8% {margin-top: calc(-' + carousel_height + 'px / 6 * 4);}\
-        83.3% {margin-top: calc(-' + carousel_height + 'px / 6 * 5);}\
-        94.4% {margin-top: calc(-' + carousel_height + 'px / 6 * 5);}\
-        100%  {margin-top: calc(-' + carousel_height + 'px / 6 * 6);}\
-    }\
-    @keyframes gradient_ep_names{               /* animation for selected effect to scroll up */ \
-        0%     {margin-top: 0;}\
-        11.1%  {margin-top: 0;}\
-        16.69% {margin-top: calc(-' + carousel_height + 'px / 6 * 1);}\
-        16.7%  {margin-top: 0;}\
-        27.8%  {margin-top: 0;}\
-        33.29% {margin-top: calc(-' + carousel_height + 'px / 6 * 1);}\
-        33.3%  {margin-top: 0;}\
-        44.4%  {margin-top: 0;}\
-        49.99% {margin-top: calc(-' + carousel_height + 'px / 6 * 1);}\
-        50.0%  {margin-top: 0;}\
-        61.1%  {margin-top: 0;}\
-        66.69% {margin-top: calc(-' + carousel_height + 'px / 6 * 1);}\
-        66.7%  {margin-top: 0;}\
-        77.8%  {margin-top: 0;}\
-        83.29% {margin-top: calc(-' + carousel_height + 'px / 6 * 1);}\
-        83.3%  {margin-top: 0;}\
-        94.4%  {margin-top: 0;}\
-        99.99% {margin-top: calc(-' + carousel_height + 'px / 6 * 1);}\
-        100%   {margin-top: 0;}\
-    }\
     @keyframes carousel_img{                    /* animation for imgs to change while scrolling */ \
         0%    {background-image: url("' + get_url(page_on, works, 0) + '");}\
         11.1% {background-image: url("' + get_url(page_on, works, 0) + '");}\
@@ -144,6 +70,7 @@ function carousel_anime_init(carousel_height, works, page_on) {
         94.4% {background-image: url("' + get_url(page_on, works, 5) + '");}\
         100%  {background-image: url("' + get_url(page_on, works, 0) + '");}\
     }'; // add animations
+
     document.head.appendChild(style);
     console.log("Carousel initialization finished.");
 }
@@ -327,7 +254,7 @@ function alert_init(all_works) {
     for(var i = 0; i < all_works.length; i++) {
         alert_bg.innerHTML += "<div class='alert_win'><div class='alert_title'>全部作品<div class='alert_close_btn' onclick='alert_close()'>点击关闭</div></div></div>";
         alert_win_objs[i].style.display = "none";
-        alert_win_objs[i].style.fontSize = (is_phone) ? ("2.5vw") : ("1.5vw");
+        // alert_win_objs[i].style.fontSize = (is_phone) ? ("2.5vw") : ("1.5vw");
 
         // initialize bubbles inside        
         create_bubble(alert_win_objs[i], all_works[i]);

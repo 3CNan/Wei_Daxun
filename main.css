@@ -11,6 +11,30 @@
   font-family: 'BTXiaoBai';
   src: url('./src/font/包图小白体.woff') format('woff');
 }
+@font-face {
+  font-family: 'SYSong-Bold';
+  src: url('./src/font/original/思源宋体SC-Bold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'LxgwMarkerGothic-Regular';
+  src: url('./src/font/original/霞鹜漫黑（LxgwMarkerGothic-Regular）.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'LXGWNewClearGothic-Book';
+  src: url('./src/font/original/霞鹜新晰黑（LXGWNewClearGothic-Book）.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'XYGZhengRong';
+  src: url('./src/font/original/新愚公峥嵘体黑体版.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'MT-heavy';
+    src: url('./src/font/original/星汉等宽.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'QIJIFALLBACK';
+    src: url('./src/font/original/令东齐伋体.ttf') format('truetype');
+}
 /**/
 /**/
 /**/
@@ -117,38 +141,48 @@ a, audio, b, body, canvas, caption, center, div, figcaption, figure, footer, for
 
 /* carousel section */
 #carousel {
+    height: 550px;
     background-position: center;
     background-size: auto 100%;
     overflow: hidden;
     animation: carousel_img 15s steps(1,end) infinite;   
 }
 #ep_area {
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0.6));
+/*    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0.6));*/
+    background-image: linear-gradient(to right, black, transparent);
     width: 20%;
     height:100%;
     float: right;
     overflow: hidden;
 }
 #ep_titles {
-    animation: carousel_ep_names 15s linear infinite;
+    animation: carousel_ep_names-laptop 15s linear infinite;
 }
 #ep_name_area {
     width: 20%;
-    margin-left: -20%;
-    float: right;
-    animation: gradient_ep_names 15s linear infinite;;
+    height: calc(550px / 6);
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    animation: gradient_ep_names-laptop 15s linear infinite;
     background-image: linear-gradient(to left, transparent, #e16c1d);
 }
 .ep_name {
     width: 100%;
-    font-size: 2vw;
+    height: calc(550px / 6);
+    font-size: calc(550px / 20);
+/*    font-size: 2vw;*/
+    font-family: "LxgwMarkerGothic-Regular", serif;
     color: white;
-    text-shadow: 0 0 5px black;
     box-sizing: border-box;
-    padding: 1.6vw 1vw;
+    padding-left: 1.5vw;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis; 
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: center;
 }
 
 /* film and tv section */
@@ -215,6 +249,7 @@ a, audio, b, body, canvas, caption, center, div, figcaption, figure, footer, for
 .alert_win {
     width: 60vw;
     height: 60vh;
+    font-size: 1.5vw;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -452,6 +487,44 @@ a, audio, b, body, canvas, caption, center, div, figcaption, figure, footer, for
 }
 
 
+@keyframes carousel_ep_names-laptop {               /* animation for ep_name_area to scroll up */
+    0%    {margin-top: 0px;}
+    11.1% {margin-top: 0px;}
+    16.7% {margin-top: calc(-550px / 6 * 1);}
+    27.8% {margin-top: calc(-550px / 6 * 1);}
+    33.3% {margin-top: calc(-550px / 6 * 2);}
+    44.4% {margin-top: calc(-550px / 6 * 2);}
+    50%   {margin-top: calc(-550px / 6 * 3);}
+    61.1% {margin-top: calc(-550px / 6 * 3);}
+    66.7% {margin-top: calc(-550px / 6 * 4);}
+    77.8% {margin-top: calc(-550px / 6 * 4);}
+    83.3% {margin-top: calc(-550px / 6 * 5);}
+    94.4% {margin-top: calc(-550px / 6 * 5);}
+    100%  {margin-top: calc(-550px / 6 * 6);}
+}
+@keyframes gradient_ep_names-laptop {               /* animation for selected effect to scroll up */
+    0%     {margin-top: 0;}
+    11.1%  {margin-top: 0;}
+    16.69% {margin-top: calc(-550px / 6 * 1);}
+    16.7%  {margin-top: 0;}
+    27.8%  {margin-top: 0;}
+    33.29% {margin-top: calc(-550px / 6 * 1);}
+    33.3%  {margin-top: 0;}
+    44.4%  {margin-top: 0;}
+    49.99% {margin-top: calc(-550px / 6 * 1);}
+    50.0%  {margin-top: 0;}
+    61.1%  {margin-top: 0;}
+    66.69% {margin-top: calc(-550px / 6 * 1);}
+    66.7%  {margin-top: 0;}
+    77.8%  {margin-top: 0;}
+    83.29% {margin-top: calc(-550px / 6 * 1);}
+    83.3%  {margin-top: 0;}
+    94.4%  {margin-top: 0;}
+    99.99% {margin-top: calc(-550px / 6 * 1);}
+    100%   {margin-top: 0;}
+}
+
+
 
 @media (max-width: 1279px) {
     .default-block {
@@ -485,10 +558,72 @@ a, audio, b, body, canvas, caption, center, div, figcaption, figure, footer, for
     .section_text {
         font-size: 3vw;
     }
+    .alert_win {
+        font-size: 2.5vw;
+    }
     #filter_tool_bar {
         flex-direction: column;
     }
     #way_to_sort {
         flex-direction: row;
+    }
+    #carousel {
+        height: 330px;
+    }
+    #ep_area {
+        width: 30%;
+    }
+    #ep_name_area {
+        width: 30%;
+        margin-left: -30%;
+        height: calc(330px / 6);
+        animation: gradient_ep_names-mobile 15s linear infinite;
+    }
+    .ep_name {
+        height: calc(330px / 6);
+        font-size: calc(330px / 20);
+    }
+    #ep_titles {
+        animation: carousel_ep_names-mobile 15s linear infinite;
+    }
+
+
+
+
+    @keyframes carousel_ep_names-mobile {               /* animation for ep_name_area to scroll up */
+        0%    {margin-top: 0px;}
+        11.1% {margin-top: 0px;}
+        16.7% {margin-top: calc(-330px / 6 * 1);}
+        27.8% {margin-top: calc(-330px / 6 * 1);}
+        33.3% {margin-top: calc(-330px / 6 * 2);}
+        44.4% {margin-top: calc(-330px / 6 * 2);}
+        50%   {margin-top: calc(-330px / 6 * 3);}
+        61.1% {margin-top: calc(-330px / 6 * 3);}
+        66.7% {margin-top: calc(-330px / 6 * 4);}
+        77.8% {margin-top: calc(-330px / 6 * 4);}
+        83.3% {margin-top: calc(-330px / 6 * 5);}
+        94.4% {margin-top: calc(-330px / 6 * 5);}
+        100%  {margin-top: calc(-330px / 6 * 6);}
+    }
+    @keyframes gradient_ep_names-mobile {               /* animation for selected effect to scroll up */
+        0%     {margin-top: 0;}
+        11.1%  {margin-top: 0;}
+        16.69% {margin-top: calc(-330px / 6 * 1);}
+        16.7%  {margin-top: 0;}
+        27.8%  {margin-top: 0;}
+        33.29% {margin-top: calc(-330px / 6 * 1);}
+        33.3%  {margin-top: 0;}
+        44.4%  {margin-top: 0;}
+        49.99% {margin-top: calc(-330px / 6 * 1);}
+        50.0%  {margin-top: 0;}
+        61.1%  {margin-top: 0;}
+        66.69% {margin-top: calc(-330px / 6 * 1);}
+        66.7%  {margin-top: 0;}
+        77.8%  {margin-top: 0;}
+        83.29% {margin-top: calc(-330px / 6 * 1);}
+        83.3%  {margin-top: 0;}
+        94.4%  {margin-top: 0;}
+        99.99% {margin-top: calc(-330px / 6 * 1);}
+        100%   {margin-top: 0;}
     }
 }

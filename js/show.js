@@ -1,6 +1,4 @@
 var is_phone = (document.body.scrollWidth < 769);
-var navigation = document.getElementById("navigation");
-navigation.style.fontSize = (is_phone) ? ("100%") : ("60%");
 
 // film and tv section initialization
 function shows_init() {
