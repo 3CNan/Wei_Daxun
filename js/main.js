@@ -56,18 +56,12 @@ function carousel_anime_init(works, page_on) {
     var style = document.createElement('style');
     style.innerHTML = '\
     @keyframes carousel_img{                    /* animation for imgs to change while scrolling */ \
-        0%    {background-image: url("' + get_url(page_on, works, 0) + '");}\
-        11.1% {background-image: url("' + get_url(page_on, works, 0) + '");}\
-        16.7% {background-image: url("' + get_url(page_on, works, 1) + '");}\
-        27.8% {background-image: url("' + get_url(page_on, works, 1) + '");}\
-        33.3% {background-image: url("' + get_url(page_on, works, 2) + '");}\
-        44.4% {background-image: url("' + get_url(page_on, works, 2) + '");}\
-        50%   {background-image: url("' + get_url(page_on, works, 3) + '");}\
-        61.1% {background-image: url("' + get_url(page_on, works, 3) + '");}\
-        66.7% {background-image: url("' + get_url(page_on, works, 4) + '");}\
-        77.8% {background-image: url("' + get_url(page_on, works, 4) + '");}\
-        83.3% {background-image: url("' + get_url(page_on, works, 5) + '");}\
-        94.4% {background-image: url("' + get_url(page_on, works, 5) + '");}\
+        0%, 11.1% {background-image: url("' + get_url(page_on, works, 0) + '");}\
+        16.7%, 27.8% {background-image: url("' + get_url(page_on, works, 1) + '");}\
+        33.3%, 44.4% {background-image: url("' + get_url(page_on, works, 2) + '");}\
+        50%, 61.1% {background-image: url("' + get_url(page_on, works, 3) + '");}\
+        66.7%, 77.8% {background-image: url("' + get_url(page_on, works, 4) + '");}\
+        83.3%, 94.4% {background-image: url("' + get_url(page_on, works, 5) + '");}\
         100%  {background-image: url("' + get_url(page_on, works, 0) + '");}\
     }'; // add animations
 
